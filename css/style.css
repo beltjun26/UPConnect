@@ -1,0 +1,456 @@
+
+/*--REMOVED MARGINS AND PADDING FOR EASIER DESIGNING--*/
+
+*{
+	margin: 0;
+	padding: 0;
+	color: #555;
+}
+
+body{
+	display: flex;
+	min-height: 667px;
+	align-items: center;
+	justify-content: center;
+	background-color: rgba(0,0,0,0.03);
+}
+
+.container{
+	text-align: center;
+}
+
+/*--AESTHETIC PURPOSES--*/
+
+.floattran:hover{
+	transform: translate(0px, -2px);
+	box-shadow: 0px 5px 3px rgba(0,0,0,0.07);
+}
+
+/*--FONT DESIGN--*/
+
+.topnav > a, .classbtn, .name,
+.user.description, .description,
+.grouplinks > li > a,
+.topost > form > textarea,
+.user, .filecontainer > p,
+.post > .caption{
+	font-weight: bold;
+	font-family: "Gotham Light";
+}
+
+/*--NAVIGATION DESIGN--*/
+
+.topnav{
+	top: 0;
+	left: 0;
+	width: 97.75%;
+	position: fixed;
+	display: inline-flex;
+	background-color: #FFF;
+	padding: 10px 15px 10px 15px;
+}
+
+.topnav > a{
+	color: #999;
+	padding: 10px 15px 10px 15px;
+}
+
+.topnav > a:first-child{
+	color: #a20025;
+	display: block;
+	transition: 0.2s;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	font-family: "Gotham Medium";
+	border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+.topnav > a:first-child:hover{
+	border-color: rgba(204,255,144 ,0.7);
+}
+
+.topnav > a:nth-child(2){
+	margin-left: auto;
+}
+
+.topnav > a{
+	display: block;
+	transition: 0.2s;
+	margin-right: 10px;
+	text-decoration: none;
+	border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+.topnav > a:hover{
+	border-color: rgba(255,255,141 ,1);
+}
+
+.topnav > a:last-child:hover{
+	border-color: rgba(229,20,0 ,0.5);
+}
+
+.topnav > a.actpage{
+	cursor: default;
+	pointer-events: none;
+	border-color: rgba(204,255,144 ,1);
+}
+
+/*--HOME DESIGN--*/
+
+.text{
+	padding: 5px;
+	display: block;
+	border-radius: 5px;
+	margin-bottom: 10px;
+	border: solid 1px #DDF;
+}
+
+.greetings{
+	font-size: 20px;
+	margin-bottom: 5%;
+	text-align: center;
+	letter-spacing: 25px;
+	text-transform: uppercase;
+	font-family: "Gotham Light";
+}
+
+.webname{
+	color: #a20025;
+	font-size: 50px;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	font-family: "Gotham Medium";
+}
+
+.instructions{
+	color: #EEE;
+	display: block;
+	font-size: 12px;
+	border-radius: 2px;
+	letter-spacing: 1px;
+	background-color: #333;
+	margin: 0 auto 5% auto;
+	font-family: "Courier New";
+	padding: 5px 15px 5px 15px;
+}
+
+.classbtn{
+	color: #444;
+	padding: 5px;
+	display: block;
+	font-size: 20px;
+	transition: 0.2s;
+	margin-bottom: 3%;
+	letter-spacing: 2px;
+	text-decoration: none;
+	box-sizing: border-box;
+	background-color: rgba(255,255,255,0.5);
+	box-shadow: 0px 2px 1px rgba(0,0,0,0.05);
+}
+
+.classbtn:hover{
+	color: #29B6F6;
+	border-color: white;
+	background-color: white;
+	transform: translate(0, -2px);
+	box-shadow: 0px 3px 5px rgba(0,0,0,0.1);
+}
+
+/*--PROFILE PAGE--*/
+
+.container.profile{
+	text-align: center;
+}
+
+.name{
+	font-size: 30px;
+	margin-bottom: 5%;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+.profilepic{
+	width: 250px;
+	display: block;
+	transition: 0.4s;
+	border-radius: 50%;
+	margin: 0 auto 5% auto;
+	image-rendering:optimizeQuality;
+	transform: rotate(-2deg);
+}
+
+.profilepic:hover{
+	transform: scale(1.07, 1.07) rotate(0deg);
+	box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+}
+
+.user.description{
+	font-size: 20px;
+	line-height: 40px;
+	text-align: center;
+	letter-spacing: 1px;
+}
+
+.user.description.email{
+	color: #999;
+	font-size: 15px;
+}
+
+/*--CLASS PAGE--*/
+
+.class{
+	overflow: auto;
+	background-color: white;
+	box-shadow: 0px 5px 3px rgba(0,0,0,0.1);
+}
+
+.classtitle{
+	padding: 15px;
+	font-size: 40px;
+	letter-spacing: 5px;
+	font-family: "Gotham Light";
+}
+
+.description{
+	list-style: none;
+}
+
+.description.class{
+	width: 50%;
+	width: 100%;
+	padding: 10px;
+	display: inline-flex;
+	background-color: #333;
+	box-sizing: border-box;
+	justify-content: center;
+}
+
+ul.description.class > li{
+	margin: 0 1% 0 1%;
+}
+
+ul.description.class > li > p{
+	color: #EEE;
+	font-size: 15px;
+	letter-spacing: 1px;
+}
+
+ul.class.description > li:first-child{
+	clear: right;
+}
+
+p.description{
+	color: #666;
+	font-size: 20px;
+	text-align: center;
+}
+
+ul.grouplinks{
+	display: flex;
+	list-style: none;
+	margin: 20px 0 20px 0;
+	justify-content: center;
+}
+
+ul.grouplinks > li > a{
+	margin: 5px;
+	color: white;
+	padding: 10px;
+	transition: 0.4s;
+	letter-spacing: 1px;
+	text-decoration: none;
+	box-sizing: border-box;
+	background-color: #FDD835; 
+}
+
+ul.grouplinks > li > a:hover{
+	background-color: #8BC34A;
+}
+
+ul.actionbtns>li{
+	margin-bottom: 10px;
+}
+
+ul.actionbtns > li > span{
+	transition: 0.2s
+}
+
+ul.actionbtns > li > button{
+	width: 30px;
+	color: white;
+	height: 30px;
+	display: block;
+	transition: 0.1s;
+	margin-right: 5px;
+	border-style: none;
+	margin-bottom: 5px;
+	background-color: #999;
+}
+
+ul.actionbtns > li > button:first-child:hover{
+	background-color: #8BC34A;
+}
+
+ul.actionbtns > li > button:nth-child(2):hover{
+	background-color: #8BC34A;
+}
+
+ul.actionbtns > li > button:last-child:hover{
+	background-color: #8BC34A;
+}
+
+/*--TOOLTIP--*/
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    opacity: 0;
+    z-index: 1;
+    color: #fff;
+    width: 120px;
+    padding: 5px 0;
+    text-align: center;
+    border-radius: 6px;
+    position: absolute;
+    background-color: #222;
+    transform: translate(-50%);
+}
+
+.tooltip:hover .tooltiptext {
+    opacity: 1;
+}
+
+/*--POST AND POSTING DESIGN--*/
+
+div.topost,
+div.post{
+	overflow: auto;
+	max-width: 500px;
+	border-radius: 3px;
+	padding-bottom: 10px;
+	background-color: white;
+	margin: 0 auto 20px auto;
+	box-shadow: 0 5px 3px rgba(0,0,0,0.1);
+}
+
+div.topost > form > input[type=button]{
+	float: left;
+	margin-left: 5%;
+}
+
+div.topost > form > input[type=button]:nth-child(3){
+	margin-left: 1%;
+}
+
+div.topost > form > input[type=submit],
+div.post > input:nth-child(5){
+	float: right;
+	margin-right: 5%;
+}
+
+div.topost > form > textarea{
+	width: 90%;
+	padding: 10px;
+	margin-left: 5%;
+	resize: vertical;
+	min-height: 50px;
+	max-height: 150px;
+	border-color: white;
+	letter-spacing: 0.5px;
+	border: 1px solid #EEE;
+	box-sizing: border-box;
+}
+
+div.topost > form > input[type=submit],
+div.topost > form > input[type=button],
+div.post > input{
+	color: #03A9F4;
+	display: block;
+	font-size: 15px;
+	margin-top: 10px;
+	font-weight: bold;
+	border-style: none;
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
+	background-color: white;
+	text-transform: uppercase;
+	font-family: "Gotham Light";
+	padding: 10px 15px 10px 15px;
+}
+
+/*--AESTHETIC PURPOSES--*/
+
+.hoveranim{
+	cursor: pointer;
+	transition: 0.2s;
+	pointer-events: visible;
+}
+
+.hoveranim:hover{
+	color: white!important;
+	transform: translate(0px, -3px);
+	border-color: #29B6F6!important;
+	background-color: #29B6F6!important;
+	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+}
+
+p.user{
+	color: #666;
+	margin: 10px;
+	margin-left: 5%;
+	font-size: 20px;
+	text-align: left;
+	letter-spacing: 1px;
+}
+
+div.filecontainer{
+	width: 90%;
+	overflow: auto;
+	align-items: center;
+	display: inline-flex;
+	justify-content: left;
+	margin: 10px auto 0 auto;
+	box-shadow: 1px 5px 5px rgba(0,0,0,0.1);
+	background: -webkit-linear-gradient(left, #FFF9C4, #FFF9C4, #FFF9C4, white);
+}
+
+div.filecontainer > p{
+	color: #888;
+	font-size: 20px;
+}
+
+#file{
+	max-height: 200px;
+}
+
+div.post > input:nth-child(4){
+	float: left;
+	margin-left: 5%;
+}
+
+div.post > input:nth-child(5){
+	float: left;
+	margin-left: 1%;
+}
+
+div.post > input:nth-child(6){
+	float: right;
+	margin-right: 5%;
+}
+
+div.post > p.caption{
+	width: 85%;
+	color: #AAA;
+	text-align: left;
+	letter-spacing: 0.5px;
+	margin: 5px 5% 5px 10%;
+}
+
+img.uploadedphoto{
+	width: 90%;
+	margin-top: 10px;
+}

@@ -1,0 +1,109 @@
+/*<body>
+	<div class="container">
+	<h1>UP CONNECT</h1>
+		<form action="home.html">
+			<label for="username">Username:</label>
+			<input type="text" name="username" class="text">
+			<label for="password">Password:</label>
+			<input type="password" name="password" class="text">
+			<input type="submit" name="login" value="Login">
+		</form>
+		<a href="signup.html">Create an account</a>
+	</div>
+</body>*/
+
+body{
+	display: flex;
+	min-height: 525px;
+	align-items: center;
+	justify-content: center;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	background-color: rgba(0,0,0,0.03);
+}
+
+h1 {
+	font-family: "Gotham Medium";
+	letter-spacing: 4px;
+	text-align: center;
+	margin-bottom: 20px;
+	text-align: center;
+	color: #a20025;
+	background-color: white;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+	padding: 15px;
+}
+
+form{
+	background-color: white;
+	padding: 25px 15px 15px 15px;
+	box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+	margin-bottom: 20px;
+}
+
+input{
+	padding: 10px 15px 10px 15px;
+	width: 90%;
+	box-sizing: border-box;
+	display: block;
+	border-radius: 2px;
+	border: solid 1px #DDD;
+	margin: 10px auto 10px auto;
+	color: #777;
+	font-family: "Gotham Light";
+	font-weight: bold;
+}
+
+label {
+	font-size: 15px;
+	color: #666;
+	margin-left: 5%;
+	padding: 10px 0;
+}
+
+input[type=submit]{
+	display: block;
+	background-color: white;
+	text-transform: uppercase;
+	text-decoration: none;
+	padding: 10px 15px;
+	margin: 20px auto 10px auto;
+	text-align: center;
+	width: 40%;
+	color: #29B6F6;
+	transition: 0.2s;
+	letter-spacing: 2px;
+	font-size: 16px;
+}
+
+input[type=submit]:hover{
+	background-color: #29B6F6;
+	border-color: #29B6F6;
+	color: white;
+	transform: translate(0, -3px);
+	box-shadow: 0 3px 3px rgba(0,0,0,0.2);
+
+}
+
+.instructions{
+	color: #EEE;
+	font-size: 12px;
+	border-radius: 2px;
+	letter-spacing: 1px;
+	background-color: #333;
+	margin: 0 auto 5% auto;
+	font-family: "Courier New";
+	font-weight: initial;
+	text-align: center;
+	padding: 5px 15px 5px 15px;
+}
+
+.warn{
+	background-color: #f1c40f;
+	color: white;
+}
+
+.invalid{
+	background-color: #D81B60;
+	color: white;
+}
