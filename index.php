@@ -83,7 +83,7 @@
 <html>
 <head>
 	<title>UP Connect</title>
-	<link rel="stylesheet" type="text/css" href="../css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 </head>
 <body>
 	<div class="container">

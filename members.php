@@ -2,8 +2,8 @@
 <html>
 <head>
 	<title>UP Connect</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-	<link rel="stylesheet" type="text/css" href="/css/member.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/member.css">
 </head>
 <body>
 	<div class="topnav">

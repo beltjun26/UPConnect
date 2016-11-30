@@ -6,7 +6,7 @@
 <html>
 <head>
 	<title>UP Connect</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	<?php
@@ -23,7 +23,7 @@
 	</div>
 	<div id="container profile">
 		<h1 class="name"> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];	 ?></h1>
-		<img src="../images/pp_cover/3.jpg" class="profilepic">
+		<img src="images/pp_cover/3.jpg" class="profilepic">
 		<ul class="description">
 			<li><p class="user description">BS in Computer Science III</p></li>
 			<li><p class="user description email">Email: cjubs.delgado@gmail.com</p></li>
