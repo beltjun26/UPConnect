@@ -17,10 +17,19 @@
 			header("Location: index.php");
 		}
 		require "connect.php";
+		
 		$query = "select * from teacher natural join course natural join class natural join semester where class_id = {$_GET['classid']}";
 		$result = mysqli_query($dbconn, $query);
 		if(mysqli_affected_rows($dbconn)){
 			$row = mysqli_fetch_assoc($result);
+		}
+		$student=[];
+		$query = "select * from enroll_class natural join student natural join degree where class_id = {$_GET['classid']}";
+		$result = mysqli_query($dbconn, $query);
+		if(mysqli_affected_rows($dbconn)){
+			while($data = mysqli_fetch_assoc($result)){
+				$student[]=$data;
+			}
 		}
 	 ?>
 	<nav id="navigation">
@@ -56,31 +65,30 @@
 	</ul>
 	<div class="container">
 		<h1>MEMBERS</h1>
-		<h2>CMSC 128</h2>
+		<h2><?=$row['course_name']?></h2>
 		<p class="instructions" style="margin: 10px 20px;">Click on one of the people to view their profile.</p>
 		<form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">
 			<input type="submit" name="submit" value="SEARCH">
 		</form>
 		<ul class="studentlist">
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
+		<?php foreach ($student as $value):?>
+			<li><a href="
+				<?php 
+					if($value['student_id']==$_SESSION['userid']){
+						echo "myprofile.php";
+					}else{
+						echo "profile.php?student_id=".$value['student_id'];
+					}
+				?>">
+				<img src="images/profile_images/<?=$value['student_id']?>.jpg">
 				<ul class="description">
-					<li class="descriptionName">Alonzo Locsin</li>
+					<li class="descriptionName"><?php echo $value['firstname']." ".$value['lastname']?></li>
 					<li class="descriptionCourseYear">BS in Computer Science III</li>
 				</ul>
 			</a></li>
-			<li><a href="profile.php"><img src="images/profile_images/2.jpg"> <span>Andrew Dagdag</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/3.jpg"> <span>Clyde Joshua Delgado</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/4.jpg"> <span>Diana Chris Pacana</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/5.jpg"> <span>Donn Cruz</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/6.jpg"> <span>Angelica Tabalucon</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/7.jpg"> <span>maynard Vargas</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/8.jpg"> <span>Rollin Opsima</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/9.jpg"> <span>Rosiebelt Jun Abisado</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/10.jpg"><span>Rosjel Jolly Lambungan</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/11.jpg"><span>Salvy Jessa Arnaiz</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/12.jpg"><span>Shebna Rose Fabilloren</span></a></li>
+		<?php endforeach?>
+			
 		</ul>
 	</div>
 	</div>

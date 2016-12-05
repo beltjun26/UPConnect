@@ -23,7 +23,7 @@
 		}
 		require "connect.php";
 		
-		$query = "select * from student natural join degree where student_id = '{$_SESSION['userid']}'";
+		$query = "select * from student natural join degree where student_id ={$_GET['student_id']}";
 		$result = mysqli_query($dbconn, $query);
 
 		if(mysqli_affected_rows($dbconn)){
@@ -40,40 +40,10 @@
 		<a href="logout.php" class="floattran">Logout</a>
 	</nav>
 	<div class="container" id="profilecontainer">
-		<button class="change" id="EditPicBtn">Change</button>
-		<img src="images/profile_images/<?=$_SESSION['userid']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'" class="profilepic">
-		<div id="EditProfilePicture" class="modal edit_profile">
-		  	<div class="modal-content">
-		    	<div class="modal-header">
-					<h2>Edit Profile Picture</h2>
-		      		<span class="close">×</span>
-		    	</div>
-			    <div class="modal-body">
-		      		<img id="output_profile" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-			      	<form method="post" action="upload.php" enctype="multipart/form-data">
-				      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
-				      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
-				      	<input type="submit" name="change_profilepic" value="CHANGE">
-			      	</form>
-			    </div>
-		  	</div>
-		</div>
-		<div id="EditEmail" class="modal edit_profile">
-		  	<div class="modal-content">
-		    	<div class="modal-header">
-					<h2>Change Your Email</h2>
-		      		<span class="close">×</span>
-		    	</div>
-			    <div class="modal-body">
-			      	<form method="post" action="upload.php">
-				      	<input type="email" name="email" placeholder="sample.example@sample.com">
-				      	<input type="submit" name="change_email" value="CHANGE">
-			      	</form>
-			    </div>
-		  	</div>
-		</div>
+		
+		<img src="images/profile_images/<?=$row['student_id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'" class="profilepic">
 		<ul class="description">
-			<li><h1 class="name"> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];	 ?></h1></li>
+			<li><h1 class="name"> <?php echo $row['firstname']." ".$row['lastname'];	 ?></h1></li>
 			<li>
 				<p class="user"><?php 
 					echo $row['degree_name'];
@@ -89,7 +59,6 @@
 				</p>
 			</li>
 			<li><p class="email">Email: <?php echo $row['email'] ?></p></li>
-			<li><button id="EditEmailBtn">Change Email</button></li>
 		</ul>
 	</div>
 
