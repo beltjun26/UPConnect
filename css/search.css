@@ -1,0 +1,53 @@
+/*
+<form class="searchthroughlist">
+	<input type="text" name="keyword">
+	<input type="submit" name="submit">
+</form>
+*/
+
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+.searchthroughlist{
+	margin: 10px 20px;
+	display: flex;
+}
+
+.searchthroughlist input[type=text]{
+	padding: 5px 10px;
+	border: 1px solid #EEE;
+	border-radius: 3px 0 0 3px;
+	width: 80%;
+	box-sizing: border-box;
+	transition: 0.3s;
+}
+
+.searchthroughlist input[type=submit]{
+	width: 20%;
+	box-sizing: border-box;
+	padding: 5px 10px;
+	border: none;
+	border-radius: 0 3px 3px 0;
+	font-family: GothamLight;
+	font-weight: bold;
+	text-transform: uppercase;
+	color: white;
+	background-color: #03A9F4;
+	transition: 0.3s;
+	letter-spacing: 0.1em;
+}
+
+.searchthroughlist input[type=submit]:hover{
+	background-color: #00B0FF;
+	cursor: pointer;
+}
+
+.searchthroughlist input[type=text]:active,
+.searchthroughlist input[type=text]:focus,
+.searchthroughlist input[type=text]:hover{
+	outline: none;
+	border-color: skyblue;
+	box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}

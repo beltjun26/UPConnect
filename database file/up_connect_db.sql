@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2016 at 03:43 AM
--- Server version: 10.1.16-MariaDB
--- PHP Version: 5.6.24
+-- Generation Time: Dec 05, 2016 at 06:16 PM
+-- Server version: 10.1.13-MariaDB
+-- PHP Version: 5.6.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,26 +23,47 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `admin_id` varchar(3) NOT NULL,
+  `firstname` varchar(50) NOT NULL,
+  `middlename` varchar(50) NOT NULL,
+  `lastname` varchar(50) NOT NULL,
+  `password` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`admin_id`, `firstname`, `middlename`, `lastname`, `password`) VALUES
+('123', 'Admiiin', 'Pillow', 'Mucho', '9460370bb0ca1c98a779b1bcc6861c2c');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `class`
 --
 
 CREATE TABLE `class` (
   `class_id` int(11) NOT NULL,
   `teacher_id` varchar(5) NOT NULL,
-  `school_year` varchar(20) NOT NULL,
-  `sem` int(3) NOT NULL,
   `section` int(6) NOT NULL,
-  `course_id` int(11) NOT NULL
+  `course_id` int(11) NOT NULL,
+  `sem_id` int(9) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `class`
 --
 
-INSERT INTO `class` (`class_id`, `teacher_id`, `school_year`, `sem`, `section`, `course_id`) VALUES
-(134121, '12345', '2016-2017', 1, 1, 77312),
-(443194, '12345', '2016-2017', 1, 1, 55123),
-(533123, '12345', '2015-2016', 1, 1, 43245);
+INSERT INTO `class` (`class_id`, `teacher_id`, `section`, `course_id`, `sem_id`) VALUES
+(1, '12345', 1, 1, 1),
+(2, '12345', 1, 2, 1),
+(3, '12345', 1, 3, 1),
+(4, '54321', 1, 5, 4);
 
 -- --------------------------------------------------------
 
@@ -62,11 +83,12 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_name`, `course_description`, `desciptive_title`) VALUES
-(43245, 'CMSC 21', 'basf sadf sadf sd fdsf', 'Java'),
-(44321, 'CMSC 141', 'dfdsfsdasdf sadf safa sdfa sdf\n\n', 'Automata'),
-(55123, 'CMSC128', 'saf asf saf asf saf sdf', 'Software Engineering'),
-(67531, 'CMSC 11', 'this course teaches how to use the python', 'Introduction To Computer Computer Science'),
-(77312, 'CMSC 127', 'This course teachers asdf asfd asd fs fsdf f ', 'Database');
+(1, 'CMSC 21', 'basf sadf sadf sd fdsf', 'Java'),
+(2, 'CMSC 141', 'dfdsfsdasdf sadf safa sdfa sdf\n\n', 'Automata'),
+(3, 'CMSC128', 'saf asf saf asf saf sdf', 'Software Engineering'),
+(4, 'CMSC 11', 'this course teaches how to use the python', 'Introduction To Computer Computer Science'),
+(5, 'CMSC 127', 'This course teachers asdf asfd asd fs fsdf f ', 'Database'),
+(6, 'CMSC 22', 'This is com sci 22', 'Programming');
 
 -- --------------------------------------------------------
 
@@ -85,7 +107,29 @@ CREATE TABLE `degree` (
 --
 
 INSERT INTO `degree` (`degree_id`, `degree_name`, `desciption`) VALUES
-(1321243, 'BS in Computer Science', 'This cours asf asdf sadf SJFLD JFL DSAFL; SADFL;SJFLSJADLF SDF');
+(1, 'BS in Computer Science', 'This cours asf asdf sadf SJFLD JFL DSAFL; SADFL;SJFLSJADLF SDF');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `enroll_class`
+--
+
+CREATE TABLE `enroll_class` (
+  `student_id` varchar(9) NOT NULL,
+  `class_id` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `enroll_class`
+--
+
+INSERT INTO `enroll_class` (`student_id`, `class_id`) VALUES
+('201416976', 1),
+('201416976', 2),
+('201416976', 3),
+('201437759', 2),
+('201437759', 3);
 
 -- --------------------------------------------------------
 
@@ -95,11 +139,43 @@ INSERT INTO `degree` (`degree_id`, `degree_name`, `desciption`) VALUES
 
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
+  `class_id` int(9) NOT NULL,
   `user_id` int(11) NOT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `text` text NOT NULL,
   `file_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `post`
+--
+
+INSERT INTO `post` (`post_id`, `class_id`, `user_id`, `time_stamp`, `text`, `file_id`) VALUES
+(1, 1, 201437759, '2016-12-05 07:22:45', 'Hello. First post in UP Connect!', 2),
+(2, 1, 201437759, '2016-12-05 04:51:07', '2nd post', 0),
+(3, 2, 201437759, '2016-12-05 04:51:10', '3rd post', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `semester`
+--
+
+CREATE TABLE `semester` (
+  `sem_id` int(9) NOT NULL,
+  `school_year` varchar(9) NOT NULL,
+  `sem_no` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `semester`
+--
+
+INSERT INTO `semester` (`sem_id`, `school_year`, `sem_no`) VALUES
+(1, '2015-2016', 1),
+(2, '2015-2016', 2),
+(3, '2016-2017', 1),
+(4, '2016-2017', 2);
 
 -- --------------------------------------------------------
 
@@ -123,30 +199,9 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `firstname`, `middlename`, `lastname`, `email`, `year_lvl`, `degree_id`, `password`) VALUES
-('201412212', 'Clyde', 'Ambot', 'Delgado', 'clyde@yahoo.com', 3, 1321243, '41e2dd5f17c3524cb1f5abe851fa6c0d'),
-('201416976', 'Rosiebelt Jun', 'Ayupan', 'Abisad', 'abisado@yahoo.com', 3, 1321243, 'b60a41f4619d920abe5550473176f2e3'),
-('201437759', 'Maynard', 'Fuentes', 'Vargas', 'vargas@gmail.com', 3, 1321243, '9460370bb0ca1c98a779b1bcc6861c2c');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `subject`
---
-
-CREATE TABLE `subject` (
-  `student_id` varchar(9) NOT NULL,
-  `class_id` int(9) NOT NULL,
-  `subject_id` int(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subject`
---
-
-INSERT INTO `subject` (`student_id`, `class_id`, `subject_id`) VALUES
-('201416976', 533123, 1),
-('201416976', 443194, 2),
-('201416976', 134121, 3);
+('201412212', 'Clyde', 'Ambot', 'Delgado', 'clyde@yahoo.com', 3, 1, '41e2dd5f17c3524cb1f5abe851fa6c0d'),
+('201416976', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado@yahoo.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201437759', 'Maynard', 'Fuentes', 'Vargas', 'vargas@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c');
 
 -- --------------------------------------------------------
 
@@ -167,11 +222,18 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`teacher_id`, `firstname`, `middlename`, `lastname`, `password`) VALUES
-('12345', 'Spark', 'Dragon', 'Comshop', '9460370bb0ca1c98a779b1bcc6861c2c');
+('12345', 'Spark', 'Dragon', 'Comshop', '9460370bb0ca1c98a779b1bcc6861c2c'),
+('54321', 'Another', 'Awesome', 'Teacher', '9460370bb0ca1c98a779b1bcc6861c2c');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`admin_id`);
 
 --
 -- Indexes for table `class`
@@ -192,22 +254,28 @@ ALTER TABLE `degree`
   ADD PRIMARY KEY (`degree_id`);
 
 --
+-- Indexes for table `enroll_class`
+--
+ALTER TABLE `enroll_class`
+  ADD PRIMARY KEY (`student_id`,`class_id`);
+
+--
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
 
 --
+-- Indexes for table `semester`
+--
+ALTER TABLE `semester`
+  ADD PRIMARY KEY (`sem_id`);
+
+--
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
   ADD PRIMARY KEY (`student_id`);
-
---
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`subject_id`);
 
 --
 -- Indexes for table `teacher`
@@ -223,27 +291,27 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=533124;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77313;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `degree`
 --
 ALTER TABLE `degree`
-  MODIFY `degree_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1321244;
+  MODIFY `degree_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
--- AUTO_INCREMENT for table `subject`
+-- AUTO_INCREMENT for table `semester`
 --
-ALTER TABLE `subject`
-  MODIFY `subject_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `semester`
+  MODIFY `sem_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

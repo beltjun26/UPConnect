@@ -1,0 +1,114 @@
+.modal-content{
+	overflow: initial;
+	width: 70%;
+}
+
+.modal-header{
+	position: relative;
+	padding: 5px;
+	background-color: #00BCD4;
+	border-radius: 3px 3px 0 0;
+}
+
+.modal-header h2{
+	font-family: "Gotham Light";
+	text-transform: uppercase;
+	text-align: center;
+	width: 100%;
+	font-weight: bold;
+	font-size: 1em;
+	margin: 10px 0;
+	color: white;
+}
+
+#output_profile{
+	object-fit: cover;
+	object-position: center;
+	width: 388px;
+	height: 388px;
+	transition: 0.4s;
+	border: none;
+}
+
+.modal-body{
+	overflow: hidden;
+	background-color: #ECEFF1;
+	padding: 5px;
+}
+
+.modal-body form{
+	display: inline-flex;
+	flex-direction: column;
+	width: 100%;
+	border-radius: 5px;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+.modal-body form textarea{
+	width: 100%;
+	box-sizing: border-box;
+	height: 200px;
+	padding: 20px;
+	resize: none;
+	border: 1px solid #DDD;
+	margin-bottom: 5px;
+	color: #777;
+	transition: 0.4s;
+}
+
+.modal-body form textarea:focus,
+.modal-body form textarea:active{
+	outline: none;
+	box-shadow: 0 0 5px rgba(0,184,212 ,0.8);
+	border-color: rgba(0,151,167 ,0.5);
+}
+
+.modal-body form div{
+	width: 100%;
+}
+
+#EditProfilePicture input[type=submit]{
+	background-color: #00BCD4;
+	color: white;
+	font-family: "Gotham Light";
+	font-weight: bold;
+	font-size: 1em;
+	text-transform: uppercase;
+	border: none;
+	border-radius: 3px;
+	padding: 5px 15px;
+	display: block;
+	width: 100%;
+	margin: 0;
+	text-align: center;
+	box-sizing: border-box;
+}
+
+#EditProfilePicture input[type=submit]:hover{
+	background-color: #00E5FF;
+}
+
+.modal-body form div input[type=submit]{
+	padding: 10px;
+}
+
+#EditProfilePicture > .modal-content{
+	width: 400px;
+}
+
+#EditProfilePicture .modal-body{
+	padding: 5px;
+}
+
+#EditProfilePicture form{
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+
+
+
+
+
+

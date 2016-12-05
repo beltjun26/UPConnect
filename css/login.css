@@ -14,7 +14,7 @@
 
 body{
 	display: flex;
-	min-height: 525px;
+	min-height: 600px;
 	align-items: center;
 	justify-content: center;
 	font-family: "Gotham Light";
@@ -30,14 +30,14 @@ h1 {
 	text-align: center;
 	color: #a20025;
 	background-color: white;
-	box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 	padding: 15px;
 }
 
 form{
 	background-color: white;
 	padding: 25px 15px 15px 15px;
-	box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+	box-shadow: 0 4px 8px rgba(0,0,0,0.15);
 	margin-bottom: 20px;
 }
 
@@ -61,7 +61,8 @@ label {
 	padding: 10px 0;
 }
 
-input[type=submit]{
+input[type=submit], a{
+	border: solid 1px #DDD;
 	display: block;
 	background-color: white;
 	text-transform: uppercase;
@@ -76,7 +77,24 @@ input[type=submit]{
 	font-size: 16px;
 }
 
-input[type=submit]:hover{
+a.signup{
+	margin-top: 10px;
+}
+
+a.admin{
+	font-size: 0.8em;
+	background-color: transparent;
+	width: 20%;
+	color: #DDD;
+	font-weight: normal;
+}
+
+a.admin:hover{
+	border-color: #999;
+	color: #888;
+}
+
+input[type=submit]:hover, a.signup:hover{
 	background-color: #29B6F6;
 	border-color: #29B6F6;
 	color: white;
@@ -106,4 +124,11 @@ input[type=submit]:hover{
 .invalid{
 	background-color: #D81B60;
 	color: white;
+}
+
+span{
+	display: block; 
+	margin: auto;
+	text-align: center;
+	color: #888;
 }
