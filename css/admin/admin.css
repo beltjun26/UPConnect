@@ -6,12 +6,11 @@
 
 .work{
 	list-style: none;
-	width: 70%;
+	width: 80%;
 	display: flex;
 	justify-content: space-around;
 	padding: 0;
 	margin: auto;
-	margin-top: 12%;
 	flex-wrap: wrap;
 }
 
