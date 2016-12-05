@@ -3,7 +3,7 @@
 		firstname
 		middlename
 		lastname
-		type "student"/ "teacher"
+		type "student"/ "teacher" / "admin"
  -->
 
 <?php 
@@ -45,6 +45,11 @@
 		     		elseif(strlen($userid) == 5){
 		     			$query = "SELECT * FROM teacher WHERE teacher_id = '$userid' and password = '$md5pass';";
 		     			$type = "teacher";
+		     		}
+		     		elseif(strlen($userid) == 3){
+		     			$query = "SELECT * FROM admin WHERE admin_id = '$userid' and password = '$md5pass';";
+		     			
+		     			$type = "admin";
 		     		}
 		     		else{
 		     			$errortype = "error_login";
@@ -102,13 +107,14 @@
 			<p class="instructions invalid">Invalid username or password.</p>
 		<?php endif; ?>
 
-
 		<form method="post">
 			<label for="userid">User ID:</label>
 			<input type="text" name="userid" class="text">
 			<label for="password">Password:</label>
 			<input type="password" name="password" class="text">
 			<input type="submit" name="login" value="Login">
+			<span>or</span>
+			<a href="signup.php" class="signup">Signup</a>
 		</form>
 		<!-- <a href="signup.html">Create account</a> -->
 	</div>

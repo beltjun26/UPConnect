@@ -1,0 +1,65 @@
+/*--NAVIGATION DESIGN--*/
+
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+nav{
+	z-index: 1;
+	top: 0;
+	left: 0;
+	width: 100%;
+	position: fixed;
+	display: inline-flex;
+	background-color: #FFF;
+	box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+nav > a{
+	color: #999;
+	font-weight: bold;
+	font-family: "Gotham Light";
+	padding: 10px 15px 10px 15px;
+}
+
+nav > a:first-child{
+	color: #a20025;
+	display: block;
+	transition: 0.2s;
+	font-weight: bold;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+	font-family: "Gotham Medium";
+	border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+nav > a:first-child:hover{
+	border-color: rgba(204,255,144 ,0.7);
+}
+
+nav > a:nth-child(2){
+	margin-left: auto;
+}
+
+nav > a{
+	display: block;
+	transition: 0.2s;
+	margin-right: 10px;
+	text-decoration: none;
+	border-bottom: 2px solid rgba(0,0,0,0);
+}
+
+nav > a:hover{
+	border-color: rgba(255,255,141 ,1);
+}
+
+nav > a:last-child:hover{
+	border-color: rgba(229,20,0 ,0.5);
+}
+
+nav > a.actpage{
+	cursor: default;
+	pointer-events: none;
+	border-color: rgba(204,255,144 ,1);
+}

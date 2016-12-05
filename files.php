@@ -1,14 +1,15 @@
 <?php session_start();
  ?>
-<!DOCTYPE php>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>UP Connect</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/member.css">
+	<!-- <link rel="stylesheet" type="text/css" href="css/member.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
+	<link rel="stylesheet" type="text/css" href="css/files.css">
 	<link rel="stylesheet" type="text/css" href="css/search.css">
 </head>
 <body>
@@ -28,8 +29,8 @@
 		<a href="profile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran">Classes</a>	
-		<a href="logout.php" class="floattran">Logout</a>
+		<a href="#" class="floattran active">Classes</a>	
+		<a href="index.php" class="floattran">Logout</a>
 	</nav>
 	<div id="classContainer">
 	<header class="class">
@@ -50,37 +51,24 @@
 	</header>
 	<ul class="grouplinks">
 		<li><a href="class.php?classid=<?=$_GET['classid']?>" class="floattran">Discussion</a></li>
-		<li><a href="members.php" class="floattran active">Members</a></li>
-		<li><a href="files.php?classid=<?=$_GET['classid']?>" class="floattran">Files</a></li>
+		<li><a href="members.php?classid=<?=$_GET['classid']?>" class="floattran">Members</a></li>
+		<li><a href="#" class="floattran active">Files</a></li>
 		<li><a href="images.php?classid=<?=$_GET['classid']?>" class="floattran">Images</a></li>
 	</ul>
 	<div class="container">
-		<h1>MEMBERS</h1>
+		<h1>FILES</h1>
 		<h2>CMSC 128</h2>
-		<p class="instructions" style="margin: 10px 20px;">Click on one of the people to view their profile.</p>
+		<p class="instructions" style="margin: 0 20px;">Click on one of the files to download.</p>
 		<form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">
 			<input type="submit" name="submit" value="SEARCH">
 		</form>
-		<ul class="studentlist">
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-				<ul class="description">
-					<li class="descriptionName">Alonzo Locsin</li>
-					<li class="descriptionCourseYear">BS in Computer Science III</li>
-				</ul>
-			</a></li>
-			<li><a href="profile.php"><img src="images/profile_images/2.jpg"> <span>Andrew Dagdag</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/3.jpg"> <span>Clyde Joshua Delgado</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/4.jpg"> <span>Diana Chris Pacana</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/5.jpg"> <span>Donn Cruz</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/6.jpg"> <span>Angelica Tabalucon</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/7.jpg"> <span>maynard Vargas</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/8.jpg"> <span>Rollin Opsima</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/9.jpg"> <span>Rosiebelt Jun Abisado</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/10.jpg"><span>Rosjel Jolly Lambungan</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/11.jpg"><span>Salvy Jessa Arnaiz</span></a></li>
-			<li><a href="profile.php"><img src="images/profile_images/12.jpg"><span>Shebna Rose Fabilloren</span></a></li>
+		<ul class="fileslist">
+			<li><img src="images/file.png"><span class="file-name">Something</span></li>
+			<li><img src="images/file.png"><span class="file-name">Something</span></li>
+			<li><img src="images/file.png"><span class="file-name">Something</span></li>
+			<li><img src="images/file.png"><span class="file-name">Something</span></li>
+			<li><img src="images/file.png"><span class="file-name">Something</span></li>
 		</ul>
 	</div>
 	</div>

@@ -1,0 +1,182 @@
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+.post .user{
+	font-weight: bold;
+	font-family: GothamLight;
+}
+
+.to.post form > textarea,
+.post .caption{
+	font-family: Arial;
+	font-size: 0.9em;
+}
+
+/*--POST AND POSTING DESIGN--*/
+
+.post{
+	overflow: auto;
+	max-width: 500px;
+	border-radius: 3px;
+	padding: 20px;
+	background-color: white;
+	margin: 0 auto 20px auto;
+	box-shadow: 0 5px 3px rgba(0,0,0,0.1);
+}
+
+.user{
+	text-align: left;
+	vertical-align: middle;
+	font-size: 1em;
+	margin-left: 10px;
+	position: relative;
+	text-decoration: none;
+	height: 1em;
+}
+
+a.user:after{
+	content: '	Go to Profile >';
+	font-size: 0.8em;
+	color: skyblue;
+	opacity: 0;
+	transition: 0.3s;
+}
+
+a.user:hover:after{
+	opacity: 1;
+}
+
+.post header{
+	display: flex;
+	align-items: center;
+	margin-bottom: 15px;
+}
+
+.userphoto{
+	height: 50px;
+	width: 50px;
+	object-fit: cover;
+	object-position: center;
+	border: 1px solid #EEE;
+	border-radius: 3px;
+}
+
+.to.post textarea{
+	width: 100%;
+	padding: 10px;
+	resize: vertical;
+	min-height: 50px;
+	max-height: 500px;
+	margin-bottom: 0;
+	border-color: white;
+	letter-spacing: 0.5px;
+	border: 1px solid #EEE;
+	box-sizing: border-box;
+}
+
+.button.options{
+	display: flex;
+	list-style: none;
+	margin-top: 20px;
+}
+
+.button.options li{
+	margin-right: 10px;
+}
+
+.button.options input[type=submit],
+.button.options input[type=button]{
+	color: #03A9F4;
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	border-style: none;
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
+	background-color: white;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	padding: 10px 15px 10px 15px;
+}
+
+.button.options li:last-child{
+	margin-left: auto;
+	margin-right: 0;
+}
+
+.button.options li:nth-child(2) button{
+	border-left-width: 0;
+}
+
+.button.options li:last-child button{
+	border-width: 1px;	
+}
+
+
+/*--AESTHETIC PURPOSES--*/
+
+.hoveranim{
+	cursor: pointer;
+	transition: 0.2s;
+	pointer-events: visible;
+}
+
+.hoveranim:hover{
+	color: white!important;
+	transform: translate(0px, -3px);
+	border-color: #29B6F6!important;
+	background-color: #29B6F6!important;
+	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
+}
+
+.filecontainer{
+	width: 100%;
+	overflow: auto;
+	align-items: center;
+	display: inline-flex;
+	justify-content: left;
+	border: 1px solid #EEE;
+	transition: 0.3s;
+	border-radius: 3px;
+}
+
+.filecontainer:hover{
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	cursor: pointer;
+	border-color: #81D4FA;
+}
+
+.filecontainer > p{
+	color: #888;
+	font-size: 1em;
+	font-family: Arial;
+	font-weight: normal;
+}
+
+#file{
+	max-height: 50px;
+}
+
+.post .caption{
+	width: 100%;
+	color: #AAA;
+	text-align: justify;
+	letter-spacing: 0.5px;
+	margin-bottom: 10px;
+	text-indent: 20px;
+	line-height: 1.5em;
+	border: 1px solid #EEE;
+	padding: 10px 10px;
+	box-sizing: border-box;
+	border-radius: 3px;
+}
+
+.uploadedphoto{
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+}
+

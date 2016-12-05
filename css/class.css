@@ -1,0 +1,102 @@
+
+/*--CLASS PAGE--*/
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+@font-face{
+	font-family: GothamMedium;
+	src: url('fonts/GOTHAM-MEDIUM.TTF');
+}
+
+.class{
+	overflow: auto;
+	background-color: white;
+	box-shadow: 0px 5px 3px rgba(0,0,0,0.1);
+}
+
+.classtitle{
+	padding: 15px;
+	font-size: 50px;
+	letter-spacing: 5px;
+	font-family: GothamMedium;
+	color: #a20025;
+}
+
+.description{
+	list-style: none;
+}
+
+.description.class{
+	width: 50%;
+	width: 100%;
+	padding: 10px;
+	display: inline-flex;
+	background-color: #333;
+	box-sizing: border-box;
+	justify-content: center;
+}
+
+ul.description.class > li{
+	margin: 0 1% 0 1%;
+}
+
+ul.description.class > li > p{
+	color: #EEE;
+	font-size: 15px;
+	letter-spacing: 1px;
+}
+
+ul.class.description > li:first-child{
+	clear: right;
+}
+
+p.description{
+	color: #666;
+	font-size: 20px;
+	text-align: center;
+}
+
+ul.grouplinks{
+	padding: 0 20%;
+	display: flex;
+	list-style: none;
+	margin: 0 0 20px 0;
+	justify-content: center;
+	box-shadow: 0 3px 5px rgba(0,0,0,0.05);
+	background-color: white;
+}
+
+ul.grouplinks > li{
+	width: 100%;
+}
+
+ul.grouplinks > li > a{
+	background-color: white;
+	display: block;
+	color: #555;
+	margin: 0;
+	width: 100%;
+	padding: 10px;
+	transition: 0.4s;
+	letter-spacing: 1px;
+	text-align: center;
+	text-decoration: none;
+	box-sizing: border-box;
+	border-right: 1px solid rgba(0,0,0,0.05);
+}
+
+ul.grouplinks > li:first-child > a{
+	border-left: 1px solid rgba(0,0,0,0.05);
+}
+
+ul.grouplinks > li > a:hover{
+	background-color: #8BC34A;
+	color: white;
+}
+
+ul.grouplinks > li > a.active{
+	background-color: #FFEB3B;
+	color: white;
+}

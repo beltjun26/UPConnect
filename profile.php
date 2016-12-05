@@ -6,7 +6,15 @@
 <html>
 <head>
 	<title>UP Connect</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
+	<link rel="stylesheet" type="text/css" href="css/profile.css">
+	<link rel="stylesheet" type="text/css" href="css/modal.css">
+	<link rel="stylesheet" type="text/css" href="css/edit_profile_style.css">
+	<link rel="stylesheet" type="text/css" href="css/file.css">
 </head>
 <body>
 	<?php
@@ -28,30 +36,108 @@
 
 ?>
 
-	<div class="topnav">
+	<nav id="navigation">
 		<a href="home.php" class="floattran">UP Connect</a>
 		<a href="#" class="actpage">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
+		<a href="#" class="floattran">Notifications</a>	
+		<a href="#" class="floattran">Classes</a>		
 		<a href="logout.php" class="floattran">Logout</a>
-	</div>
-	<div id="container profile">
-		<h1 class="name"> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];	 ?></h1>
-		<img src="images/pp_cover/<?php echo $_SESSION['userid'] ?>.jpg" class="profilepic">
+	</nav>
+	<div class="container" id="profilecontainer">
+		<button class="change" id="EditPicBtn">Change</button>
+		<img src="images/profile_images/<?=$_SESSION['userid']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'" class="profilepic">
+		<div id="EditProfilePicture" class="modal edit_profile">
+		  	<div class="modal-content">
+		    	<div class="modal-header">
+					<h2>Edit Profile Picture</h2>
+		      		<span class="close">×</span>
+		    	</div>
+			    <div class="modal-body">
+		      		<img id="output_profile" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+			      	<form method="post" action="upload.php" enctype="multipart/form-data">
+				      	<input type="file" name="profile" id="profile" class="inputfile" onchange="loadFile(event)">
+				      	<label for="profile">Choose Profile Picture<span class="glyphicon glyphicon-download-alt"></span></label>
+				      	<input type="submit" name="change_profilepic" value="CHANGE">
+			      	</form>
+			    </div>
+		  	</div>
+		</div>
+		<div id="EditEmail" class="modal edit_profile">
+		  	<div class="modal-content">
+		    	<div class="modal-header">
+					<h2>Change Your Email</h2>
+		      		<span class="close">×</span>
+		    	</div>
+			    <div class="modal-body">
+			      	<form method="post" action="upload.php">
+				      	<input type="email" name="email" placeholder="sample.example@sample.com">
+				      	<input type="submit" name="change_email" value="CHANGE">
+			      	</form>
+			    </div>
+		  	</div>
+		</div>
 		<ul class="description">
-			<li><p class="user description"><?php 
-				echo $row['degree_name'];
-				if($row['year_lvl'] == 1){
-					echo " I";
-				}if($row['year_lvl'] == 2){
-					echo " II";
-				}if($row['year_lvl'] ==3){
-					echo " III";
-				}if($row['year_lvl']>=4){
-					echo " IV";
-				}
-			?></p></li>
-			<li><p class="user description email">Email: <?php echo $row['email'] ?></p></li>
+			<li><h1 class="name"> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];	 ?></h1></li>
+			<li>
+				<p class="user"><?php 
+					echo $row['degree_name'];
+					if($row['year_lvl'] == 1){
+						echo " I";
+					} else if($row['year_lvl'] == 2){
+						echo " II";
+					} else if($row['year_lvl'] == 3){
+						echo " III";
+					} else if($row['year_lvl'] >= 4){
+						echo " IV";
+					}?>
+				</p>
+			</li>
+			<li><p class="email">Email: <?php echo $row['email'] ?></p></li>
+			<li><button id="EditEmailBtn">Change Email</button></li>
 		</ul>
 	</div>
+
+	<script>
+		var Editpic = document.getElementById("EditProfilePicture");
+		var Editemail = document.getElementById("EditEmail");
+		var btnpic = document.getElementById("EditPicBtn");
+		var btnemail = document.getElementById("EditEmailBtn");
+		var closepic = document.getElementsByClassName("close")[0];
+		var closeemail = document.getElementsByClassName("close")[1];
+
+		btnpic.onclick = function() {
+			Editpic.style.display = "flex";
+		}
+
+		btnemail.onclick = function() {
+			Editemail.style.display = "flex";
+		}
+
+		closepic.onclick = function() {
+			Editpic.style.display = "none";
+		}
+
+		closeemail.onclick = function() {
+			Editemail.style.display = "none";
+		}
+
+		window.onclick = function(event) {
+			if (event.target == Editpic){
+				Editpic.style.display = "none";
+			} else if (event.target == Editemail){
+				Editemail.style.display = "none";
+			}
+		}
+	</script>
+
+	<script>
+		var loadFile = function(event){
+			var output_profile = document.getElementById('output_profile');
+			output_profile.src = URL.createObjectURL(event.target.files[0]);
+		};
+	</script>
+	
 </body>
+
 </html>
