@@ -4,19 +4,28 @@
 	<title>Admin</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/admin/navigation.css">
-	<link rel="stylesheet" type="text/css" href="css/admin/home.css">
-	<link rel="stylesheet" type="text/css" href="css/admin/general.css">	
+	<link rel="stylesheet" type="text/css" href="css/admin/student.css">
 </head>
 <body>
 	<?php require "admin_nav.php" ?>
 	<div id="container">
-		<ul class="work">
-			<li><a href="admin_students.php"><span></span>Students</a></li>
-			<li><a href="admin_teachers.php">Teachers</a></li>
-			<li><a href="admin_courses.php">Courses</a></li>
-			<li><a href="admin_classes.php">Classes</a></li>
-			<li><a href="logout.php">Logout</a></li>
-		</ul>
+		<table style="width:100%">
+		  <tr>
+		    <th>Firstname</th>
+		    <th>Lastname</th> 
+		    <th>Age</th>
+		  </tr>
+		  <tr>
+		    <td>Jill</td>
+		    <td>Smith</td> 
+		    <td>50</td>
+		  </tr>
+		  <tr>
+		    <td>Eve</td>
+		    <td>Jackson</td> 
+		    <td>94</td>
+		  </tr>
+		</table>
 	</div>
 	<script>
 		nav = $('#nav').outerHeight(true);

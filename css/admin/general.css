@@ -1,0 +1,55 @@
+@font-face{
+	font-family: GothamLight;
+	src: url('../fonts/GOTHAM-LIGHT.TTF');
+}
+
+*,body,html{
+	padding: 0; 
+	margin: 0;
+}
+
+body{
+	background-color: #ECEFF1;
+}
+
+h1{
+	font-size: 1.5em;
+	font-family: GothamLight;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	width: 50%;
+	text-align: center;
+	margin: auto;
+	margin-top: 60px;
+	padding: 20px 0 10px 0;
+	display: block;
+	background-color: white;
+	box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.button{
+	display: block;
+	background-color: white;
+	padding: 10px 15px;
+	margin: auto;
+	border: none;
+	transition: 0.2s;
+	border-bottom: 1px solid white;
+}
+
+.button:hover{
+	cursor: pointer;
+}
+
+.add{
+	padding: 15px 20px;
+	margin: 20px auto 20px auto;
+	box-shadow: 0 0 15px rgba(0,0,0,0.08);
+	border: 1px solid #DDD;
+	color: #64DD17;
+	font-size: 0.9em;
+}
+
+.add:hover{
+	border-color: #64DD17;
+}
