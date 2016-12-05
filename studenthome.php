@@ -8,7 +8,8 @@
 		$password = '';
 		$db = 'up_connect_db';
 		$dbconn = mysqli_connect($host,$username,$password,$db) or die("Could not connect to database!");
-		$query = "select * from subject as S, class as C, course as E where S.student_id like '{$_SESSION['userid']}' and S.class_id = C.class_id and E.course_id = C.course_id";
+
+		$query = "select * from enroll_class as S, class as C, course as E where S.student_id like '{$_SESSION['userid']}' and S.class_id = C.class_id and E.course_id = C.course_id";
 		$result = mysqli_query($dbconn, $query);
 		$data = [];
 		if(mysqli_affected_rows($dbconn)){
@@ -20,7 +21,7 @@
 
 	<nav id="navigation">
 		<a href="#" class="floattran">UP Connect</a>
-		<a href="profile.php" class="floattran">Your Profile</a>
+		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran">Classes</a>	

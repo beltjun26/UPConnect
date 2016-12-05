@@ -22,7 +22,7 @@
 	if($errorinput == 1 ){ 	?>
 		<script type="text/javascript">
 			alert("Unsupported file type! Only .gif, .jpeg, .png only!");
-			window.location = 'my_profile.php';
+			window.location = 'my_myprofile.php';
 		</script> 
 		<?php 
 		die();
@@ -33,6 +33,5 @@
 		move_uploaded_file($_FILES['profile']['tmp_name'], 'images/profile_images/' . $newfilename);
 	}
 
-	header("Location: profile.php");
-
+	header("Location: myprofile.php");
 ?>

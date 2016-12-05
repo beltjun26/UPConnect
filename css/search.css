@@ -11,13 +11,21 @@
 }
 
 .searchthroughlist{
+<<<<<<< HEAD
 	margin: 25px 20px;
+=======
+	margin: 10px 20px;
+>>>>>>> 83f99ef1be86ece56832cc45e5c18f2a76f81777
 	display: flex;
 }
 
 .searchthroughlist input[type=text]{
 	padding: 5px 10px;
+<<<<<<< HEAD
 	border: 1px solid #DDD;
+=======
+	border: 1px solid #EEE;
+>>>>>>> 83f99ef1be86ece56832cc45e5c18f2a76f81777
 	border-radius: 3px 0 0 3px;
 	width: 80%;
 	box-sizing: border-box;

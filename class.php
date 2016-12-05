@@ -17,15 +17,26 @@
 			header("Location: index.php");
 		}
 		require "connect.php";
-		$query = "select * from teacher as T, course as C, class as L where T.teacher_id = L.teacher_id and L.course_id = C.course_id and L.class_id = {$_GET['classid']}";
+
+		$class_id = $_GET['classid'];
+
+
+		//Query for the class
+		$query = "select * from teacher natural join course natural join class natural join semester where class_id = '$class_id'";
 		$result = mysqli_query($dbconn, $query);
 		if(mysqli_affected_rows($dbconn)){
 			$row = mysqli_fetch_assoc($result);
 		}
+
+		//Query for the post
+		$query = "select * from (select * from post where class_id = '$class_id') as class_post join (SELECT student_id as id, firstname, lastname FROM student UNION SELECT teacher_id as id, firstname, lastname FROM teacher) as user on user.id = class_post.user_id;";
+
+		$post_row = mysqli_query($dbconn, $query);
+		
 	 ?>
 	<nav id="navigation">
 		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="profile.php" class="floattran">Your Profile</a>
+		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran">Classes</a>	
@@ -38,10 +49,10 @@
 				<li><p class="description"><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></p></li>
 				<li><p class="description">S.Y. <?php echo $row['school_year'] ?></p></li>
 				<li><p class="description"><?php 
-					if($row['sem']==1){
+					if($row['sem_no']==1){
 						echo "1st";
 					}
-					if($row['sem']==2){
+					if($row['sem_no']==2){
 						echo "2nd";
 					}
 				 ?> Semester</p></li>
@@ -69,6 +80,24 @@
 				</ul>
 			</form>
 		</div>
+
+	<!--FILE_ID = 0 if no file
+		FILE_ID = 1 if files
+		FILE_ID = 2 if images -->
+		<?php foreach ($post_row as $value){ ?>
+			<div class="post">	
+				<header>
+					<img class="userphoto" src="images/profile_images/<?=$value['user_id'];?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+					<a class="user" href="#"><?=$value['firstname']." ".$value['lastname'];?></a>
+				</header>
+				<p class="caption"><?= $value['text'] ?></p>
+				<ul class="button options"><!-- 
+					<li><input type="button" value="Download" class="hoveranim"></li> -->
+					<li><input type="button" value="Comment" class="hoveranim"></li>
+					<li><input type="button" value="Follow" class="hoveranim"></li>
+				</ul>
+			</div>
+		<?php } ?>
 
 		<div class="post">
 			<header>
@@ -99,23 +128,8 @@
 				<li><input type="button" value="Follow" class="hoveranim"></li>
 			</ul>
 		</div>
-		<div class="post">
-			<header>
-				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-				<a class="user" href="#"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></a>
-			</header>
-			<p class="caption">Clyde uploaded a photo in CMSC 128.
-			asdfsdaf
-			asdfsad
-			fsadf
-			sdafdsf</p>
-			<!-- <img src="images/notes.jpg" class="uploadedphoto"> -->
-			<ul class="button options">
-				<li><input type="button" value="Download" class="hoveranim"></li>
-				<li><input type="button" value="Comment" class="hoveranim"></li>
-				<li><input type="button" value="Follow" class="hoveranim"></li>
-			</ul>
-		</div>
+
+
 
 	</div>
 	<script>

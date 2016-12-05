@@ -18,7 +18,7 @@
 			header("Location: index.php");
 		}
 		require "connect.php";
-		$query = "select * from teacher as T, course as C, class as L where T.teacher_id = L.teacher_id and L.course_id = C.course_id and L.class_id = {$_GET['classid']}";
+		$query = "select * from teacher natural join course natural join class natural join semester where class_id = {$_GET['classid']}";
 		$result = mysqli_query($dbconn, $query);
 		if(mysqli_affected_rows($dbconn)){
 			$row = mysqli_fetch_assoc($result);
@@ -30,7 +30,7 @@
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran active">Classes</a>	
-		<a href="index.php" class="floattran">Logout</a>
+		<a href="logout.php" class="floattran">Logout</a>
 	</nav>
 	<div id="classContainer">
 	<header class="class">
@@ -39,10 +39,10 @@
 			<li><p class="description"><?php echo $row['firstname']." ".$row['middlename']." ".$row['lastname']; ?></p></li>
 			<li><p class="description">S.Y. <?php echo $row['school_year'] ?></p></li>
 			<li><p class="description"><?php 
-				if($row['sem']==1){
+				if($row['sem_no']==1){
 					echo "1st";
 				}
-				if($row['sem']==2){
+				if($row['sem_no']==2){
 					echo "2nd";
 				}
 			 ?> Semester</p></li>
