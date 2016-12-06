@@ -11,6 +11,10 @@
 	align-content: center;
 }
 
+.current{
+	text-decoration: none;
+}
+
 h1{
 	font-family: GothamLight;
 	font-size: 1.75em;
@@ -18,6 +22,7 @@ h1{
 	text-transform: uppercase;
 	margin: 0 auto 20px auto;
 	color: #a20025;
+	text-decoration: none;
 }
 
 .work{

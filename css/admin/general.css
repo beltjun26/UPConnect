@@ -12,6 +12,16 @@ body{
 	background-color: #ECEFF1;
 }
 
+.current{
+	text-decoration: none;
+	border-bottom: 2px solid rgba(0,0,0,0);
+	transition: 0.2s;
+}
+
+.current:hover{
+	border-bottom: 2px solid #a20025;
+}
+
 .instruction{
 	background-color: #333;
 	color: white;

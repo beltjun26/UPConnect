@@ -17,12 +17,14 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/modal_add.css">
 </head>
 <body>
-	<?php require "connect.php" ?>
-	<?php require "admin_nav.php" ?>
+	<?php 
+		require "connect.php";
+		require "admin_nav.php";
+	?>
 	<div id="container">
 		<header class="table-header">
-			<h1>Students</h1>
-			<form class="search">
+			<a href="admin_students.php" class="current"><h1>Students</h1></a>
+			<form class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
@@ -68,7 +70,25 @@
 				<th colspan="2">Actions</th>
 			</tr>
 			<?php
-				$query = "SELECT * FROM student NATURAL JOIN degree";
+				if (isset($_POST['search'])) {
+					$keyword = $_POST['keyword'];
+					$query = "SELECT * FROM student 
+							  NATURAL JOIN degree 
+							  WHERE firstname 
+							  LIKE '%$keyword%'
+							  OR lastname
+							  LIKE '%$keyword%'
+							  OR middlename
+							  LIKE '%$keyword%'
+							  OR student_id
+							  LIKE '%$keyword%'
+							  OR email
+							  LIKE '%$keyword%'
+							  OR degree_name
+							  LIKE '%$keyword%'";
+				} else{
+					$query = "SELECT * FROM student NATURAL JOIN degree";
+				}
 				$result = mysqli_query($dbconn, $query);
 				$data = [];
 				if(mysqli_affected_rows($dbconn)){
@@ -76,6 +96,8 @@
 					$data[] = $row;
 					}
 				}
+				$numberofrecords = count($data);
+				/*echo $numberofrecords;*/
 				$number = 1;
 				foreach ($data as $value): ?>
 				<tr>
@@ -98,54 +120,57 @@
 					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
 					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 				</tr>
-				<div id="edit-panel<?=$number?>" class="modal">
-					<div class="modal-content">
-						<div class="modal-header">
-						    <span id="cancel-edit<?=$number?>" class="close">×</span>
-						    <h2>Edit <?=$value['firstname']?></h2>
-						</div>
-						<div class="modal-body">
-							<p class="instruction">Fill out this form correctly to edit.</p>
-							<form class="editform">
-								<input type="text" name="id" placeholder="Student ID...">
-								<input type="text" name="firstname" placeholder="First Name...">
-								<input type="text" name="middname" placeholder="Middle Name...">
-								<input type="text" name="lastname" placeholder="Last Name...">
-								<input type="email" name="email" placeholder="Email...">
-								<input type="text" list="degrees" name="degree" placeholder="Degree...">
-									<datalist id="degrees">
-										<option value="Computer Science">
-										<option value="Fisheries">
-										<option value="Applied Mathematics">
-										<option value="Statistics">
-										<option value="Chemistry">
-									</datalist>
-								<input type="text" name="yearlvl" placeholder="Year Level...">
-								<input type="submit" name="edit_student" value="Edit +">
-							</form>
-						</div>
-					</div>
-				</div>
-				<div id="delete-panel<?=$number?>" class="modal delete-panel">
-					<div class="modal-content">
-						<div class="modal-header">
-						    <span id="cancel-delete" class="close">×</span>
-						    <h2>Delete <?=$value['firstname']?>?</h2>
-						</div>
-						<div class="modal-body">
-							<p class="instruction">Choose one of the two.</p>
-							<form class="deleteform">
-								<button id="cancel-delete-button">Cancel</button>
-								<input id="delete_button" type="submit" name="delete_student" value="Delete">
-							</form>
-						</div>
-					</div>
-				</div>
 				<?php 
 					$number++;
-					endforeach 
+					endforeach;
 				?>
 		</table>
+			<?php 
+				while ($numberofrecords > 0) {
+			?><div id="edit-panel<?=$numberofrecords?>" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+					    <span id="cancel-edit<?=$numberofrecords?>" class="close">×</span>
+					    <h2>Edit Student</h2>
+					</div>
+					<div class="modal-body">
+						<p class="instruction">Fill out this form correctly to edit.</p>
+						<form class="editform">
+							<input type="text" name="id" placeholder="Student ID...">
+							<input type="text" name="firstname" placeholder="First Name...">
+							<input type="text" name="middname" placeholder="Middle Name...">
+							<input type="text" name="lastname" placeholder="Last Name...">
+							<input type="email" name="email" placeholder="Email...">
+							<input type="text" list="degrees" name="degree" placeholder="Degree...">
+								<datalist id="degrees">
+									<option value="Computer Science">
+									<option value="Fisheries">
+									<option value="Applied Mathematics">
+									<option value="Statistics">
+									<option value="Chemistry">
+								</datalist>
+							<input type="text" name="yearlvl" placeholder="Year Level...">
+							<input type="submit" name="edit_student" value="Edit +">
+						</form>
+					</div>
+				</div>
+			</div>
+		<div id="delete-panel<?=$numberofrecords?>" class="modal delete-panel">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <span id="cancel-delete<?=$numberofrecords?>" class="close">×</span>
+				    <h2>Delete Student?</h2>
+				</div>
+				<div class="modal-body">
+					<p class="instruction">Choose one of the two.</p>
+					<form class="deleteform">
+						<button id="cancel-delete-button">Cancel</button>
+						<input id="delete_button" type="submit" name="delete_student" value="Delete">
+					</form>
+				</div>
+			</div>
+		</div>
+		<?php $numberofrecords--; } ?>
 	</div>
 	<script>
 		function showeditmodal(student_no){

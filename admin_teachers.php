@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/table.css">
 </head>
 <body>
+	<?php require "connect.php" ?>
 	<?php require "admin_nav.php" ?>
 	<div id="container">
 		<header class="table-header">
@@ -21,32 +22,41 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add">Add Student +</button>
+			<button class="button add">Add Teacher +</button>
 		</header>
 		<table>
-		  <tr>
-		    <th>No.</th>
-		  	<th>Teacher ID</th>
-		    <th>Name</th>
-		    <th>Email</th>
-		    <th colspan="2">Actions</th>
-		  </tr>
-		  <tr>
-		    <td>1</td>
-		    <td>12345</td>
-		    <td><a href="#" class="linkprofile">Ambita, Ara Abigail Engi</a></td> 
-		    <td>cjubs.delgado@gmail.com</td>
-		    <td><button class="button table edit">Edit</button></td>
-		    <td><button class="button table delete">Delete</button></td>
-		  </tr>
-		  <tr>
-		    <td>2</td>
-		    <td>54321</td>
-		    <td><a href="#" class="linkprofile">Araneta, Nilo Colusi</a></td> 
-		    <td>cjubs.delgado@gmail.com</td>
-		    <td><button class="button table edit">Edit</button></td>
-		    <td><button class="button table delete">Delete</button></td>
-		  </tr>
+		  	<tr>
+			    <th>No.</th>
+			  	<th>Teacher ID</th>
+			    <th>Name</th>
+			    <th>Email</th>
+			    <th colspan="2">Actions</th>
+		  	</tr>
+		 	 <?php
+				$query = "SELECT * FROM teacher";
+				$result = mysqli_query($dbconn, $query);
+				$data = [];
+				if(mysqli_affected_rows($dbconn)){
+					while($row = mysqli_fetch_assoc($result)){
+					$data[] = $row;
+					}
+				}
+				/*$numberofrecords = count($data);*/
+				/*echo $numberofrecords;*/
+				$number = 1;
+				foreach ($data as $value): ?>
+				<tr>
+					<td><?=$number;?></td>
+					<td><?=$value['teacher_id']?></td>
+					<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
+					<td><?=$value['email']?></td>
+					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+				</tr>
+				<?php 
+					$number++;
+					endforeach;
+				?>
 		</table>
 	</div>
 	<script>

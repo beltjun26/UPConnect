@@ -13,6 +13,7 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/table.css">
 </head>
 <body>
+	<?php require "connect.php" ?>
 	<?php require "admin_nav.php" ?>
 	<div id="container">
 		<header class="table-header">
@@ -21,45 +22,43 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add">Add Student +</button>
+			<button class="button add">Add Course +</button>
 		</header>
 		<table>
 		  <tr>
 		    <th>No.</th>
-		    <th>Courses ID</th> 
+		    <th>Course ID</th> 
 		    <th>Name</th>
-		 	<th>Title</th>
-		    <th>Description</th>
+		 	<th>Description</th>
+		    <th>Title</th>
 		    <th colspan="2">Actions</th>
 		  </tr>
-		  <tr>
-		    <td>1</td>
-		    <td>1</td>
-		    <td>CMSC 22</td>
-		    <td>Java Programming</td>
-		    <td class="description"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-		    <td><button class="button table edit">Edit</button></td>
-		    <td><button class="button table delete">Delete</button></td>
-		  </tr>
-		  <tr>
-		    <td>2</td>
-		    <td>2</td>
-		    <td>CMSC 128</td>
-		    <td>Software Development</td>
-		    <td class="description"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
-		    <td><button class="button table edit">Edit</button></td>
-		    <td><button class="button table delete">Delete</button></td>
-		  </tr>
+		  <?php
+				$query = "SELECT * FROM course";
+				$result = mysqli_query($dbconn, $query);
+				$data = [];
+				if(mysqli_affected_rows($dbconn)){
+					while($row = mysqli_fetch_assoc($result)){
+					$data[] = $row;
+					}
+				}
+				/*$numberofrecords = count($data);*/
+				/*echo $numberofrecords;*/
+				$number = 1;
+				foreach ($data as $value): ?>
+				<tr>
+					<td><?=$number;?></td>
+					<td><?=$value['course_id']?></td>
+					<td><?=$value['course_name']?></td> 
+					<td class="description"><?=$value['course_description']?></td>
+					<td><?=$value['descriptive_title']?></td>
+					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+				</tr>
+				<?php 
+					$number++;
+					endforeach;
+				?>
 		</table>
 	</div>
 	<script>
