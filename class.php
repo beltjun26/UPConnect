@@ -19,6 +19,7 @@
 		require "connect.php";
 
 		$class_id = $_GET['classid'];
+		$_SESSION['class_id'] = $class_id;
 
 
 		//Query for the class
@@ -29,7 +30,7 @@
 		}
 
 		//Query for the post
-		$query = "select * from (select * from post where class_id = '$class_id') as class_post join (SELECT student_id as id, firstname, lastname FROM student UNION SELECT teacher_id as id, firstname, lastname FROM teacher) as user on user.id = class_post.user_id;";
+		$query = "select * from (select * from post where class_id = '$class_id') as class_post join (SELECT student_id as id, firstname, lastname FROM student UNION SELECT teacher_id as id, firstname, lastname FROM teacher) as user on user.id = class_post.user_id ORDER BY time_stamp DESC;";
 
 		$post_row = mysqli_query($dbconn, $query);
 		
@@ -71,13 +72,14 @@
 				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 				<p class="user"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></p>
 			</header>
-			<form>
+			<form method="post" action="post.php" enctype="multipart/form-data">
 				<textarea name="caption" class="text" placeholder="Want to Post?"></textarea>
 				<ul class="button options">
-					<li><input type="button" value="+ Image" class="hoveranim"></li>
-					<li><input type="button" value="+ File" class="hoveranim"></li>
+
+					<li><input type="file" value="+ Image" class="hoveranim" id = "image_button" onchange="loadFile(event)"></li>
 					<li><input type="submit" name="post" value="Post" class="hoveranim"></li>
 				</ul>
+					<img src="" alt="" id="image_preview" style="display: block">
 			</form>
 		</div>
 
@@ -91,43 +93,18 @@
 					<a class="user" href="#"><?=$value['firstname']." ".$value['lastname'];?></a>
 				</header>
 				<p class="caption"><?= $value['text'] ?></p>
-				<ul class="button options"><!-- 
-					<li><input type="button" value="Download" class="hoveranim"></li> -->
+				<ul class="button options"> 
+
+					<?php if($value['file_id'] != 0): ?>
+						<li><input type="button" value="Download" class="hoveranim"></li> 
+					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
 			</div>
 		<?php } ?>
 
-		<div class="post">
-			<header>
-				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-				<a class="user" href="#"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></a>
-			</header>
-			<p class="caption">Clyde uploaded a photo in CMSC 128.</p>
-			<img src="images/notes.jpg" class="uploadedphoto">
-			<ul class="button options">
-				<li><input type="button" value="Download" class="hoveranim"></li>
-				<li><input type="button" value="Comment" class="hoveranim"></li>
-				<li><input type="button" value="Follow" class="hoveranim"></li>
-			</ul>
-		</div>
-		<div class="post">
-			<header>
-				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-				<a class="user" href="#"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></a>
-			</header>
-			<p class="caption">Clyde uploaded a file in CMSC 128.</p>
-			<div class="filecontainer">
-				<img src="images/file.png" id="file">
-				<p>File.fle</p>
-			</div>
-			<ul class="button options">
-				<li><input type="button" value="Download" class="hoveranim"></li>
-				<li><input type="button" value="Comment" class="hoveranim"></li>
-				<li><input type="button" value="Follow" class="hoveranim"></li>
-			</ul>
-		</div>
+
 
 
 
@@ -141,5 +118,14 @@
 		console.log(x);
 		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;");
 	</script>
+
+	<script>
+		var loadFile = function(event){
+			var image_preview = document.getElementById('image_preview');
+			image_preview.src = URL.createObjectURL(event.target.files[0]);
+		};
+	</script>
+
+
 </body>
 </html>
