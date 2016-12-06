@@ -1,30 +1,37 @@
+<?php 
+	$_SESSION['page'] = 1;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Admin</title>
-	<link rel="stylesheet" type="text/css" href="css/admin/admin.css">
+	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="css/admin/navigation.css">
+	<link rel="stylesheet" type="text/css" href="css/admin/home.css">
+	<link rel="stylesheet" type="text/css" href="css/admin/general.css">	
 </head>
-<body id="body">
-	<nav>
-		<ul>
-			<li><a href="#">Something</a></li>
+<body>
+	<?php require "admin_nav.php" ?>
+	<div id="container">
+		<h1>Welcome Admin</h1>
+		<p class="instruction">Choose one of these options below to get started.</p>
+		<ul class="work">
+			<li><a href="admin_students.php"><span></span>Students</a></li>
+			<li><a href="admin_teachers.php">Teachers</a></li>
+			<li><a href="admin_courses.php">Courses</a></li>
+			<li><a href="admin_classes.php">Classes</a></li>
+			<li><a href="logout.php">Logout</a></li>
 		</ul>
-	</nav>
-	<ul class="work">
-		<li><a href="admin_students.php">Students</a></li>
-		<li><a href="admin_teachers.php">Teachers</a></li>
-		<li><a href="admin_courses.php">Courses</a></li>
-		<li><a href="admin_classes.php">Classes</a></li>
-		<li><a href="logout.php">Logout</a></li>
-	</ul>
+	</div>
 	<script>
-		nav = $('#navBar').outerHeight(true);
+		nav = $('#nav').outerHeight(true);
 		console.log(nav);
-		body = window.innerHeight;
-		console.log(b);
-		body = body - nav;
-		console.log(body);
-		document.getElementById('map').setAttribute("style","height: "+body+"px;width:100%;margin-top:"+nav+"px;");
+		container = window.innerHeight;
+		console.log(container);
+		container = container - nav;
+		console.log(container);
+		document.getElementById('container').setAttribute("style","height: "+container+"px; width:100% ;margin-top:"+nav+"px;");
 	</script>
 </body>
 </html>

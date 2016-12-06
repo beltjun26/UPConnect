@@ -1,0 +1,63 @@
+@font-face{
+	font-family: GothamMedium;
+	src: url('../fonts/GOTHAM-MEDIUM.TTF');
+}
+
+#nav{
+	top: 0;
+	left: 0;
+	position: fixed;
+	width: 100%;
+	background-color: white;
+}
+
+#nav ul{
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	list-style: none;
+}
+
+#nav li a{
+	display: block;
+	font-family: Arial;
+	font-size: 0.9em;
+	color: #888;
+	padding: 10px 15px;
+	text-decoration: none;
+	border-bottom: 1px solid white;
+	box-sizing: border-box;
+	transition: 0.15s;
+}
+
+#nav li a:hover{
+	border-color: #00B8D4;
+	color: #0091EA;
+}
+
+#nav li:first-child{
+	margin-right: auto;
+}
+
+#nav li:first-child a{
+	font-family: GothamMedium;
+	letter-spacing: 0.2em;
+	color: #a20025;
+}
+
+#nav li:first-child a:hover{
+	border-color: #a20025;
+}
+
+#nav li:last-child a:hover{
+	color: #E91E63;
+	border-color: #E91E63;
+}
+
+#nav .active,
+#nav .active:hover{
+	cursor: default;
+	color: #00BFA5;
+	border-color: #00BFA5;
+}
+

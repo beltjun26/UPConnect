@@ -1,0 +1,81 @@
+@font-face{
+	font-family: GothamLight;
+	src: url('../fonts/GOTHAM-LIGHT.TTF');
+}
+
+*,body,html{
+	padding: 0; 
+	margin: 0;
+}
+
+body{
+	background-color: #ECEFF1;
+}
+
+.instruction{
+	background-color: #333;
+	color: white;
+	font-family: Courier;
+	font-size: 0.8em;
+	padding: 3px 20px;
+	border-radius: 3px;
+	margin: 0 auto 20px auto;
+	text-align: center;
+}
+
+.table-header{
+	background-color: white;
+	width: 100%;
+	box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+	border: 1px solid #DDD;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	border-collapse: collapse;
+	top: 37px;
+	position: fixed;
+	z-index: 1;
+}
+
+.table-header h1{
+	font-size: 1.5em;
+	font-family: GothamLight;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	color: #333;
+	text-align: center;
+	display: block;
+	background-color: white;
+}
+
+.button{
+	font-family: GothamLight;
+	font-weight: bold;
+	font-size: 0.9em;
+	text-transform: uppercase;
+	display: block;
+	background-color: white;
+	padding: 10px 15px;
+	margin: auto;
+	border: none;
+	transition: 0.2s;
+	border: 1px solid #DDD;
+}
+
+.button:hover{
+	cursor: pointer;
+}
+
+.add{
+	height: 57px;
+	padding: 15px 20px;
+	border: 1px solid #DDD;
+	border-width: 0 1px 0 1px;
+	color: #64DD17;
+	font-size: 0.9em;
+	margin: 0;
+}
+
+.add:hover{
+	border-color: #64DD17;
+}
