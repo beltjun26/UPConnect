@@ -1,3 +1,7 @@
+<?php 
+	$_SESSION['page'] = 1;
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,8 @@
 <body>
 	<?php require "admin_nav.php" ?>
 	<div id="container">
+		<h1>Welcome Admin</h1>
+		<p class="instruction">Choose one of these options below to get started.</p>
 		<ul class="work">
 			<li><a href="admin_students.php"><span></span>Students</a></li>
 			<li><a href="admin_teachers.php">Teachers</a></li>

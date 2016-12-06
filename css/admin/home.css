@@ -6,7 +6,18 @@
 
 #container{
 	display: flex;
+	flex-direction: column;
+	justify-content: center;
 	align-content: center;
+}
+
+h1{
+	font-family: GothamLight;
+	font-size: 1.75em;
+	letter-spacing: 0.2em; 
+	text-transform: uppercase;
+	margin: 0 auto 20px auto;
+	color: #a20025;
 }
 
 .work{
@@ -15,7 +26,7 @@
 	display: flex;
 	justify-content: space-around;
 	padding: 0;
-	margin: auto;
+	margin: 0 auto 0 auto;
 	flex-wrap: wrap;
 }
 
@@ -24,7 +35,8 @@
 	text-decoration: none!important;
 	color: #555;
 	transition: 0.15s;
-	font-family: Arial;
+	font-family: GothamLight;
+	font-weight: bold;
 	font-size: 0.9em;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
@@ -42,4 +54,9 @@
 .work li a:hover{
 	border-color: #0091EA;
 	color: #0091EA;
+}
+
+.work li:last-child a:hover{
+	color: #E91E63;
+	border-color: #E91E63;
 }

@@ -1,7 +1,12 @@
+@font-face{
+	font-family: GothamMedium;
+	src: url('../fonts/GOTHAM-MEDIUM.TTF');
+}
+
 #nav{
 	top: 0;
 	left: 0;
-	position: absolute;
+	position: fixed;
 	width: 100%;
 	background-color: white;
 }
@@ -30,5 +35,29 @@
 	color: #0091EA;
 }
 
+#nav li:first-child{
+	margin-right: auto;
+}
 
+#nav li:first-child a{
+	font-family: GothamMedium;
+	letter-spacing: 0.2em;
+	color: #a20025;
+}
+
+#nav li:first-child a:hover{
+	border-color: #a20025;
+}
+
+#nav li:last-child a:hover{
+	color: #E91E63;
+	border-color: #E91E63;
+}
+
+#nav .active,
+#nav .active:hover{
+	cursor: default;
+	color: #00BFA5;
+	border-color: #00BFA5;
+}
 

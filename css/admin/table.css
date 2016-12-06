@@ -5,7 +5,7 @@ table, th, td {
 table{
 	width: 80%;
 	box-shadow: 0 0 15px rgba(0,0,0,0.1);
-	margin: 20px auto 20px auto;
+	margin: 120px auto 20px auto;
 }
 
 th, td{
@@ -21,6 +21,11 @@ td{
 	color: #555;
 }
 
+/*th:first-child,
+th:nth-child(2){
+	width: 2em;
+}*/
+
 td:first-child,
 td:nth-child(2){
 	text-align: center;
@@ -34,6 +39,7 @@ td:last-child{
 
 td .button{
 	width: 100%;
+	border-color: white;
 }
 
 td:nth-last-child(2) .button{
@@ -61,4 +67,15 @@ td:last-child .button:hover{
 
 .linkprofile:hover{
 	border-color: #0091EA;
+}
+
+.description{
+	width: 30%;
+}
+
+.description p{
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	height: 1em;
+	overflow: hidden;
 }
