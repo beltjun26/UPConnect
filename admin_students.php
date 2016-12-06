@@ -143,7 +143,7 @@
 				</div>
 				<?php 
 					$number++;
-					endforeach 
+					endforeach; 
 				?>
 		</table>
 	</div>
