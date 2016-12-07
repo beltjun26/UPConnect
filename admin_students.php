@@ -104,7 +104,7 @@
 			?><div id="edit-panel<?=$numberofrecords?>" class="modal">
 				<div class="modal-content">
 					<div class="modal-header">
-					    <span id="cancel-edit<?=$numberofrecords?>" class="close">×</span>
+					    <span id="cancel-edit<?=$numberofrecords?>" onclick="document.getElementById('edit-panel<?=$numberofrecords?>').style.display='none'" class="close">×</span>
 					    <h2>Edit Student</h2>
 					</div>
 					<div class="modal-body">
@@ -132,14 +132,15 @@
 		<div id="delete-panel<?=$numberofrecords?>" class="modal delete-panel">
 			<div class="modal-content">
 				<div class="modal-header">
-				    <span id="cancel-delete<?=$numberofrecords?>" class="close">×</span>
+				    <span id="cancel-delete<?=$numberofrecords?>" onclick="document.getElementById('delete-panel<?=$numberofrecords?>').style.display='none'" class="close">×</span>
 				    <h2>Delete Student?</h2>
 				</div>
 				<div class="modal-body">
 					<p class="instruction">Choose one of the two.</p>
-					<form class="deleteform">
-						<button id="cancel-delete-button">Cancel</button>
+					<form class="deleteform" method="post" action="admin_delete_student.php">
+						<button id="cancel-delete-button" onclick="document.getElementById('delete-panel<?=$numberofrecords?>').style.display='none'">Cancel</button>
 						<input id="delete_button" type="submit" name="delete_student" value="Delete">
+						<input type="text" name="student_id" style="display: none">
 					</form>
 				</div>
 			</div>
@@ -147,6 +148,9 @@
 		<?php $numberofrecords--; } ?>
 	</div>
 	<script>
+		$("#add").click(function(){
+			document.location.href = "admin_add_student.php";
+		});
 		function showeditmodal(student_no){
 			var modal = document.getElementById('edit-panel'+student_no);
 			modal.style.display = "flex"; 

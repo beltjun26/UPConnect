@@ -18,6 +18,7 @@
 	<?php 
 		require "connect.php";
 		require "admin_nav.php";
+
 	?>
 	<div id="container">
 		<header class="table-header">
