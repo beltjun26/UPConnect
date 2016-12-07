@@ -11,7 +11,7 @@
 .to.post form > textarea,
 .post .caption{
 	font-family: Arial;
-	font-size: 0.9em;
+	font-size: 1em;
 }
 
 /*--POST AND POSTING DESIGN--*/
@@ -29,23 +29,11 @@
 .user{
 	text-align: left;
 	vertical-align: middle;
-	font-size: 1em;
+	font-size: 1.2em;
 	margin-left: 10px;
 	position: relative;
 	text-decoration: none;
 	height: 1em;
-}
-
-a.user:after{
-	content: '	Go to Profile >';
-	font-size: 0.8em;
-	color: skyblue;
-	opacity: 0;
-	transition: 0.3s;
-}
-
-a.user:hover:after{
-	opacity: 1;
 }
 
 .post header{
@@ -71,7 +59,6 @@ a.user:hover:after{
 	max-height: 500px;
 	margin-bottom: 0;
 	border-color: white;
-	letter-spacing: 0.5px;
 	border: 1px solid #EEE;
 	box-sizing: border-box;
 }
@@ -86,20 +73,36 @@ a.user:hover:after{
 	margin-right: 10px;
 }
 
-.button.options input[type=submit],
-.button.options input[type=button]{
+input[type=file]{
+	display: none;
+}
+
+label{
 	color: #03A9F4;
 	display: block;
-	font-size: 15px;
-	font-weight: bold;
+	font-size: 1em;
 	border-style: none;
 	letter-spacing: 2px;
 	border: 1px solid #EEE; 
 	background-color: white;
 	text-transform: uppercase;
 	font-family: GothamLight;
-	padding: 10px 15px 10px 15px;
-	width: 50%;
+	padding: 5px 15px 5px 15px;
+}
+
+.button.options input[type=submit],
+.button.options input[type=button]{
+	color: #03A9F4;
+	display: block;
+	font-size: 1em;
+	border-style: none;
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
+	background-color: white;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	padding: 5px 15px 5px 15px;
+	font-weight: bold;
 }
 
 .button.options li:last-child{
@@ -125,10 +128,8 @@ a.user:hover:after{
 }
 
 .hoveranim:hover{
-	color: white!important;
 	transform: translate(0px, -3px);
 	border-color: #29B6F6!important;
-	background-color: #29B6F6!important;
 	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
 }
 
@@ -162,16 +163,14 @@ a.user:hover:after{
 
 .post .caption{
 	width: 100%;
-	color: #AAA;
+	color: #555;
 	text-align: justify;
-	letter-spacing: 0.5px;
 	margin-bottom: 10px;
 	text-indent: 20px;
 	line-height: 1.5em;
-	border: 1px solid #EEE;
-	padding: 10px 10px;
+	padding: 0;
 	box-sizing: border-box;
-	border-radius: 3px;
+	font-size: 1em;
 }
 
 .uploadedphoto{
@@ -181,10 +180,123 @@ a.user:hover:after{
 	object-position: center;
 }
 
+.comments{
+	list-style: none;
+	padding: 0;
+	margin: 10px 0 0 0;
+}
 
+.comment{
+	border: 1px solid #EEE;
+	display: flex;
+	margin-top: 10px;
+	padding: 5px;
+	position: relative;
+}
 
-/*MAYNARD CHANGES AFTER
-*/
+.comment img{
+	height: 40px;
+	min-width: 40px;
+	border: 1px solid #EEE;
+	box-sizing: content-box;
+}
+
+.commenting form{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.commenting textarea{
+	border: 1px solid #EEE;
+	display: block;
+	height: 40px;
+	margin: 0 5px;
+	width: 100%;
+	resize: vertical;
+	padding: 10px 15px;
+	font-family: Arial;
+	font-size: 1em;
+	font-weight: normal;
+	transition: 0.2s;
+	overflow: hidden;
+}
+
+.commenting textarea:hover,
+.commenting textarea:focus,
+.commenting textarea:active{
+	outline: none;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.commenting textarea:focus,
+.commenting textarea:active{
+	height: 100px;
+	border-color: #03A9F4;
+}
+
+.commenting button{
+	border: 1px solid #EEE;
+	height: 40px;
+	min-width: 40px;
+	box-sizing: border-box;
+	background: transparent;
+	transition: 0.2s;
+}
+
+.commenting button:hover{
+	border-color: #03A9F4;
+	transform: translate(0, -2px);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.commenting button span{
+	transform: scale(1.5, 1.5);
+	color: #03A9F4;
+}
+
+.commented .delete{
+	top: 0px;
+	right: 6px;
+	position: absolute;
+	transform: scale(1.2, 1);
+	color: #EEE;
+}
+
+.commented .delete:hover{
+	color: #888;
+	cursor: pointer;
+}
+
+.commented .content{
+	width: 100%;
+	display: flex;
+	margin: 0 15px 0 5px;
+	flex-direction: column;
+	padding: 5px;
+}
+
+.usercom, .timestamp, .comment-content{
+	text-align: left;
+}
+
+.usercom{
+	cursor: pointer;
+	font-weight: bold;
+	font-family: GothamLight;
+	transition: 0.2s;
+}
+
+.timestamp{
+	font-size: 0.85em;
+	color: #999;
+}
+
+.comment-content{
+	color: #555;
+	margin: 10px 0;
+	text-indent: 20px;
+}
 
 #image_preview{
 	width: 100%;
@@ -200,21 +312,5 @@ a.user:hover:after{
 }
 
 
-input[type=file]{
-	display: none;
-}
 
-label{
-	color: #03A9F4;
-	display: block;
-	font-size: 15px;
-	font-weight: bold;
-	border-style: none;
-	letter-spacing: 2px;
-	border: 1px solid #EEE; 
-	background-color: white;
-	text-transform: uppercase;
-	font-family: GothamLight;
-	padding: 10px 15px 10px 15px;
-}
 
