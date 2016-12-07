@@ -1,0 +1,155 @@
+@font-face{
+    font-family: GothamLight;
+    src: url('../fonts/GOTHAM-LIGHT.TTF');
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.modal-content{
+    background-color: white;
+}
+
+.modal-header{
+    border: 1px solid #DDD;
+    position: relative;
+    padding: 10px 20px;
+}
+
+.delete-panel .modal-content{
+    width: 25%;
+    overflow: auto;
+}
+
+.modal-header h2{
+    font-size: 1.5em;
+    font-family: GothamLight;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-body{
+    padding: 10px 20px;
+}
+
+.modal .close{
+    top: 10px;
+    right: 20px;
+    position: absolute;
+    font-size: 1.5em;
+    font-weight: bold;
+    cursor: pointer;
+    color: #888;
+}
+
+.modal .close:hover{
+    color: #333;
+}
+
+.modal form{
+    display: flex;
+    flex-direction: column;
+}
+
+.modal form input[type=text],
+.modal form input[type=email],
+.modal form input[type=password]{
+    border: 1px solid #DDD;
+    margin-bottom: 10px;
+    padding: 10px 15px;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.modal form input[type=submit],
+.modal form button{
+    background-color: white;
+    border: 1px solid #DDD;
+    padding: 10px 20px;
+    margin-left: auto;
+    color: #888;
+    transition: 0.2s;
+}
+
+#addform input[type=submit]{
+    color: #64DD17;
+}
+
+#addform input[type=submit]:hover{
+    border-color: #64DD17;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.editform input[type=submit]{
+    color: #FFAB00!important;
+}
+
+.editform input[type=submit]:hover{
+    border-color: #FFAB00;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.deleteform{
+    flex-direction: row!important;
+}
+
+.deleteform input{
+    margin-right: auto;
+    color: #E91E63!important;
+}
+
+.deleteform input:hover{
+    border-color: #E91E63!important;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+.deleteform button{
+    margin-left: auto;
+    color: #0091EA!important;
+}
+
+.deleteform button:hover{
+    border-color: #0091EA;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+    cursor: pointer;
+}
+
+/*
+.deleteform button{
+    margin-left: 0;
+    float: left;
+    color: #0091EA;
+}
+
+.deleteform button:hover{
+    border-color: #0091EA;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0,0,0,0.05);
+}
+
+.modal form input{
+    transition: 0.2s;
+}
+
+.modal form input:focus,
+.modal form input:hover{
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    outline: none;
+    border-color: #29B6F6;
+}*/

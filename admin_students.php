@@ -60,72 +60,76 @@
 				</div>
 			</div>
 		</div>
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>Student ID</th>
-				<th>Name</th>
-				<th>Course and Year</th> 
-				<th>Email</th>
-				<th colspan="2">Actions</th>
-			</tr>
-			<?php
-				if (isset($_POST['search'])) {
-					$keyword = $_POST['keyword'];
-					$query = "SELECT * FROM student 
-							  NATURAL JOIN degree 
-							  WHERE firstname 
-							  LIKE '%$keyword%'
-							  OR lastname
-							  LIKE '%$keyword%'
-							  OR middlename
-							  LIKE '%$keyword%'
-							  OR student_id
-							  LIKE '%$keyword%'
-							  OR email
-							  LIKE '%$keyword%'
-							  OR degree_name
-							  LIKE '%$keyword%'";
-				} else{
-					$query = "SELECT * FROM student NATURAL JOIN degree";
+		<?php
+			if (isset($_POST['search'])) {
+				$keyword = $_POST['keyword'];
+				$query = "SELECT * FROM student 
+						  NATURAL JOIN degree 
+						  WHERE firstname 
+						  LIKE '%$keyword%'
+						  OR lastname
+						  LIKE '%$keyword%'
+						  OR middlename
+						  LIKE '%$keyword%'
+						  OR student_id
+						  LIKE '%$keyword%'
+						  OR email
+						  LIKE '%$keyword%'
+						  OR degree_name
+						  LIKE '%$keyword%'";
+			} else{
+				$query = "SELECT * FROM student NATURAL JOIN degree";
+			}
+			$result = mysqli_query($dbconn, $query);
+			$data = [];
+			if(mysqli_affected_rows($dbconn)){
+				while($row = mysqli_fetch_assoc($result)){
+				$data[] = $row;
 				}
-				$result = mysqli_query($dbconn, $query);
-				$data = [];
-				if(mysqli_affected_rows($dbconn)){
-					while($row = mysqli_fetch_assoc($result)){
-					$data[] = $row;
-					}
-				}
-				$numberofrecords = count($data);
-				/*echo $numberofrecords;*/
-				$number = 1;
-				foreach ($data as $value): ?>
-				<tr>
-					<td><?=$number;?></td>
-					<td><?=$value['student_id']?></td>
-					<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
-					<td><?=$value['degree_name']." "?>
-						<?php 
-							if ($value['year_lvl']==1){
-								echo "I";
-							} else if ($value['year_lvl']==2){
-								echo "II";
-							} else if ($value['year_lvl']==3){
-								echo "III";
-							} else if ($value['year_lvl']==4){
-								echo "IV";
-							}
-						?></td>
-					<td><?=$value['email']?></td>
-					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
-					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
-				</tr>
+			}
+			if(count($data)>0){ ?>
+				<table>
+					<tr>
+						<th>No.</th>
+						<th>Student ID</th>
+						<th>Name</th>
+						<th>Course and Year</th> 
+						<th>Email</th>
+						<th colspan="2">Actions</th>
+					</tr>
+				<?php  
+					$number = 1;
+					foreach ($data as $value): ?>
+					<tr>
+						<td><?=$number;?></td>
+						<td><?=$value['student_id']?></td>
+						<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
+						<td><?=$value['degree_name']." "?>
+							<?php 
+								if ($value['year_lvl']==1){
+									echo "I";
+								} else if ($value['year_lvl']==2){
+									echo "II";
+								} else if ($value['year_lvl']==3){
+									echo "III";
+								} else if ($value['year_lvl']==4){
+									echo "IV";
+								}
+							?></td>
+						<td><?=$value['email']?></td>
+						<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+						<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+					</tr>
 				<?php 
-					$number++;
-					endforeach;
+				$number++;
+				endforeach;
 				?>
-		</table>
+				</table>
+				<?php } else { ?>
+					<h2 class="no-results">NO RESULTS</h2> <?php
+				} ?>
 			<?php 
+				$numberofrecords = count($data);
 				while ($numberofrecords > 0) {
 			?><div id="edit-panel<?=$numberofrecords?>" class="modal">
 				<div class="modal-content">

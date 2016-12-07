@@ -13,8 +13,10 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/table.css">
 </head>
 <body>
-	<?php require "connect.php" ?>
-	<?php require "admin_nav.php" ?>
+	<?php 
+		require "connect.php"; 
+		require "admin_nav.php"; 
+	?>
 	<div id="container">
 		<header class="table-header">
 			<h1>Teachers</h1>
