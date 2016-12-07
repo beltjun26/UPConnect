@@ -3,7 +3,7 @@ table, th, td {
 }
 
 table{
-	width: 80%;
+	width: 90%;
 	box-shadow: 0 0 15px rgba(0,0,0,0.1);
 	margin: 120px auto 20px auto;
 }
@@ -26,15 +26,13 @@ th:nth-child(2){
 	width: 2em;
 }*/
 
-td:first-child,
-td:nth-child(2){
+td.center{
 	text-align: center;
 }
 
-td:nth-last-child(2),
-td:last-child{
-	padding: 0;
+.button-container{
 	width: 75px;
+	padding: 0;
 }
 
 td .button{
@@ -42,19 +40,19 @@ td .button{
 	border-color: white;
 }
 
-td:nth-last-child(2) .button{
+.edit.button{
 	color: #FFAB00;
 }
 
-td:nth-last-child(2) .button:hover{
+.edit.button:hover{
 	border-color: #FFAB00;
 }
 
-td:last-child .button{
+.delete.button{
 	color: #D81B60;
 }
 
-td:last-child .button:hover{
+.delete.button:hover{
 	border-color: #D81B60;
 }
 

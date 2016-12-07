@@ -1,4 +1,7 @@
-
+@font-face{
+	font-family: GothamLight;
+	src: url('../fonts/GOTHAM-LIGHT.TTF');
+}
 
 .search{
 	display: flex;
@@ -43,5 +46,10 @@
 
 h2.no-results{
 	margin-top: 300px;
-	font-size: 3em;
+	font-size: 2em;
+	font-family: GothamLight;
+	width: 100%;
+	text-align: center;
+	color: #888;
+	letter-spacing: 0.1em;
 }

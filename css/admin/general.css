@@ -89,8 +89,3 @@ body{
 .add:hover{
 	border-color: #64DD17;
 }
-
-h2.no-results{
-	margin-top: 300px;
-	font-size: 3em;
-}

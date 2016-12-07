@@ -1,7 +1,4 @@
 <?php 
-	/*if(!isset($_SESSION['userid'])){
-       header("Location: index.php");  
-	}	*/
 	$_SESSION['page'] = 2;
 ?>
 
@@ -24,13 +21,13 @@
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_students.php" class="current"><h1>Students</h1></a>
-			<form class="search" method="POST">
+			<form action="admin_students" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
 			<button class="button add" id="add">Add Student +</button>
 		</header>
-		<div id="add-panel" class="modal">
+		<div id="add-panel" class="modal" style="display: flex;">
 			<div class="modal-content">
 				<div class="modal-header">
 				    <span id="cancel-add" class="close">×</span>
@@ -40,10 +37,15 @@
 					<p class="instruction">Fill out this form correctly to add.</p>
 					<form id="addform">
 						<input type="text" name="id" placeholder="Student ID...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="firstname" placeholder="First Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="middname" placeholder="Middle Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="lastname" placeholder="Last Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="email" name="email" placeholder="Email...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" list="degrees" name="degree" placeholder="Degree...">
 							<datalist id="degrees">
 								<option value="Computer Science">
@@ -53,8 +55,11 @@
 								<option value="Chemistry">
 							</datalist>
 						<input type="text" name="yearlvl" placeholder="Year Level...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="password" name="pass" placeholder="Password...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="password" name="passret" placeholder="Retype Password...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input id="add_button" type="submit" name="add_student" value="Add +">
 					</form>
 				</div>
@@ -95,14 +100,14 @@
 						<th>Name</th>
 						<th>Course and Year</th> 
 						<th>Email</th>
-						<th colspan="2">Actions</th>
+						<th colspan="4">Actions</th>
 					</tr>
 				<?php  
 					$number = 1;
 					foreach ($data as $value): ?>
 					<tr>
-						<td><?=$number;?></td>
-						<td><?=$value['student_id']?></td>
+						<td class="center"><?=$number;?></td>
+						<td class="center"><?=$value['student_id']?></td>
 						<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
 						<td><?=$value['degree_name']." "?>
 							<?php 
@@ -117,8 +122,10 @@
 								}
 							?></td>
 						<td><?=$value['email']?></td>
-						<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
-						<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+						<!-- <td class="button-container"><button class="button table enroll" id="enroll<?=$number?>" onclick="">Enroll</button></td>
+						<td class="button-container"><button class="button table drop" id="drop<?=$number?>" onclick="">Drop</button></td> -->
+						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 					</tr>
 				<?php 
 				$number++;

@@ -110,6 +110,18 @@
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
 			</div>
+			<ul class="comments">
+				<li class="commented">
+					<img src="" onerror="">
+					<p></p>
+					<button></button>
+				</li>
+				<li class="commenting">
+					<img src="" onerror="">
+					<p></p>
+					<span class="delete">x</span>
+				</li>
+			</ul>
 		<?php } ?>
 
 
