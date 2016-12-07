@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 2;
+	$_SESSION['page'] = 5;
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@
 	?>
 	<div id="container">
 		<header class="table-header">
-			<a href="admin_classes.php" class="current"><h1>Students</h1></a>
+			<a href="admin_classes.php" class="current"><h1>Classes</h1></a>
 			<form action="admin_add_class.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
