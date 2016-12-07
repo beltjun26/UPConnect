@@ -65,11 +65,29 @@
 			<input type="submit" name="submit" value="SEARCH">
 		</form>
 		<ul class="fileslist">
-			<li><img src="images/file.png"><span class="file-name">Something</span></li>
-			<li><img src="images/file.png"><span class="file-name">Something</span></li>
-			<li><img src="images/file.png"><span class="file-name">Something</span></li>
-			<li><img src="images/file.png"><span class="file-name">Something</span></li>
-			<li><img src="images/file.png"><span class="file-name">Something</span></li>
+	
+
+		
+		<?php 
+		//Query for the post
+		$class_id = $_GET['classid'];
+		$query = "select * from post where class_id = '$class_id' and file_id = 2 order by time_stamp desc;";
+
+		$post_row = mysqli_query($dbconn, $query);
+
+		foreach ($post_row as $value):
+			$dir = "saved_files/".$value['post_id'];
+			$file_array = scandir($dir);
+			?>
+			<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank" class = "hoveranim download-btn">
+				<li>
+					<img src="images/file.png">
+					<span class="file-name"><?=$file_array[2];?></span>
+				</li>
+			</a>
+		<?php endforeach ?>
+
+
 		</ul>
 	</div>
 	</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2016 at 04:13 PM
+-- Generation Time: Dec 07, 2016 at 05:19 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -75,14 +75,14 @@ CREATE TABLE `course` (
   `course_id` int(11) NOT NULL,
   `course_name` varchar(30) NOT NULL,
   `course_description` text NOT NULL,
-  `desciptive_title` varchar(100) NOT NULL
+  `descriptive_title` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `course`
 --
 
-INSERT INTO `course` (`course_id`, `course_name`, `course_description`, `desciptive_title`) VALUES
+INSERT INTO `course` (`course_id`, `course_name`, `course_description`, `descriptive_title`) VALUES
 (1, 'CMSC 21', 'basf sadf sadf sd fdsf', 'Java'),
 (2, 'CMSC 141', 'dfdsfsdasdf sadf safa sdfa sdf\n\n', 'Automata'),
 (3, 'CMSC128', 'saf asf saf asf saf sdf', 'Software Engineering'),
@@ -141,7 +141,7 @@ INSERT INTO `enroll_class` (`student_id`, `class_id`) VALUES
 CREATE TABLE `post` (
   `post_id` int(11) NOT NULL,
   `class_id` int(9) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `user_id` varchar(9) NOT NULL,
   `time_stamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `text` text NOT NULL,
   `file_id` int(11) NOT NULL
@@ -152,9 +152,10 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `class_id`, `user_id`, `time_stamp`, `text`, `file_id`) VALUES
-(32, 1, 201437759, '2016-12-07 12:28:20', 'asdasd', 2),
-(33, 1, 201437759, '2016-12-07 12:31:25', 'asdas', 1),
-(34, 1, 201437759, '2016-12-07 14:48:39', 'fxghjk', 1);
+(32, 1, '201437759', '2016-12-07 12:28:20', 'asdasd', 2),
+(33, 1, '201437759', '2016-12-07 12:31:25', 'asdas', 1),
+(34, 1, '201437759', '2016-12-07 14:48:39', 'fxghjk', 1),
+(35, 1, '201437759', '2016-12-07 16:01:01', 'Rarrrrrr', 2);
 
 -- --------------------------------------------------------
 
@@ -215,16 +216,17 @@ CREATE TABLE `teacher` (
   `firstname` varchar(30) NOT NULL,
   `middlename` varchar(30) NOT NULL,
   `lastname` varchar(30) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `email` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `teacher`
 --
 
-INSERT INTO `teacher` (`teacher_id`, `firstname`, `middlename`, `lastname`, `password`) VALUES
-('12345', 'Spark', 'Dragon', 'Comshop', '9460370bb0ca1c98a779b1bcc6861c2c'),
-('54321', 'Another', 'Awesome', 'Teacher', '9460370bb0ca1c98a779b1bcc6861c2c');
+INSERT INTO `teacher` (`teacher_id`, `firstname`, `middlename`, `lastname`, `password`, `email`) VALUES
+('12345', 'Spark', 'Dragon', 'Comshop', '9460370bb0ca1c98a779b1bcc6861c2c', 'sparkzzzz@gmail.com'),
+('54321', 'Another', 'Awesome', 'Teacher', '9460370bb0ca1c98a779b1bcc6861c2c', 'awesomeeeee@yahoo.com');
 
 --
 -- Indexes for dumped tables
@@ -307,7 +309,7 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 --
 -- AUTO_INCREMENT for table `semester`
 --
