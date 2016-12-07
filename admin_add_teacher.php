@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 2;
+	$_SESSION['page'] = 3;
 ?>
 
 <!DOCTYPE html>
