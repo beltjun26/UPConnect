@@ -25,7 +25,7 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add" id="add">Add Student +</button>
+			<a class="button add" id="add" href="admin_add_student.php">Add Student +</a>
 		</header>
 		<?php
 			if (isset($_POST['search'])) {

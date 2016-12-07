@@ -43,27 +43,32 @@ td .button{
 .edit.button{
 	color: #FFAB00;
 }
-
 .edit.button:hover{
 	border-color: #FFAB00;
 }
-
 .delete.button{
 	color: #D81B60;
 }
-
 .delete.button:hover{
 	border-color: #D81B60;
 }
-
 .enroll{
 	color: #64DD17;
+}
+.enroll:hover{
+	border-color: #64DD17;
 }
 .drop{
 	color: #E91E63;
 }
+.drop:hover{
+	border-color: #E91E63;
+}
 .assign{
 	color: #00B8D4;
+}
+.assign:hover{
+	border-color: #00B8D4;
 }
 
 .linkprofile{
@@ -79,6 +84,7 @@ td .button{
 
 .description{
 	width: 30%;
+	overflow: hidden;
 }
 
 .description p{

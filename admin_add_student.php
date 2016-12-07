@@ -60,11 +60,11 @@
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_students.php" class="current"><h1>Students</h1></a>
-			<form action="admin_students" class="search" method="POST">
+			<form action="admin_students.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add" id="add">< Back to table</button>
+			<a class="button add" id="add" href="admin_students.php">< Back to table</a>
 		</header>
 		<h2>Add Student</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>

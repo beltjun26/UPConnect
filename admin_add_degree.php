@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 4;
+	$_SESSION['page'] = 6;
 ?>
 
 <!DOCTYPE html>
@@ -18,29 +18,28 @@
 	<?php 
 		require "connect.php";
 		require "admin_nav.php";
+
+		if ($_POST['add_degree']) {
+			echo "add";
+		}
 	?>
 	<div id="container">
 		<header class="table-header">
-			<a href="admin_courses.php" class="current"><h1>Courses</h1></a>
-			<form action="admin_courses.php" class="search" method="POST">
+			<a href="admin_degrees.php" class="current"><h1>Degree</h1></a>
+			<form action="admin_degrees.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<a class="button add" id="add" href="admin_courses.php">< Back to table</a>
+			<a class="button add" id="add" href="admin_degrees.php">< Back to table</a>
 		</header>
-		<h2>Add Course</h2>
+		<h2>Add Degree</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>
 		<form class="addform">
-			<div class="group-inputs">
-				<input type="text" name="coursename" placeholder="Course name... example: CMSC">
-				<input type="text" name="coursenumber" placeholder="Course number... example: 11">
-			</div>
-			<span class="error">This course has a record already.</span>
-			<input type="text" name="title" placeholder="Descriptive title... example: Introduction to programming">
-			<span class="error">Descriptive title already taken.</span>
-			<textarea name="description" placeholder="Course Description... Minimum of 20 characters..."></textarea>
-			<span class="error">Description too short.</span>
-			<input id="add_button" type="submit" name="add_course" value="Add +">
+			<input type="text" name="name" placeholder="Degree Name...">
+			<span class="error">Name format is wrong.</span>
+			<textarea name="description" placeholder="Description..."></textarea>
+			<span class="error">Description too short... Must contain at least 20 characters...</span>
+			<input id="add_button" type="submit" name="add_degree" value="Add +">
 		</form>
 	</div>
 </body>

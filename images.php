@@ -57,36 +57,29 @@
 	<div class="container">
 		<h1>IMAGES</h1>
 		<h2>CMSC 128</h2>
-		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to view.</p>
-		<form class="searchthroughlist">
+		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to download.</p>
+		<!-- <form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">
 			<input type="submit" name="submit" value="SEARCH">
-		</form>
+		</form> -->
 		<ul class="imagelist">
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
+		<?php 
+			//Query for the post
+			$class_id = $_GET['classid'];
+			$query = "select * from post where class_id = '$class_id' and file_id = 1 order by time_stamp desc;";
+
+			$post_row = mysqli_query($dbconn, $query);
+
+				foreach ($post_row as $value): 
+					$dir = "saved_images/".$value['post_id'];
+					$file_array = scandir($dir);
+		?>
+				<li>
+					<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank">
+						<img src="saved_images/<?=$value['post_id'].'/'.$file_array[2];?>">
+					</a>
+				</li>
+			<?php endforeach ?>
 		</ul>
 	</div>
 	</div>

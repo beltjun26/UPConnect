@@ -6,6 +6,7 @@
 		<li><a href="admin_teachers.php" <?php if ($_SESSION['page'] == 3) { echo "class='active'";} ?>>Teachers</a></li>
 		<li><a href="admin_courses.php" <?php if ($_SESSION['page'] == 4) { echo "class='active'";} ?>>Courses</a></li>
 		<li><a href="admin_classes.php" <?php if ($_SESSION['page'] == 5) { echo "class='active'";} ?>>Classes</a></li>
+		<li><a href="admin_degrees.php" <?php if ($_SESSION['page'] == 6) { echo "class='active'";} ?>>Degrees</a></li>
 		<li><a href="logout.php">Logout</a></li>
 	</ul>
 </nav>

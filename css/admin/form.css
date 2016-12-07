@@ -110,6 +110,7 @@ h2{
 }
 
 .error{
+    display: none;
     background-color: #E91E63;
     color: white;
     font-family: Arial;

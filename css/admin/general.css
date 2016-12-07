@@ -77,13 +77,12 @@ body{
 }
 
 .add{
-	height: 57px;
 	padding: 15px 20px;
 	border: 1px solid #DDD;
-	border-width: 0 1px 0 1px;
 	color: #64DD17;
 	font-size: 0.9em;
 	margin: 0;
+	text-decoration: none;
 }
 
 .add:hover{

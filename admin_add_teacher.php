@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 2;
+	$_SESSION['page'] = 3;
 ?>
 
 <!DOCTYPE html>
@@ -22,11 +22,11 @@
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_teachers.php" class="current"><h1>Teachers</h1></a>
-			<form action="admin_students" class="search" method="POST">
+			<form action="admin_teachers.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add" id="add">< Back to table</button>
+			<a class="button add" id="add" href="admin_teachers.php">< Back to table</a>
 		</header>
 		<h2>Add Teacher</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>

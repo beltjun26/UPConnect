@@ -21,6 +21,7 @@
 			<li><a href="admin_teachers.php">Teachers</a></li>
 			<li><a href="admin_courses.php">Courses</a></li>
 			<li><a href="admin_classes.php">Classes</a></li>
+			<li><a href="admin_degrees.php">Degrees</a></li>
 			<li><a href="logout.php">Logout</a></li>
 		</ul>
 	</div>

@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 4;
+	$_SESSION['page'] = 6;
 ?>
 
 <!DOCTYPE html>
@@ -16,29 +16,28 @@
 <body>
 	<?php 
 		require "connect.php";
-		require "admin_nav.php"; 
+		require "admin_nav.php";
 	?>
+
 	<div id="container">
 		<header class="table-header">
-			<a href="admin_courses.php" class="current"><h1>Courses</h1></a>
-			<form action="admin_courses.php" class="search" method="POST">
+			<a href="admin_degrees.php" class="current"><h1>Degrees</h1></a>
+			<form action="admin_degrees.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<a class="button add" href="admin_add_course.php">Add Course +</a>
+			<a class="button add" href="admin_add_degree.php">Add Degree +</a>
 		</header>
 		<?php
 			if (isset($_POST['search'])) {
 				$keyword = $_POST['keyword'];
-				$query = "SELECT * FROM course 
-						  WHERE course_id 
+				$query = "SELECT * FROM degree 
+						  WHERE degree_id 
 						  LIKE '%$keyword%'
-						  OR course_name
-						  LIKE '%$keyword%'
-						  OR descriptive_title
+						  OR degree_name
 						  LIKE '%$keyword%'";
 			} else{
-				$query = "SELECT * FROM course";
+				$query = "SELECT * FROM degree";
 			}
 				$result = mysqli_query($dbconn, $query);
 				$data = [];
@@ -51,21 +50,19 @@
 				<table>
 				  	<tr>
 					    <th>No.</th>
-					    <th>Course ID</th> 
+					    <th>Degree ID</th> 
 					    <th>Name</th>
-					 	<th>Description</th>
-					    <th>Title</th>
-					    <th colspan="2">Actions</th>
-					</tr>
+					    <th>Description</th>
+					    <th colspan="4">Actions</th>
+				  	</tr>
 				<?php  
 					$number = 1;
 					foreach ($data as $value): ?>
 					<tr>
 						<td class="center"><?=$number;?></td>
-						<td class="center"><?=$value['course_id']?></td>
-						<td><?=$value['course_name']?></td> 
-						<td class="description"><?=$value['course_description']?></td>
-						<td><?=$value['descriptive_title']?></td>
+						<td class="center"><?=$value['degree_id']?></td>
+						<td><?=$value['degree_name']?></td> 
+						<td class="description"><p><?=$value['description']?></p></td>
 						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
 						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 					</tr>
@@ -127,14 +124,15 @@
 		<!-- <table>
 		  <tr>
 		    <th>No.</th>
-		    <th>Course ID</th> 
-		    <th>Name</th>
-		 	<th>Description</th>
-		    <th>Title</th>
+		    <th>Class ID</th> 
+		    <th>Teacher</th>
+		    <th>Section</th>
+		    <th>Course</th>
+		    <th>S.Y. Semester</th>
 		    <th colspan="2">Actions</th>
 		  </tr>
 		  <?php
-				$query = "SELECT * FROM course";
+				$query = "SELECT * FROM class NATURAL JOIN teacher NATURAL JOIN course NATURAL JOIN semester";
 				$result = mysqli_query($dbconn, $query);
 				$data = [];
 				if(mysqli_affected_rows($dbconn)){
@@ -148,10 +146,21 @@
 				foreach ($data as $value): ?>
 				<tr>
 					<td><?=$number;?></td>
-					<td><?=$value['course_id']?></td>
-					<td><?=$value['course_name']?></td> 
-					<td class="description"><?=$value['course_description']?></td>
-					<td><?=$value['descriptive_title']?></td>
+					<td><?=$value['class_id']?></td>
+					<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
+					<td><?=$value['section']." "?></td>
+					<td><?=$value['course_name']?></td>
+					<td>S.Y. <?=$value['school_year']." "?>
+						<?php
+							if ($value['sem_no'] == 1){
+								echo "1st Semester";
+							} else if ($value['sem_no'] == 2){
+								echo "2nd Semester";
+							} else if ($value['sem_no'] > 2) {
+								echo "Summer Class";
+							}
+						?>
+					</td>
 					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
 					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 				</tr>

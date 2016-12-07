@@ -87,11 +87,13 @@ label{
 	background-color: white;
 	text-transform: uppercase;
 	font-family: GothamLight;
+	font-weight: bold;
 	padding: 5px 15px 5px 15px;
 }
 
 .button.options input[type=submit],
-.button.options input[type=button]{
+.button.options input[type=button],
+.download-btn{
 	color: #03A9F4;
 	display: block;
 	font-size: 1em;
@@ -103,6 +105,11 @@ label{
 	font-family: GothamLight;
 	padding: 5px 15px 5px 15px;
 	font-weight: bold;
+	text-decoration: none!important;
+}
+
+.download-btn:hover{
+	color: #03A9F4;
 }
 
 .button.options li:last-child{
@@ -175,7 +182,6 @@ label{
 
 .uploadedphoto{
 	width: 100%;
-	max-height: 300px;
 	object-fit: cover;
 	object-position: center;
 }
@@ -246,6 +252,10 @@ label{
 	box-sizing: border-box;
 	background: transparent;
 	transition: 0.2s;
+	background-image: url("../images/comment.png");
+	background-size: 70%;
+	background-repeat: no-repeat;
+	background-position: center;
 }
 
 .commenting button:hover{
@@ -278,6 +288,8 @@ label{
 	margin: 0 15px 0 5px;
 	flex-direction: column;
 	padding: 5px;
+	font-family: Arial;
+	line-height: 1.2em;
 }
 
 .usercom, .timestamp, .comment-content{
@@ -285,6 +297,7 @@ label{
 }
 
 .usercom{
+	color: #0091EA;
 	cursor: pointer;
 	font-weight: bold;
 	font-family: GothamLight;
@@ -293,12 +306,13 @@ label{
 
 .timestamp{
 	font-size: 0.85em;
-	color: #999;
+	color: #CCC;
 }
 
 .comment-content{
 	color: #555;
 	margin: 0;
+	font-size: 0.9em;
 }
 
 #image_preview{

@@ -17,9 +17,6 @@
 	<?php 
 		require "connect.php";
 		require "admin_nav.php";
-		if (isset($_POST['add_class'])) {
-			# code...
-		}
 	?>
 
 	<div id="container">
@@ -29,7 +26,7 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add">Add Class +</button>
+			<a class="button add" href="admin_add_class.php">Add Class +</a>
 		</header>
 		<div id="add-panel" class="modal">
 			<div class="modal-content">
