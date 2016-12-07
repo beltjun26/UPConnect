@@ -87,8 +87,8 @@
 						<td><?=$value['email']?></td>
 						<!-- <td class="button-container"><button class="button table enroll" id="enroll<?=$number?>" onclick="">Enroll</button></td>
 						<td class="button-container"><button class="button table drop" id="drop<?=$number?>" onclick="">Drop</button></td> -->
-						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
-						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$value['student_id']?>)">Edit</button></td>
+						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$value['student_id']?>)">Delete</button></td>
 					</tr>
 				<?php 
 				$number++;
@@ -98,24 +98,21 @@
 				<?php } else { ?>
 					<h2 class="no-results">NO RESULTS</h2> <?php
 				} ?>
-			<?php 
-				$numberofrecords = count($data);
-				while ($numberofrecords > 0) {
-			?><div id="edit-panel<?=$numberofrecords?>" class="modal">
+			<div id="edit-panel" class="modal">
 				<div class="modal-content">
 					<div class="modal-header">
-					    <span id="cancel-edit<?=$numberofrecords?>" onclick="document.getElementById('edit-panel<?=$numberofrecords?>').style.display='none'" class="close">×</span>
+					    <span id="cancel-edit<?=$numberofrecords?>" onclick="document.getElementById('edit-panel').style.display='none'" class="close">×</span>
 					    <h2>Edit Student</h2>
 					</div>
 					<div class="modal-body">
 						<p class="instruction">Fill out this form correctly to edit.</p>
-						<form class="editform">
-							<input type="text" name="id" placeholder="Student ID...">
-							<input type="text" name="firstname" placeholder="First Name...">
-							<input type="text" name="middname" placeholder="Middle Name...">
-							<input type="text" name="lastname" placeholder="Last Name...">
-							<input type="email" name="email" placeholder="Email...">
-							<input type="text" list="degrees" name="degree" placeholder="Degree...">
+						<form class="editform" method="post" action="">
+							<input id="id" type="text" name="id" placeholder="Student ID...">
+							<input id="firstname" type="text" name="firstname" placeholder="First Name...">
+							<input id="middlename" type="text" name="middlename" placeholder="Middle Name...">
+							<input id="lastname" type="text" name="lastname" placeholder="Last Name...">
+							<input id="email" type="email" name="email" placeholder="Email...">
+							<input id="degree" type="text" list="degrees" name="degree" placeholder="Degree...">
 								<datalist id="degrees">
 									<option value="Computer Science">
 									<option value="Fisheries">
@@ -123,13 +120,13 @@
 									<option value="Statistics">
 									<option value="Chemistry">
 								</datalist>
-							<input type="text" name="yearlvl" placeholder="Year Level...">
+							<input id="yearlvl" type="text" name="yearlvl" placeholder="Year Level...">
 							<input type="submit" name="edit_student" value="Edit +">
 						</form>
 					</div>
 				</div>
 			</div>
-		<div id="delete-panel<?=$numberofrecords?>" class="modal delete-panel">
+		<div id="delete-panel" class="modal delete-panel">
 			<div class="modal-content">
 				<div class="modal-header">
 				    <span id="cancel-delete<?=$numberofrecords?>" onclick="document.getElementById('delete-panel<?=$numberofrecords?>').style.display='none'" class="close">×</span>
@@ -138,27 +135,44 @@
 				<div class="modal-body">
 					<p class="instruction">Choose one of the two.</p>
 					<form class="deleteform" method="post" action="admin_delete_student.php">
-						<button id="cancel-delete-button" onclick="document.getElementById('delete-panel<?=$numberofrecords?>').style.display='none'">Cancel</button>
+						<button id="cancel-delete-button" onclick="document.getElementById('delete-panel').style.display='none'">Cancel</button>
 						<input id="delete_button" type="submit" name="delete_student" value="Delete">
-						<input type="text" name="student_id" style="display: none">
+						<input id="deleteid" type="text" name="student_id" style="display: none" value="">
 					</form>
 				</div>
 			</div>
 		</div>
-		<?php $numberofrecords--; } ?>
 	</div>
 	<script>
 		$("#add").click(function(){
 			document.location.href = "admin_add_student.php";
 		});
 		function showeditmodal(student_no){
-			var modal = document.getElementById('edit-panel'+student_no);
+			$.ajax({
+				url:"admin_fill_edit.php",
+				type:"post",
+				data:{'student_id':student_no},
+				success:function(data){
+					var result = JSON.parse(data);
+					console.log(result.student_id);
+					document.getElementById('id').value = result.student_id;
+					document.getElementById('firstname').value = result.firstname;
+					document.getElementById('middlename').value = result.middlename;
+					document.getElementById('lastname').value = result.lastname;
+					document.getElementById('email').value = result.email;
+					document.getElementById('yearlvl').value = result.year_lvl;
+					document.getElementById('degree').value = result.degree_name;
+				}
+			});
+			var modal = document.getElementById('edit-panel');
 			modal.style.display = "flex"; 
 		}
 
+
 		function showdeletemodal(student_no){
-			var modal = document.getElementById('delete-panel'+student_no);
+			var modal = document.getElementById('delete-panel');
 			modal.style.display = "flex"; 
+			document.getElementById('deleteid').value = student_no;
 		}
 
 		nav = $('#nav').outerHeight(true);
