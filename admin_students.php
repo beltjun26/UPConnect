@@ -27,44 +27,6 @@
 			</form>
 			<button class="button add" id="add">Add Student +</button>
 		</header>
-		<div id="add-panel" class="modal" style="display: flex;">
-			<div class="modal-content">
-				<div class="modal-header">
-				    <span id="cancel-add" class="close">×</span>
-				    <h2>Add Student</h2>
-				</div>
-				<div class="modal-body">
-					<p class="instruction">Fill out this form correctly to add.</p>
-					<form id="addform">
-						<input type="text" name="id" placeholder="Student ID...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="text" name="firstname" placeholder="First Name...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="text" name="middname" placeholder="Middle Name...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="text" name="lastname" placeholder="Last Name...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="email" name="email" placeholder="Email...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="text" list="degrees" name="degree" placeholder="Degree...">
-							<datalist id="degrees">
-								<option value="Computer Science">
-								<option value="Fisheries">
-								<option value="Applied Mathematics">
-								<option value="Statistics">
-								<option value="Chemistry">
-							</datalist>
-						<input type="text" name="yearlvl" placeholder="Year Level...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="password" name="pass" placeholder="Password...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input type="password" name="passret" placeholder="Retype Password...">
-						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
-						<input id="add_button" type="submit" name="add_student" value="Add +">
-					</form>
-				</div>
-			</div>
-		</div>
 		<?php
 			if (isset($_POST['search'])) {
 				$keyword = $_POST['keyword'];

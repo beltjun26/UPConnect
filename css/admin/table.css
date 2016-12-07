@@ -56,6 +56,16 @@ td .button{
 	border-color: #D81B60;
 }
 
+.enroll{
+	color: #64DD17;
+}
+.drop{
+	color: #E91E63;
+}
+.assign{
+	color: #00B8D4;
+}
+
 .linkprofile{
 	color: #0091EA;
 	text-decoration: none;

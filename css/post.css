@@ -183,7 +183,10 @@ label{
 .comments{
 	list-style: none;
 	padding: 0;
-	margin: 10px 0 0 0;
+	margin: 20px 0 0 0;
+	padding: 5px 10px 10px 10px;
+	width: 100%;
+	background-color: rgba(0,0,0,0.03);
 }
 
 .comment{
@@ -192,6 +195,7 @@ label{
 	margin-top: 10px;
 	padding: 5px;
 	position: relative;
+	background-color: white;
 }
 
 .comment img{
@@ -294,8 +298,7 @@ label{
 
 .comment-content{
 	color: #555;
-	margin: 10px 0;
-	text-indent: 20px;
+	margin: 0;
 }
 
 #image_preview{

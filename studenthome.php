@@ -19,7 +19,7 @@
 		}
 	?>
 
-	<nav id="navigation">
+	<nav id="nav">
 		<a href="#" class="floattran">UP Connect</a>
 		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>

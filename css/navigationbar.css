@@ -20,12 +20,12 @@ nav > a{
 	color: #999;
 	font-weight: bold;
 	font-family: "Gotham Light";
-	font-size: 1em;
+	font-size: 1em!important;
 	padding: 10px 15px 10px 15px;
 	display: block;
 	transition: 0.2s;
 	margin-right: 10px;
-	text-decoration: none;
+	text-decoration: none!important;
 	border-bottom: 2px solid rgba(0,0,0,0);
 }
 

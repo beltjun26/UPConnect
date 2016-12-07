@@ -6,7 +6,6 @@
 	<title>UP Connect</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/member.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
 	<link rel="stylesheet" type="text/css" href="css/images.css">
@@ -24,7 +23,7 @@
 			$row = mysqli_fetch_assoc($result);
 		}
 	 ?>
-	<nav id="navigation">
+	<nav id="nav">
 		<a href="home.php" class="floattran">UP Connect</a>
 		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
@@ -93,7 +92,7 @@
 	</div>
 
 	<script>
-		h = $('#navigation').outerHeight(true);
+		h = $('#nav').outerHeight(true);
 		console.log(h);
 		x = window.innerHeight;
 		console.log(x);

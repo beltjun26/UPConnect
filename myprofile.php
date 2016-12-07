@@ -6,8 +6,6 @@
 <html>
 <head>
 	<title>UP Connect</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
@@ -31,7 +29,7 @@
 		}
 ?>
 
-	<nav id="navigation">
+	<nav id="nav">
 		<a href="home.php" class="floattran">UP Connect</a>
 		<a href="#" class="actpage">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>

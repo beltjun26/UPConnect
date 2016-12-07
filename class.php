@@ -42,7 +42,7 @@
 		$post_row = mysqli_query($dbconn, $query);
 		
 	 ?>
-	<nav id="navigation">
+	<nav id="nav">
 		<a href="home.php" class="floattran">UP Connect</a>
 		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
@@ -139,6 +139,42 @@
 							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
 						</div>
 					</li>
+					<li class="comment commented">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<div class="content">
+							<span class="delete">x</span>
+							<a class="usercom">Clyde Joshua Delgado</a>
+							<span class="timestamp">December 7, 2016 8:42pm</span>
+							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+						</div>
+					</li>
+					<li class="comment commented">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<div class="content">
+							<span class="delete">x</span>
+							<a class="usercom">Clyde Joshua Delgado</a>
+							<span class="timestamp">December 7, 2016 8:42pm</span>
+							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+						</div>
+					</li>
+					<li class="comment commented">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<div class="content">
+							<span class="delete">x</span>
+							<a class="usercom">Clyde Joshua Delgado</a>
+							<span class="timestamp">December 7, 2016 8:42pm</span>
+							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+						</div>
+					</li>
+					<li class="comment commented">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<div class="content">
+							<span class="delete">x</span>
+							<a class="usercom">Clyde Joshua Delgado</a>
+							<span class="timestamp">December 7, 2016 8:42pm</span>
+							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+						</div>
+					</li>
 					<li class="comment commenting">
 						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<form>
@@ -151,7 +187,7 @@
 		<?php } ?>
 	</div>
 	<script>
-		h = $('#navigation').outerHeight(true);
+		h = $('#nav').outerHeight(true);
 		console.log(h);
 		x = window.innerHeight;
 		console.log(x);
