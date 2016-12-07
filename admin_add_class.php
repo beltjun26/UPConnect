@@ -21,18 +21,18 @@
 	?>
 	<div id="container">
 		<header class="table-header">
-			<a href="admin_students.php" class="current"><h1>Students</h1></a>
-			<form action="admin_students" class="search" method="POST">
+			<a href="admin_classes.php" class="current"><h1>Students</h1></a>
+			<form action="admin_add_class.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<a class="button add" id="add" href="admin_students.php">< Back to table</a>
+			<a class="button add" id="add" href="admin_classes.php">< Back to table</a>
 		</header>
-		<h2>Add Student</h2>
+		<h2>Add Class</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>
 		<form class="addform">
 			<input type="text" name="id" placeholder="Student ID... Must be 9 digits. example: 123456789">
-			<span class="error">Student ID should contain numbers only and 9 digits long.</span>
+			<span class="error">Teacher ID should contain numbers only and 9 digits long.</span>
 			<div class="name-inputs">
 				<input type="text" name="firstname" placeholder="First Name...">
 				<input type="text" name="middname" placeholder="Middle Name...">

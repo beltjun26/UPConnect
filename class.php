@@ -6,7 +6,7 @@
 <head>
 	<title>UP Connect</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+<!-- 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"> -->
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
 	<link rel="stylesheet" type="text/css" href="css/post.css">
@@ -135,7 +135,7 @@
 				<ul class="button options"> 
 					<?php if($value['file_id'] != 0): ?>
 						<li>
-							<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank" class = "hoveranim">Download</a>
+							<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank" class = "hoveranim download-btn">Download</a>
 						</li> 
 					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>

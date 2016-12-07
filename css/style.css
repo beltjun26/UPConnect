@@ -12,7 +12,7 @@ body{
 	min-height: 667px;
 	align-items: center;
 	justify-content: center;
-	background-color: rgba(0,0,0,0.03);
+	background-color: #ECEFF1;
 }
 
 @font-face{

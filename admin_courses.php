@@ -14,8 +14,10 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/modal_add.css">
 </head>
 <body>
-	<?php require "connect.php" ?>
-	<?php require "admin_nav.php" ?>
+	<?php 
+		require "connect.php";
+		require "admin_nav.php"; 
+	?>
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_courses.php" class="current"><h1>Courses</h1></a>
@@ -23,38 +25,8 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add">Add Course +</button>
+			<a class="button add" href="admin_add_course.php">Add Course +</a>
 		</header>
-		<div id="add-panel" class="modal">
-			<div class="modal-content">
-				<div class="modal-header">
-				    <span id="cancel-add" class="close">×</span>
-				    <h2>Add Student</h2>
-				</div>
-				<div class="modal-body">
-					<p class="instruction">Fill out this form correctly to add.</p>
-					<form id="addform">
-						<input type="text" name="id" placeholder="Student ID...">
-						<input type="text" name="firstname" placeholder="First Name...">
-						<input type="text" name="middname" placeholder="Middle Name...">
-						<input type="text" name="lastname" placeholder="Last Name...">
-						<input type="email" name="email" placeholder="Email...">
-						<input type="text" list="degrees" name="degree" placeholder="Degree...">
-							<datalist id="degrees">
-								<option value="Computer Science">
-								<option value="Fisheries">
-								<option value="Applied Mathematics">
-								<option value="Statistics">
-								<option value="Chemistry">
-							</datalist>
-						<input type="text" name="yearlvl" placeholder="Year Level...">
-						<input type="password" name="pass" placeholder="Password...">
-						<input type="password" name="passret" placeholder="Retype Password...">
-						<input id="add_button" type="submit" name="add_student" value="Add +">
-					</form>
-				</div>
-			</div>
-		</div>
 		<?php
 			if (isset($_POST['search'])) {
 				$keyword = $_POST['keyword'];

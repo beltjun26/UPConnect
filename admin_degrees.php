@@ -1,5 +1,5 @@
 <?php 
-	$_SESSION['page'] = 2;
+	$_SESSION['page'] = 6;
 ?>
 
 <!DOCTYPE html>
@@ -18,75 +18,51 @@
 		require "connect.php";
 		require "admin_nav.php";
 	?>
+
 	<div id="container">
 		<header class="table-header">
-			<a href="admin_students.php" class="current"><h1>Students</h1></a>
-			<form action="admin_students" class="search" method="POST">
+			<a href="admin_degrees.php" class="current"><h1>Degrees</h1></a>
+			<form action="admin_degrees.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<a class="button add" id="add" href="admin_add_student.php">Add Student +</a>
+			<a class="button add" href="admin_add_degree.php">Add Degree +</a>
 		</header>
 		<?php
 			if (isset($_POST['search'])) {
 				$keyword = $_POST['keyword'];
-				$query = "SELECT * FROM student 
-						  NATURAL JOIN degree 
-						  WHERE firstname 
-						  LIKE '%$keyword%'
-						  OR lastname
-						  LIKE '%$keyword%'
-						  OR middlename
-						  LIKE '%$keyword%'
-						  OR student_id
-						  LIKE '%$keyword%'
-						  OR email
+				$query = "SELECT * FROM degree 
+						  WHERE degree_id 
 						  LIKE '%$keyword%'
 						  OR degree_name
 						  LIKE '%$keyword%'";
 			} else{
-				$query = "SELECT * FROM student NATURAL JOIN degree";
+				$query = "SELECT * FROM degree";
 			}
-			$result = mysqli_query($dbconn, $query);
-			$data = [];
-			if(mysqli_affected_rows($dbconn)){
-				while($row = mysqli_fetch_assoc($result)){
-				$data[] = $row;
+				$result = mysqli_query($dbconn, $query);
+				$data = [];
+				if(mysqli_affected_rows($dbconn)){
+					while($row = mysqli_fetch_assoc($result)){
+					$data[] = $row;
+					}
 				}
-
-			}
 			if(count($data)>0){ ?>
 				<table>
-					<tr>
-						<th>No.</th>
-						<th>Student ID</th>
-						<th>Name</th>
-						<th>Course and Year</th> 
-						<th>Email</th>
-						<th colspan="4">Actions</th>
-					</tr>
+				  	<tr>
+					    <th>No.</th>
+					    <th>Degree ID</th> 
+					    <th>Name</th>
+					    <th>Description</th>
+					    <th colspan="4">Actions</th>
+				  	</tr>
 				<?php  
 					$number = 1;
 					foreach ($data as $value): ?>
 					<tr>
 						<td class="center"><?=$number;?></td>
-						<td class="center"><?=$value['student_id']?></td>
-						<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
-						<td><?=$value['degree_name']." "?>
-							<?php 
-								if ($value['year_lvl']==1){
-									echo "I";
-								} else if ($value['year_lvl']==2){
-									echo "II";
-								} else if ($value['year_lvl']==3){
-									echo "III";
-								} else if ($value['year_lvl']==4){
-									echo "IV";
-								}
-							?></td>
-						<td><?=$value['email']?></td>
-						<!-- <td class="button-container"><button class="button table enroll" id="enroll<?=$number?>" onclick="">Enroll</button></td>
-						<td class="button-container"><button class="button table drop" id="drop<?=$number?>" onclick="">Drop</button></td> -->
+						<td class="center"><?=$value['degree_id']?></td>
+						<td><?=$value['degree_name']?></td> 
+						<td class="description"><p><?=$value['description']?></p></td>
 						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
 						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 					</tr>
@@ -145,18 +121,56 @@
 			</div>
 		</div>
 		<?php $numberofrecords--; } ?>
+		<!-- <table>
+		  <tr>
+		    <th>No.</th>
+		    <th>Class ID</th> 
+		    <th>Teacher</th>
+		    <th>Section</th>
+		    <th>Course</th>
+		    <th>S.Y. Semester</th>
+		    <th colspan="2">Actions</th>
+		  </tr>
+		  <?php
+				$query = "SELECT * FROM class NATURAL JOIN teacher NATURAL JOIN course NATURAL JOIN semester";
+				$result = mysqli_query($dbconn, $query);
+				$data = [];
+				if(mysqli_affected_rows($dbconn)){
+					while($row = mysqli_fetch_assoc($result)){
+					$data[] = $row;
+					}
+				}
+				/*$numberofrecords = count($data);*/
+				/*echo $numberofrecords;*/
+				$number = 1;
+				foreach ($data as $value): ?>
+				<tr>
+					<td><?=$number;?></td>
+					<td><?=$value['class_id']?></td>
+					<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
+					<td><?=$value['section']." "?></td>
+					<td><?=$value['course_name']?></td>
+					<td>S.Y. <?=$value['school_year']." "?>
+						<?php
+							if ($value['sem_no'] == 1){
+								echo "1st Semester";
+							} else if ($value['sem_no'] == 2){
+								echo "2nd Semester";
+							} else if ($value['sem_no'] > 2) {
+								echo "Summer Class";
+							}
+						?>
+					</td>
+					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+				</tr>
+				<?php 
+					$number++;
+					endforeach;
+				?>
+		</table> -->
 	</div>
 	<script>
-		function showeditmodal(student_no){
-			var modal = document.getElementById('edit-panel'+student_no);
-			modal.style.display = "flex"; 
-		}
-
-		function showdeletemodal(student_no){
-			var modal = document.getElementById('delete-panel'+student_no);
-			modal.style.display = "flex"; 
-		}
-
 		nav = $('#nav').outerHeight(true);
 		console.log(nav);
 		container = window.innerHeight;
@@ -164,52 +178,6 @@
 		container = container - nav;
 		console.log(container);
 		document.getElementById('container').setAttribute("style","height: "+container+"px; width:100% ;margin-top:"+nav+"px;");
-
-		tsakto = 1;
-		sala = 0;
-
-		var addpanel = document.getElementById("add-panel");
-		var addbutton = document.getElementById("add");
-		var canceladd = document.getElementById("cancel-add");
-
-		addbutton.onclick = function() {
-		    addpanel.style.display = "flex";
-		}
-
-		canceladd.onclick = function() {
-		    addpanel.style.display = "none";
-		}
-
-		/*var editpanel = document.getElementById("edit-panel");
-		var editbutton = document.getElementById("edit");
-		var canceledit = document.getElementById("cancel-edit");
-
-		editbutton.onclick = function() {
-		    editpanel.style.display = "flex";
-		}
-
-		canceledit.onclick = function() {
-		    editpanel.style.display = "none";
-		}*/
-
-		/*var deletepanel = document.getElementById("delete-panel");
-		var deletebutton = document.getElementById("delete");
-		var canceldelete = document.getElementById("cancel-delete");
-
-		deletebutton.onclick = function() {
-		    deletepanel.style.display = "flex";
-		}
-
-		canceldelete.onclick = function() {
-		    deletepanel.style.display = "none";
-		}*/
-
-		window.onclick = function(event) {
-		    if (event.target == addpanel){
-		    	addpanel.style.display = "none";
-		    } 
-		}
-
 	</script>
 </body>
 </html>

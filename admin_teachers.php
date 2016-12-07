@@ -25,7 +25,7 @@
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
-			<button class="button add">Add Teacher +</button>
+			<a class="button add" href="admin_add_teacher.php">Add Teacher +</a>
 		</header>
 		<div id="add-panel" class="modal">
 			<div class="modal-content">
