@@ -18,6 +18,7 @@
 	<?php 
 		require "connect.php";
 		require "admin_nav.php";
+
 	?>
 	<div id="container">
 		<header class="table-header">
@@ -28,7 +29,7 @@
 			</form>
 			<button class="button add" id="add">< Back to table</button>
 		</header>
-		<h2>Add Teacher</h2>
+		<h2>Add Student</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>
 		<form class="addform">
 			<input type="text" name="id" placeholder="Student ID... Must be 9 digits. example: 123456789">
