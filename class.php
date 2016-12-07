@@ -6,7 +6,6 @@
 <head>
 	<title>UP Connect</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
-	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
 	<link rel="stylesheet" type="text/css" href="css/post.css">
