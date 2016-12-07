@@ -47,7 +47,7 @@
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran">Classes</a>	
-		<a href="index.php" class="floattran">Logout</a>
+		<a href="logout.php" class="floattran">Logout</a>
 	</nav>
 	<div class="container" id="classContainer">
 		<header class="class">
@@ -89,7 +89,7 @@
 					
 					<li id = "file_item">
 						<label for="file_button" class="hoveranim" id = "file_button_label">+ File</label>
-						<input type="file" name = "file" class="hoveranim" id = "file_upload" onchange="loadFile(event)" accept=".doc, .docm, .docx, .dot, .dotm, .dotx, .epub, .odf, .ods, .odt, .ott, .oxps, .pages, .pdf, .pmd, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .prn, .prnproj, .ps, .pub, .pwi, .rep, .rtf, .sdd, .sdw, .shs, .snp, .sxw, .tpl, .vsd, .wlmp, .wpd, .wps, .wri, .xps, .rar, .zip, .7zip, .xlsm, .xlsx, .xlt, .htm, .html, .csv, .dbf, .txt, .psd, .potm"/>
+						<input type="file" name = "file_upload" class="hoveranim" id = "file_button" onchange="loadFile(event)" accept=".doc, .docm, .docx, .dot, .dotm, .dotx, .epub, .odf, .ods, .odt, .ott, .oxps, .pages, .pdf, .pmd, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .prn, .prnproj, .ps, .pub, .pwi, .rep, .rtf, .sdd, .sdw, .shs, .snp, .sxw, .tpl, .vsd, .wlmp, .wpd, .wps, .wri, .xps, .rar, .zip, .7zip, .xlsm, .xlsx, .xlt, .htm, .html, .csv, .dbf, .txt, .psd, .potm"/>
 					</li>
 
 					<li id = "cancel_upload">
