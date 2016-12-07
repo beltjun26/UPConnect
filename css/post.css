@@ -59,7 +59,7 @@ a.user:hover:after{
 	width: 50px;
 	object-fit: cover;
 	object-position: center;
-	border: 1px solid #EEE;
+	border: 1px solid #DDD;
 	border-radius: 3px;
 }
 
@@ -71,8 +71,7 @@ a.user:hover:after{
 	max-height: 500px;
 	margin-bottom: 0;
 	border-color: white;
-	letter-spacing: 0.5px;
-	border: 1px solid #EEE;
+	border: 1px solid #DDD;
 	box-sizing: border-box;
 }
 
@@ -91,15 +90,11 @@ a.user:hover:after{
 	color: #03A9F4;
 	display: block;
 	font-size: 15px;
-	font-weight: bold;
 	border-style: none;
-	letter-spacing: 2px;
-	border: 1px solid #EEE; 
+	border: 1px solid #DDD; 
 	background-color: white;
-	text-transform: uppercase;
-	font-family: GothamLight;
-	padding: 10px 15px 10px 15px;
-	width: 50%;
+	font-family: Arial;
+	padding: 5px 10px 5px 10px;
 }
 
 .button.options li:last-child{
@@ -138,7 +133,7 @@ a.user:hover:after{
 	align-items: center;
 	display: inline-flex;
 	justify-content: left;
-	border: 1px solid #EEE;
+	border: 1px solid #DDD;
 	transition: 0.3s;
 	border-radius: 3px;
 }
@@ -164,14 +159,14 @@ a.user:hover:after{
 	width: 100%;
 	color: #AAA;
 	text-align: justify;
-	letter-spacing: 0.5px;
 	margin-bottom: 10px;
 	text-indent: 20px;
 	line-height: 1.5em;
-	border: 1px solid #EEE;
+	border: 1px solid #DDD;
 	padding: 10px 10px;
 	box-sizing: border-box;
 	border-radius: 3px;
+	font-size: 0.9em;
 }
 
 .uploadedphoto{
@@ -180,4 +175,100 @@ a.user:hover:after{
 	object-fit: cover;
 	object-position: center;
 }
+
+.comments{
+	list-style: none;
+	padding: 0;
+	margin: 10px 0 0 0;
+}
+
+.comment{
+	border: 1px solid #DDD;
+	display: flex;
+	margin-top: 10px;
+	padding: 5px;
+	position: relative;
+}
+
+.comment img{
+	height: 40px;
+	min-width: 40px;
+	border: 1px solid #DDD;
+	box-sizing: content-box;
+}
+
+.commenting form{
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+}
+
+.commenting textarea{
+	border: 1px solid #DDD;
+	display: block;
+	height: 40px;
+	max-height: 100px;
+	margin: 0 5px;
+	width: 100%;
+	resize: vertical;
+	padding: 10px 15px;
+	font-family: Arial;
+	font-size: 0.9em;
+	font-weight: normal;
+}
+
+.commenting button{
+	border: 1px solid #DDD;
+	height: 40px;
+	min-width: 40px;
+	box-sizing: border-box;
+	background: transparent;
+}
+
+.commenting button span{
+	transform: scale(1.5, 1.5);
+	color: #03A9F4;
+}
+
+.commented .delete{
+	top: 0px;
+	right: 6px;
+	position: absolute;
+	transform: scale(1.2, 1);
+	color: #DDD;
+}
+
+.commented .delete:hover{
+	color: #888;
+	cursor: pointer;
+}
+
+.commented .content{
+	width: 100%;
+	display: flex;
+	margin: 0 15px 0 5px;
+	flex-direction: column;
+	padding: 5px;
+}
+
+.usercom, .timestamp, .comment-content{
+	text-align: left;
+}
+
+.usercom{
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.timestamp{
+	font-size: 0.85em;
+	color: #999;
+}
+
+.comment-content{
+	margin: 10px 0;
+	text-indent: 20px;
+}
+
+
 

@@ -6,6 +6,7 @@
 <head>
 	<title>UP Connect</title>
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
@@ -109,25 +110,26 @@
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
+				<ul class="comments">
+					<li class="comment commented">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<div class="content">
+							<span class="delete">x</span>
+							<a class="usercom">Clyde Joshua Delgado</a>
+							<span class="timestamp">December 7, 2016 8:42pm</span>
+							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+						</div>
+					</li>
+					<li class="comment commenting">
+						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<form>
+							<textarea class="description"></textarea>		
+							<button><span class="glyphicon glyphicon-comment"></span></button>
+						</form>
+					</li>
+				</ul>
 			</div>
-			<ul class="comments">
-				<li class="commented">
-					<img src="" onerror="">
-					<p></p>
-					<button></button>
-				</li>
-				<li class="commenting">
-					<img src="" onerror="">
-					<p></p>
-					<span class="delete">x</span>
-				</li>
-			</ul>
 		<?php } ?>
-
-
-
-
-
 	</div>
 	<script>
 		h = $('#navigation').outerHeight(true);
@@ -136,7 +138,7 @@
 		console.log(x);
 		x = x - h;
 		console.log(x);
-		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;");
+		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;padding:0");
 	</script>
 
 	<script>
