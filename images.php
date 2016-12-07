@@ -63,30 +63,23 @@
 			<input type="submit" name="submit" value="SEARCH">
 		</form>
 		<ul class="imagelist">
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
-			<li><a href="profile.php">
-				<img src="images/profile_images/1.jpg">
-			</a></li>
+		<?php 
+			//Query for the post
+			$class_id = $_GET['classid'];
+			$query = "select * from post where class_id = '$class_id' and file_id = 1 order by time_stamp desc;";
+
+			$post_row = mysqli_query($dbconn, $query);
+
+				foreach ($post_row as $value): 
+					$dir = "saved_images/".$value['post_id'];
+					$file_array = scandir($dir);
+		?>
+				<li>
+					<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank">
+						<img src="saved_images/<?=$value['post_id'].'/'.$file_array[2];?>">
+					</a>
+				</li>
+			<?php endforeach ?>
 		</ul>
 	</div>
 	</div>
