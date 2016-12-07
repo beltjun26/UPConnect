@@ -8,16 +8,21 @@
 	src: url('fonts/GOTHAM-MEDIUM.TTF');
 }
 
+body{
+	display: initial;
+}
+
 #notif-container{
-	width: 80%;
+	width: 100%;
 	display: inline-block;
 	padding-top: 50px;
+	margin: auto;
 }
 
 .notif-container{
 	background-color: white;
 	box-shadow: 0 0 5px rgba(0,0,0,0.5);
-	width: 50%;
+	width: 45%;
 	margin: 20px auto 0 auto;
 	padding: 5px;
 	font-family: GothamLight;
@@ -31,11 +36,12 @@
 	width: 100%;
 	display: flex;
 	flex-direction: column;
+	margin-top: 5px;
 }
 
 .user-photo{
-	height: 80px;
-	margin-right: 5px;
+	height: 85px;
+	margin-right: 10px;
 	object-position: center;
 	object-fit: cover;
 }

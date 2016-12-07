@@ -79,4 +79,10 @@ body{
 	color: #888;
 	font-family: Arial;
 	font-size: 0.9em;
+	text-decoration: none!important;
+}
+
+#file_button{
+	border: 1px solid #DDD;
+	padding: 5px 10px;
 }

@@ -74,6 +74,7 @@
 			</header>
 			<form method="post" action="post.php" enctype="multipart/form-data">
 				<textarea name="caption" class="text" placeholder="Want to Post?"><?=$caption_post?></textarea>
+				<img src="" alt="" id="image_preview">
 				<ul class="button options">
 
 					<li id = "image_item">
@@ -83,7 +84,7 @@
 					
 					<li id = "file_item">
 						<label for="file_button" class="hoveranim" id = "file_button_label">+ File</label>
-						<input type="file" name = "file_upload" class="hoveranim" id = "file_button" onchange="loadFile(event)" accept=".doc, .docm, .docx, .dot, .dotm, .dotx, .epub, .odf, .ods, .odt, .ott, .oxps, .pages, .pdf, .pmd, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .prn, .prnproj, .ps, .pub, .pwi, .rep, .rtf, .sdd, .sdw, .shs, .snp, .sxw, .tpl, .vsd, .wlmp, .wpd, .wps, .wri, .xps, .rar, .zip, .7zip, .xlsm, .xlsx, .xlt, .htm, .html, .csv, .dbf, .txt, .psd, .potm"/>
+						<input type="file" name = "file_upload" id = "file_button" onchange="loadFile(event)" accept=".doc, .docm, .docx, .dot, .dotm, .dotx, .epub, .odf, .ods, .odt, .ott, .oxps, .pages, .pdf, .pmd, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .prn, .prnproj, .ps, .pub, .pwi, .rep, .rtf, .sdd, .sdw, .shs, .snp, .sxw, .tpl, .vsd, .wlmp, .wpd, .wps, .wri, .xps, .rar, .zip, .7zip, .xlsm, .xlsx, .xlt, .htm, .html, .csv, .dbf, .txt, .psd, .potm">
 					</li>
 
 					<li id = "cancel_upload">
@@ -92,7 +93,6 @@
 
 					<li><input type="submit" name="post" value="Post" class="hoveranim"></li>
 				</ul>
-					<img src="" alt="" id="image_preview">
 			</form>
 		</div>
 
@@ -198,6 +198,7 @@
 		console.log(x);
 		x = x - h;
 		console.log(x);
+		h = h - 5;
 		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;padding:0");
 	</script>
 
