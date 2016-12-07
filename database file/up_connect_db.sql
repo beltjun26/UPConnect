@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2016 at 05:19 PM
+-- Generation Time: Dec 07, 2016 at 06:52 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -99,14 +99,14 @@ INSERT INTO `course` (`course_id`, `course_name`, `course_description`, `descrip
 CREATE TABLE `degree` (
   `degree_id` int(11) NOT NULL,
   `degree_name` varchar(30) NOT NULL,
-  `desciption` text NOT NULL
+  `description` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `degree`
 --
 
-INSERT INTO `degree` (`degree_id`, `degree_name`, `desciption`) VALUES
+INSERT INTO `degree` (`degree_id`, `degree_name`, `description`) VALUES
 (1, 'BS in Computer Science', 'This cours asf asdf sadf SJFLD JFL DSAFL; SADFL;SJFLSJADLF SDF');
 
 -- --------------------------------------------------------

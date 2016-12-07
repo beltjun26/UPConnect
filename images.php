@@ -57,11 +57,11 @@
 	<div class="container">
 		<h1>IMAGES</h1>
 		<h2>CMSC 128</h2>
-		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to view.</p>
-		<form class="searchthroughlist">
+		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to download.</p>
+		<!-- <form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">
 			<input type="submit" name="submit" value="SEARCH">
-		</form>
+		</form> -->
 		<ul class="imagelist">
 		<?php 
 			//Query for the post
