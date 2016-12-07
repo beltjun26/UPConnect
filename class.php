@@ -140,7 +140,7 @@
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
-				<ul class="comments">
+				<ul class="comments" style="display: none">
 					<li class="comment commented">
 						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<div class="content">
