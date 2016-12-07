@@ -21,6 +21,10 @@
 		if(!isset($_SESSION['userid'])){
            header("Location: index.php");  
 		}
+
+		if($_SESSION['userid']==$_GET['student_id']){
+			header("Location: myprofile.php");
+		}
 		require "connect.php";
 		
 		$query = "select * from student natural join degree where student_id ={$_GET['student_id']}";

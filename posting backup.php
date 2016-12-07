@@ -1,4 +1,4 @@
-<div class="post">
+		<div class="post">
 			<header>
 				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 				<a class="user" href="#"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></a>
