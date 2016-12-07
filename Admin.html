@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!-- saved from url=(0045)http://localhost/upconnect/admin_students.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Admin</title>
+	<script type="text/javascript" src="./Admin_files/jquery-3.1.1.min.js.download"></script>
+	<link rel="stylesheet" type="text/css" href="./Admin_files/general.css">
+	<link rel="stylesheet" type="text/css" href="./Admin_files/navigation.css">
+	<link rel="stylesheet" type="text/css" href="./Admin_files/search.css">
+	<link rel="stylesheet" type="text/css" href="./Admin_files/table.css">
+	<link rel="stylesheet" type="text/css" href="./Admin_files/modal_add.css">
+</head>
+<body>
+	<nav id="nav">
+	<ul>
+		<li><a href="http://localhost/upconnect/adminhome.php">UP CONNECT</a></li>
+		<li><a href="http://localhost/upconnect/adminhome.php">Home</a></li>
+		<li><a href="http://localhost/upconnect/admin_students.php" class="active">Students</a></li>
+		<li><a href="http://localhost/upconnect/admin_teachers.php">Teachers</a></li>
+		<li><a href="http://localhost/upconnect/admin_courses.php">Courses</a></li>
+		<li><a href="http://localhost/upconnect/admin_classes.php">Classes</a></li>
+		<li><a href="http://localhost/upconnect/logout.php">Logout</a></li>
+	</ul>
+</nav>	<div id="container" style="height: 625px; width:100% ;margin-top:37px;">
+		<header class="table-header">
+			<a href="http://localhost/upconnect/admin_students.php" class="current"><h1>Students</h1></a>
+			<form class="search" method="POST">
+				<input type="text" name="keyword" placeholder="Search">
+				<input type="submit" name="search" value="Go">
+			</form>
+			<button class="button add" id="add">Add Student +</button>
+		</header>
+		<div id="add-panel" class="modal">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <span id="cancel-add" class="close">×</span>
+				    <h2>Add Student</h2>
+				</div>
+				<div class="modal-body">
+					<p class="instruction">Fill out this form correctly to add.</p>
+					<form id="addform">
+						<input type="text" name="id" placeholder="Student ID...">
+						<input type="text" name="firstname" placeholder="First Name...">
+						<input type="text" name="middname" placeholder="Middle Name...">
+						<input type="text" name="lastname" placeholder="Last Name...">
+						<input type="email" name="email" placeholder="Email...">
+						<input type="text" list="degrees" name="degree" placeholder="Degree...">
+							<datalist id="degrees">
+								<option value="Computer Science">
+								</option><option value="Fisheries">
+								</option><option value="Applied Mathematics">
+								</option><option value="Statistics">
+								</option><option value="Chemistry">
+							</option></datalist>
+						<input type="text" name="yearlvl" placeholder="Year Level...">
+						<input type="password" name="pass" placeholder="Password...">
+						<input type="password" name="passret" placeholder="Retype Password...">
+						<input id="add_button" type="submit" name="add_student" value="Add +">
+					</form>
+				</div>
+			</div>
+		</div>
+							<h2 class="no-results">NO RESULTS</h2> 		
+				</div>
+	<script>
+		function showeditmodal(student_no){
+			var modal = document.getElementById('edit-panel'+student_no);
+			modal.style.display = "flex"; 
+		}
+
+		function showdeletemodal(student_no){
+			var modal = document.getElementById('delete-panel'+student_no);
+			modal.style.display = "flex"; 
+		}
+
+		nav = $('#nav').outerHeight(true);
+		console.log(nav);
+		container = window.innerHeight;
+		console.log(container);
+		container = container - nav;
+		console.log(container);
+		document.getElementById('container').setAttribute("style","height: "+container+"px; width:100% ;margin-top:"+nav+"px;");
+
+		tsakto = 1;
+		sala = 0;
+
+		var addpanel = document.getElementById("add-panel");
+		var addbutton = document.getElementById("add");
+		var canceladd = document.getElementById("cancel-add");
+
+		addbutton.onclick = function() {
+		    addpanel.style.display = "flex";
+		}
+
+		canceladd.onclick = function() {
+		    addpanel.style.display = "none";
+		}
+
+		/*var editpanel = document.getElementById("edit-panel");
+		var editbutton = document.getElementById("edit");
+		var canceledit = document.getElementById("cancel-edit");
+
+		editbutton.onclick = function() {
+		    editpanel.style.display = "flex";
+		}
+
+		canceledit.onclick = function() {
+		    editpanel.style.display = "none";
+		}*/
+
+		/*var deletepanel = document.getElementById("delete-panel");
+		var deletebutton = document.getElementById("delete");
+		var canceldelete = document.getElementById("cancel-delete");
+
+		deletebutton.onclick = function() {
+		    deletepanel.style.display = "flex";
+		}
+
+		canceldelete.onclick = function() {
+		    deletepanel.style.display = "none";
+		}*/
+
+		window.onclick = function(event) {
+		    if (event.target == addpanel){
+		    	addpanel.style.display = "none";
+		    } 
+		}
+
+	</script>
+
+</body></html>

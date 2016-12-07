@@ -1,7 +1,4 @@
 <?php 
-	/*if(!isset($_SESSION['userid'])){
-       header("Location: index.php");  
-	}	*/
 	$_SESSION['page'] = 2;
 ?>
 
@@ -17,18 +14,20 @@
 	<link rel="stylesheet" type="text/css" href="css/admin/modal_add.css">
 </head>
 <body>
-	<?php require "connect.php" ?>
-	<?php require "admin_nav.php" ?>
+	<?php 
+		require "connect.php";
+		require "admin_nav.php";
+	?>
 	<div id="container">
 		<header class="table-header">
-			<h1>Students</h1>
-			<form class="search">
+			<a href="admin_students.php" class="current"><h1>Students</h1></a>
+			<form action="admin_students" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
 			<button class="button add" id="add">Add Student +</button>
 		</header>
-		<div id="add-panel" class="modal">
+		<div id="add-panel" class="modal" style="display: flex;">
 			<div class="modal-content">
 				<div class="modal-header">
 				    <span id="cancel-add" class="close">×</span>
@@ -38,10 +37,15 @@
 					<p class="instruction">Fill out this form correctly to add.</p>
 					<form id="addform">
 						<input type="text" name="id" placeholder="Student ID...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="firstname" placeholder="First Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="middname" placeholder="Middle Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" name="lastname" placeholder="Last Name...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="email" name="email" placeholder="Email...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="text" list="degrees" name="degree" placeholder="Degree...">
 							<datalist id="degrees">
 								<option value="Computer Science">
@@ -51,105 +55,134 @@
 								<option value="Chemistry">
 							</datalist>
 						<input type="text" name="yearlvl" placeholder="Year Level...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="password" name="pass" placeholder="Password...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input type="password" name="passret" placeholder="Retype Password...">
+						<div class="floating-error"><div class="triangle"></div><span>Student ID must be 9 digits and contain numbers only.</span></div>
 						<input id="add_button" type="submit" name="add_student" value="Add +">
 					</form>
 				</div>
 			</div>
 		</div>
-		<table>
-			<tr>
-				<th>No.</th>
-				<th>Student ID</th>
-				<th>Name</th>
-				<th>Course and Year</th> 
-				<th>Email</th>
-				<th colspan="2">Actions</th>
-			</tr>
-			<?php
+		<?php
+			if (isset($_POST['search'])) {
+				$keyword = $_POST['keyword'];
+				$query = "SELECT * FROM student 
+						  NATURAL JOIN degree 
+						  WHERE firstname 
+						  LIKE '%$keyword%'
+						  OR lastname
+						  LIKE '%$keyword%'
+						  OR middlename
+						  LIKE '%$keyword%'
+						  OR student_id
+						  LIKE '%$keyword%'
+						  OR email
+						  LIKE '%$keyword%'
+						  OR degree_name
+						  LIKE '%$keyword%'";
+			} else{
 				$query = "SELECT * FROM student NATURAL JOIN degree";
-				$result = mysqli_query($dbconn, $query);
-				$data = [];
-				if(mysqli_affected_rows($dbconn)){
-					while($row = mysqli_fetch_assoc($result)){
-					$data[] = $row;
-					}
+			}
+			$result = mysqli_query($dbconn, $query);
+			$data = [];
+			if(mysqli_affected_rows($dbconn)){
+				while($row = mysqli_fetch_assoc($result)){
+				$data[] = $row;
 				}
-				$number = 1;
-				foreach ($data as $value): ?>
-				<tr>
-					<td><?=$number;?></td>
-					<td><?=$value['student_id']?></td>
-					<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
-					<td><?=$value['degree_name']." "?>
-						<?php 
-							if ($value['year_lvl']==1){
-								echo "I";
-							} else if ($value['year_lvl']==2){
-								echo "II";
-							} else if ($value['year_lvl']==3){
-								echo "III";
-							} else if ($value['year_lvl']==4){
-								echo "IV";
-							}
-						?></td>
-					<td><?=$value['email']?></td>
-					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
-					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
-				</tr>
-				
-				<div id="delete-panel<?=$number?>" class="modal delete-panel">
-					<div class="modal-content">
-						<div class="modal-header">
-						    <span id="cancel-delete" class="close">×</span>
-						    <h2>Delete <?=$value['firstname']?>?</h2>
-						</div>
-						<div class="modal-body">
-							<p class="instruction">Choose one of the two.</p>
-							<form class="deleteform">
-								<button id="cancel-delete-button">Cancel</button>
-								<input id="delete_button" type="submit" name="delete_student" value="Delete">
-							</form>
-						</div>
-					</div>
-				</div>
+
+			}
+			if(count($data)>0){ ?>
+				<table>
+					<tr>
+						<th>No.</th>
+						<th>Student ID</th>
+						<th>Name</th>
+						<th>Course and Year</th> 
+						<th>Email</th>
+						<th colspan="4">Actions</th>
+					</tr>
+				<?php  
+					$number = 1;
+					foreach ($data as $value): ?>
+					<tr>
+						<td class="center"><?=$number;?></td>
+						<td class="center"><?=$value['student_id']?></td>
+						<td><a href="#" class="linkprofile"><?=$value['lastname'].", ".$value['firstname']." ".$value['middlename']?></a></td> 
+						<td><?=$value['degree_name']." "?>
+							<?php 
+								if ($value['year_lvl']==1){
+									echo "I";
+								} else if ($value['year_lvl']==2){
+									echo "II";
+								} else if ($value['year_lvl']==3){
+									echo "III";
+								} else if ($value['year_lvl']==4){
+									echo "IV";
+								}
+							?></td>
+						<td><?=$value['email']?></td>
+						<!-- <td class="button-container"><button class="button table enroll" id="enroll<?=$number?>" onclick="">Enroll</button></td>
+						<td class="button-container"><button class="button table drop" id="drop<?=$number?>" onclick="">Drop</button></td> -->
+						<td class="button-container"><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
+						<td class="button-container"><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
+					</tr>
 				<?php 
-					$number++;
-					endforeach;
+				$number++;
+				endforeach;
 				?>
-
-
-		</table>
-
-		<div id="edit-panel<?=$number?>" class="modal">
-					<div class="modal-content">
-						<div class="modal-header">
-						    <span id="cancel-edit<?=$number?>" class="close">×</span>
-						    <h2>Edit <?=$value['firstname']?></h2>
-						</div>
-						<div class="modal-body">
-							<p class="instruction">Fill out this form correctly to edit.</p>
-							<form class="editform">
-								<input type="text" name="id" placeholder="Student ID...">
-								<input type="text" name="firstname" placeholder="First Name...">
-								<input type="text" name="middname" placeholder="Middle Name...">
-								<input type="text" name="lastname" placeholder="Last Name...">
-								<input type="email" name="email" placeholder="Email...">
-								<input type="text" list="degrees" name="degree" placeholder="Degree...">
-									<datalist id="degrees">
-										<option value="Computer Science">
-										<option value="Fisheries">
-										<option value="Applied Mathematics">
-										<option value="Statistics">
-										<option value="Chemistry">
-									</datalist>
-								<input type="text" name="yearlvl" placeholder="Year Level...">
-								<input type="submit" name="edit_student" value="Edit +">
-							</form>
-						</div>
+				</table>
+				<?php } else { ?>
+					<h2 class="no-results">NO RESULTS</h2> <?php
+				} ?>
+			<?php 
+				$numberofrecords = count($data);
+				while ($numberofrecords > 0) {
+			?><div id="edit-panel<?=$numberofrecords?>" class="modal">
+				<div class="modal-content">
+					<div class="modal-header">
+					    <span id="cancel-edit<?=$numberofrecords?>" class="close">×</span>
+					    <h2>Edit Student</h2>
+					</div>
+					<div class="modal-body">
+						<p class="instruction">Fill out this form correctly to edit.</p>
+						<form class="editform">
+							<input type="text" name="id" placeholder="Student ID...">
+							<input type="text" name="firstname" placeholder="First Name...">
+							<input type="text" name="middname" placeholder="Middle Name...">
+							<input type="text" name="lastname" placeholder="Last Name...">
+							<input type="email" name="email" placeholder="Email...">
+							<input type="text" list="degrees" name="degree" placeholder="Degree...">
+								<datalist id="degrees">
+									<option value="Computer Science">
+									<option value="Fisheries">
+									<option value="Applied Mathematics">
+									<option value="Statistics">
+									<option value="Chemistry">
+								</datalist>
+							<input type="text" name="yearlvl" placeholder="Year Level...">
+							<input type="submit" name="edit_student" value="Edit +">
+						</form>
 					</div>
 				</div>
+			</div>
+		<div id="delete-panel<?=$numberofrecords?>" class="modal delete-panel">
+			<div class="modal-content">
+				<div class="modal-header">
+				    <span id="cancel-delete<?=$numberofrecords?>" class="close">×</span>
+				    <h2>Delete Student?</h2>
+				</div>
+				<div class="modal-body">
+					<p class="instruction">Choose one of the two.</p>
+					<form class="deleteform">
+						<button id="cancel-delete-button">Cancel</button>
+						<input id="delete_button" type="submit" name="delete_student" value="Delete">
+					</form>
+				</div>
+			</div>
+		</div>
+		<?php $numberofrecords--; } ?>
 	</div>
 	<script>
 		function showeditmodal(student_no){

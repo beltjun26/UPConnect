@@ -99,6 +99,7 @@ a.user:hover:after{
 	text-transform: uppercase;
 	font-family: GothamLight;
 	padding: 10px 15px 10px 15px;
+	width: 50%;
 }
 
 .button.options li:last-child{

@@ -130,29 +130,6 @@
     cursor: pointer;
 }
 
-.floating-error{
-    position: absolute;
-    display: flex;
-}
-
-.floating-error span{
-    font-family: Arial;
-    font-size: 0.9em;
-    background-color: red;
-    display: block;
-    position: absolute;
-    background-color: white;
-    right: 90px;
-    padding: 10px 15px;
-}
-
-.triangle{
-    position: absolute;
-    right: 463px;
-    border: 10px solid rgba(0,0,0,0);
-    border-right-color: white;
-}
-
 /*
 .deleteform button{
     margin-left: 0;

@@ -33,66 +33,126 @@
     overflow: auto;
 }
 
-.modal-header h2{
-    font-size: 1.5em;
+h2{
+    margin: 120px 0 20px 0;
+    font-size: 2em;
     font-family: GothamLight;
     text-transform: uppercase;
+    color: #333;
     width: 100%;
     text-align: center;
 }
 
-.modal-body{
-    padding: 10px 20px;
+.instruction{
+    width: 40%;
+    margin: 0 auto 0 auto;
+    box-sizing: border-box;
 }
 
-.modal .close{
-    top: 10px;
-    right: 20px;
-    position: absolute;
-    font-size: 1.5em;
-    font-weight: bold;
-    cursor: pointer;
-    color: #888;
-}
-
-.modal .close:hover{
-    color: #333;
-}
-
-.modal form{
+.addform{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    width: 40%;
+    margin: auto;
+    margin-bottom: 50px;
 }
 
-.modal form input[type=text],
-.modal form input[type=email],
-.modal form input[type=password]{
+.addform input[type=text],
+.addform input[type=email],
+.addform input[type=password],
+.addform textarea{
     border: 1px solid #DDD;
-    margin-bottom: 10px;
+    margin-top: 10px;
     padding: 10px 15px;
     font-size: 0.9em;
     color: #555;
 }
 
-.modal form input[type=submit],
-.modal form button{
+.addform textarea{
+    resize: vertical;
+    font-family: Arial;
+    font-size: 0.9em;
+}
+
+.addform input[type=submit],
+.addform button{
     background-color: white;
     border: 1px solid #DDD;
     padding: 10px 20px;
     margin-left: auto;
+    margin-top: 10px;
     color: #888;
     transition: 0.2s;
 }
 
-#addform input[type=submit]{
+.addform input[type=submit]{
     color: #64DD17;
 }
 
-#addform input[type=submit]:hover{
+.addform input[type=submit]:hover{
     border-color: #64DD17;
     cursor: pointer;
     box-shadow: 0 0 15px rgba(0,0,0,0.05);
 }
+
+.name-inputs{
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-inputs input{
+    width: 100%;
+}
+
+.name-inputs input:nth-child(2){
+    margin: 10px 5px 0 5px;
+}
+
+.error{
+    background-color: #E91E63;
+    color: white;
+    font-family: Arial;
+    font-size: 0.85em;
+    border: 1px solid #DDD;
+    border-width: 0 1px 1px 1px;
+    padding: 5px 15px 3px 15px;
+}
+
+.group-inputs{
+    display: flex; 
+    justify-content: space-between;
+}
+
+.group-inputs input:first-child{
+    margin-right: 5px;
+}
+
+.group-inputs input{
+    width: 100%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .editform input[type=submit]{
     color: #FFAB00!important;
@@ -129,50 +189,3 @@
     box-shadow: 0 0 15px rgba(0,0,0,0.1);
     cursor: pointer;
 }
-
-.floating-error{
-    position: absolute;
-    display: flex;
-}
-
-.floating-error span{
-    font-family: Arial;
-    font-size: 0.9em;
-    background-color: red;
-    display: block;
-    position: absolute;
-    background-color: white;
-    right: 90px;
-    padding: 10px 15px;
-}
-
-.triangle{
-    position: absolute;
-    right: 463px;
-    border: 10px solid rgba(0,0,0,0);
-    border-right-color: white;
-}
-
-/*
-.deleteform button{
-    margin-left: 0;
-    float: left;
-    color: #0091EA;
-}
-
-.deleteform button:hover{
-    border-color: #0091EA;
-    cursor: pointer;
-    box-shadow: 0 0 15px rgba(0,0,0,0.05);
-}
-
-.modal form input{
-    transition: 0.2s;
-}
-
-.modal form input:focus,
-.modal form input:hover{
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    outline: none;
-    border-color: #29B6F6;
-}*/

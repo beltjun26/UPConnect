@@ -26,7 +26,7 @@
 	 ?>
 	<nav id="navigation">
 		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="profile.php" class="floattran">Your Profile</a>
+		<a href="myprofile.php" class="floattran">Your Profile</a>
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran active">Classes</a>	

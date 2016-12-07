@@ -109,7 +109,15 @@
 			<div class="post">	
 				<header>
 					<img class="userphoto" src="images/profile_images/<?=$value['user_id'];?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-					<a class="user" href="#"><?=$value['firstname']." ".$value['lastname'];?></a>
+					<a class="user" href="
+					<?php 
+						if($_SESSION['userid']==$value['user_id']){
+							echo "myprofile.php";
+						}else{
+							echo "profile.php?student_id=".$value['user_id'];
+						}
+					 ?>
+					"><?=$value['firstname']." ".$value['lastname'];?></a>
 				</header>
 				<p class="caption"><?= $value['text'] ?></p>
 				<ul class="button options"> 
@@ -121,6 +129,18 @@
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
 			</div>
+			<ul class="comments">
+				<li class="commented">
+					<img src="" onerror="">
+					<p></p>
+					<button></button>
+				</li>
+				<li class="commenting">
+					<img src="" onerror="">
+					<p></p>
+					<span class="delete">x</span>
+				</li>
+			</ul>
 		<?php } ?>
 
 
