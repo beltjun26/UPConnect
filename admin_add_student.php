@@ -23,7 +23,7 @@
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_students.php" class="current"><h1>Students</h1></a>
-			<form action="admin_students" class="search" method="POST">
+			<form action="admin_students.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>

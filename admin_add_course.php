@@ -22,7 +22,7 @@
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_courses.php" class="current"><h1>Courses</h1></a>
-			<form action="admin_add_course.php" class="search" method="POST">
+			<form action="admin_courses.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
@@ -40,7 +40,7 @@
 			<span class="error">Descriptive title already taken.</span>
 			<textarea name="description" placeholder="Course Description... Minimum of 20 characters..."></textarea>
 			<span class="error">Description too short.</span>
-			<input id="add_button" type="submit" name="add_student" value="Add +">
+			<input id="add_button" type="submit" name="add_course" value="Add +">
 		</form>
 	</div>
 </body>
