@@ -91,6 +91,7 @@
 				while($row = mysqli_fetch_assoc($result)){
 				$data[] = $row;
 				}
+
 			}
 			if(count($data)>0){ ?>
 				<table>

@@ -8,9 +8,9 @@
 	<script type="text/javascript" src="js/jquery-3.1.1.min.js"></script>
 	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
-	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 	<link rel="stylesheet" type="text/css" href="css/class.css">
 	<link rel="stylesheet" type="text/css" href="css/post.css">
+	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 </head>
 <body>
 	<?php 
@@ -22,6 +22,12 @@
 		$class_id = $_GET['classid'];
 		$_SESSION['class_id'] = $class_id;
 
+		if(isset($_SESSION['caption'])){
+			$caption_post = $_SESSION['caption'];
+		}
+		else{
+			$caption_post = "";
+		}
 
 		//Query for the class
 		$query = "select * from teacher natural join course natural join class natural join semester where class_id = '$class_id'";
@@ -42,7 +48,7 @@
 		<a href="home.php" class="floattran">Home</a>
 		<a href="#" class="floattran">Notifications</a>	
 		<a href="#" class="floattran">Classes</a>	
-		<a href="index.php" class="floattran">Logout</a>
+		<a href="logout.php" class="floattran">Logout</a>
 	</nav>
 	<div class="container" id="classContainer">
 		<header class="class">
@@ -74,13 +80,26 @@
 				<p class="user"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></p>
 			</header>
 			<form method="post" action="post.php" enctype="multipart/form-data">
-				<textarea name="caption" class="text" placeholder="Want to Post?"></textarea>
+				<textarea name="caption" class="text" placeholder="Want to Post?"><?=$caption_post?></textarea>
 				<ul class="button options">
 
-					<li><input type="file" value="+ Image" class="hoveranim" id = "image_button" onchange="loadFile(event)"></li>
+					<li id = "image_item">
+						<label for="image_button" class="hoveranim">+ Image</label>
+						<input type="file" name = "image_upload" class="hoveranim" id = "image_button" onchange="loadImage(event)" accept="image/*"/>
+					</li>
+					
+					<li id = "file_item">
+						<label for="file_button" class="hoveranim" id = "file_button_label">+ File</label>
+						<input type="file" name = "file_upload" class="hoveranim" id = "file_button" onchange="loadFile(event)" accept=".doc, .docm, .docx, .dot, .dotm, .dotx, .epub, .odf, .ods, .odt, .ott, .oxps, .pages, .pdf, .pmd, .pot, .potx, .pps, .ppsx, .ppt, .pptm, .pptx, .prn, .prnproj, .ps, .pub, .pwi, .rep, .rtf, .sdd, .sdw, .shs, .snp, .sxw, .tpl, .vsd, .wlmp, .wpd, .wps, .wri, .xps, .rar, .zip, .7zip, .xlsm, .xlsx, .xlt, .htm, .html, .csv, .dbf, .txt, .psd, .potm"/>
+					</li>
+
+					<li id = "cancel_upload">
+						<input type="button" class="hoveranim" value="cancel" onclick="cancel_upload(event)">
+					</li>
+
 					<li><input type="submit" name="post" value="Post" class="hoveranim"></li>
 				</ul>
-					<img src="" alt="" id="image_preview" style="display: block">
+					<img src="" alt="" id="image_preview">
 			</form>
 		</div>
 
@@ -123,7 +142,7 @@
 					<li class="comment commenting">
 						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<form>
-							<textarea class="description"></textarea>		
+							<textarea class="description" placeholder="Comment here..."></textarea>		
 							<button><span class="glyphicon glyphicon-comment"></span></button>
 						</form>
 					</li>
@@ -142,10 +161,50 @@
 	</script>
 
 	<script>
-		var loadFile = function(event){
+		var loadImage = function(event){
 			var image_preview = document.getElementById('image_preview');
+
 			image_preview.src = URL.createObjectURL(event.target.files[0]);
+			image_preview.style.display = "block";
+
+
+			var file_item = document.getElementById('file_item');
+			file_item.style.display = "none";
+
+			document.getElementById('cancel_upload').style.display = "block";
 		};
+
+		var loadFile = function(event){
+			var image_item = document.getElementById('image_item');
+			image_item.style.display = "none";
+
+
+			document.getElementById('cancel_upload').style.display = "block";	
+			document.getElementById('file_button').style.display = "block";
+
+			document.getElementById('file_button_label').style.display = "none";
+		};
+
+		var cancel_upload = function(event){
+			var image_button = document.getElementById('image_button');
+			image_button.value = '';
+
+			var image_preview = document.getElementById('image_preview');
+			image_preview.src = '';
+			image_preview.style.display = 'none';
+
+			var file_item = document.getElementById('file_item');
+			file_item.style.display = "block";
+
+			var file_item = document.getElementById('image_item');
+			file_item.style.display = "block";
+
+
+			document.getElementById('cancel_upload').style.display = "none";
+			document.getElementById('file_button').style.display = "none";
+			document.getElementById('file_button_label').style.display = "block";
+		}
+
 	</script>
 
 

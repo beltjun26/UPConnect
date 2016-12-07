@@ -11,7 +11,7 @@
 .to.post form > textarea,
 .post .caption{
 	font-family: Arial;
-	font-size: 0.9em;
+	font-size: 1em;
 }
 
 /*--POST AND POSTING DESIGN--*/
@@ -29,23 +29,11 @@
 .user{
 	text-align: left;
 	vertical-align: middle;
-	font-size: 1em;
+	font-size: 1.2em;
 	margin-left: 10px;
 	position: relative;
 	text-decoration: none;
 	height: 1em;
-}
-
-a.user:after{
-	content: '	Go to Profile >';
-	font-size: 0.8em;
-	color: skyblue;
-	opacity: 0;
-	transition: 0.3s;
-}
-
-a.user:hover:after{
-	opacity: 1;
 }
 
 .post header{
@@ -59,7 +47,7 @@ a.user:hover:after{
 	width: 50px;
 	object-fit: cover;
 	object-position: center;
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	border-radius: 3px;
 }
 
@@ -71,7 +59,7 @@ a.user:hover:after{
 	max-height: 500px;
 	margin-bottom: 0;
 	border-color: white;
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	box-sizing: border-box;
 }
 
@@ -85,16 +73,36 @@ a.user:hover:after{
 	margin-right: 10px;
 }
 
+input[type=file]{
+	display: none;
+}
+
+label{
+	color: #03A9F4;
+	display: block;
+	font-size: 1em;
+	border-style: none;
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
+	background-color: white;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	padding: 5px 15px 5px 15px;
+}
+
 .button.options input[type=submit],
 .button.options input[type=button]{
 	color: #03A9F4;
 	display: block;
-	font-size: 15px;
+	font-size: 1em;
 	border-style: none;
-	border: 1px solid #DDD; 
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
 	background-color: white;
-	font-family: Arial;
-	padding: 5px 10px 5px 10px;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	padding: 5px 15px 5px 15px;
+	font-weight: bold;
 }
 
 .button.options li:last-child{
@@ -120,10 +128,8 @@ a.user:hover:after{
 }
 
 .hoveranim:hover{
-	color: white!important;
 	transform: translate(0px, -3px);
 	border-color: #29B6F6!important;
-	background-color: #29B6F6!important;
 	box-shadow: 0 3px 2px rgba(0,0,0,0.1);
 }
 
@@ -133,7 +139,7 @@ a.user:hover:after{
 	align-items: center;
 	display: inline-flex;
 	justify-content: left;
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	transition: 0.3s;
 	border-radius: 3px;
 }
@@ -157,16 +163,14 @@ a.user:hover:after{
 
 .post .caption{
 	width: 100%;
-	color: #AAA;
+	color: #555;
 	text-align: justify;
 	margin-bottom: 10px;
 	text-indent: 20px;
 	line-height: 1.5em;
-	border: 1px solid #DDD;
-	padding: 10px 10px;
+	padding: 0;
 	box-sizing: border-box;
-	border-radius: 3px;
-	font-size: 0.9em;
+	font-size: 1em;
 }
 
 .uploadedphoto{
@@ -183,7 +187,7 @@ a.user:hover:after{
 }
 
 .comment{
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	display: flex;
 	margin-top: 10px;
 	padding: 5px;
@@ -193,7 +197,7 @@ a.user:hover:after{
 .comment img{
 	height: 40px;
 	min-width: 40px;
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	box-sizing: content-box;
 }
 
@@ -204,25 +208,46 @@ a.user:hover:after{
 }
 
 .commenting textarea{
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	display: block;
 	height: 40px;
-	max-height: 100px;
 	margin: 0 5px;
 	width: 100%;
 	resize: vertical;
 	padding: 10px 15px;
 	font-family: Arial;
-	font-size: 0.9em;
+	font-size: 1em;
 	font-weight: normal;
+	transition: 0.2s;
+	overflow: hidden;
+}
+
+.commenting textarea:hover,
+.commenting textarea:focus,
+.commenting textarea:active{
+	outline: none;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.commenting textarea:focus,
+.commenting textarea:active{
+	height: 100px;
+	border-color: #03A9F4;
 }
 
 .commenting button{
-	border: 1px solid #DDD;
+	border: 1px solid #EEE;
 	height: 40px;
 	min-width: 40px;
 	box-sizing: border-box;
 	background: transparent;
+	transition: 0.2s;
+}
+
+.commenting button:hover{
+	border-color: #03A9F4;
+	transform: translate(0, -2px);
+	box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
 .commenting button span{
@@ -235,7 +260,7 @@ a.user:hover:after{
 	right: 6px;
 	position: absolute;
 	transform: scale(1.2, 1);
-	color: #DDD;
+	color: #EEE;
 }
 
 .commented .delete:hover{
@@ -258,6 +283,8 @@ a.user:hover:after{
 .usercom{
 	cursor: pointer;
 	font-weight: bold;
+	font-family: GothamLight;
+	transition: 0.2s;
 }
 
 .timestamp{
@@ -266,9 +293,24 @@ a.user:hover:after{
 }
 
 .comment-content{
+	color: #555;
 	margin: 10px 0;
 	text-indent: 20px;
 }
+
+#image_preview{
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+	display: none;
+	border: 0;
+}
+
+#cancel_upload{
+	display: none;
+}
+
 
 
 
