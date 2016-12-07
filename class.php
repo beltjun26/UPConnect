@@ -110,20 +110,32 @@
 				<header>
 					<img class="userphoto" src="images/profile_images/<?=$value['user_id'];?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 					<a class="user" href="
-					<?php 
-						if($_SESSION['userid']==$value['user_id']){
-							echo "myprofile.php";
-						}else{
-							echo "profile.php?student_id=".$value['user_id'];
-						}
-					 ?>
+					<?php echo "profile.php?student_id=".$value['user_id'];?>
 					"><?=$value['firstname']." ".$value['lastname'];?></a>
 				</header>
 				<p class="caption"><?= $value['text'] ?></p>
-				<ul class="button options"> 
+				<?php if($value['file_id'] == 1): 
+					$dir = "saved_images/".$value['post_id'];
+					$file_array = scandir($dir);
+				?>
+					<img src="<?php echo $dir."/".$file_array[2]; ?>" class="uploadedphoto">
+				<?php endif; ?>
 
+				<?php if($value['file_id'] == 2):
+					$dir = "saved_files/".$value['post_id'];
+					$file_array = scandir($dir);
+				?>
+					<div class="filecontainer">
+						<img src="images/file.png" class="file">
+						<p><?=$file_array[2];?></p>
+					</div>
+				<?php endif; ?>
+
+				<ul class="button options"> 
 					<?php if($value['file_id'] != 0): ?>
-						<li><input type="button" value="Download" class="hoveranim"></li> 
+						<li>
+							<a href="download.php?post=<?=$value['post_id']?>&file=<?=$value['file_id']?>" target="_blank" class = "hoveranim">Download</a>
+						</li> 
 					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
@@ -205,6 +217,10 @@
 
 	</script>
 
+	
+
 
 </body>
 </html>
+
+
