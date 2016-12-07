@@ -113,8 +113,8 @@
 			<label for="password">Password:</label>
 			<input type="password" name="password" class="text">
 			<input type="submit" name="login" value="Login">
-			<span>or</span>
-			<a href="signup.php" class="signup">Signup</a>
+			<!-- <span>or</span>
+			<a href="signup.php" class="signup">Signup</a> -->
 		</form>
 		<!-- <a href="signup.html">Create account</a> -->
 	</div>

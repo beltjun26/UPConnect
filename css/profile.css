@@ -111,6 +111,7 @@
 	font-weight: bold;
 	padding: 5px 20px;
 	margin-top: -30px;
+	margin-bottom: 10px;
 	border-radius: 3px;
 	letter-spacing: 0.1em;
 	background-color: #333;
@@ -124,15 +125,18 @@
 	opacity: 1;
 }
 
-#EditEmail .modal-content{
+#EditEmail .modal-content,
+#EditPass .modal-content{
 	width: 30%;
 }
 
-#EditEmail .modal-body{
+#EditEmail .modal-body,
+#EditPass .modal-body{
 	padding: 5%;
 }
 
-#EditEmail input[type=email]{
+#EditEmail input[type=email],
+#EditPass input[type=password]{
 	padding: 5px 10px;
 	border-radius: 3px;
 	border: 1px solid #DDD;
@@ -144,7 +148,8 @@
 	font-size: 1em;
 }
 
-#EditEmail input[type=submit]{
+#EditEmail input[type=submit],
+#EditPass input[type=submit]{
 	padding: 5px 10px;
 	background-color: #00BCD4;
 	color: white;
@@ -160,7 +165,8 @@
 	text-align: center;
 }
 
-#EditEmail input[type=submit]:hover{
+#EditEmail input[type=submit]:hover
+#EditPass input[type=submit]:hover{
 	background-color: #00E5FF;
 }
 

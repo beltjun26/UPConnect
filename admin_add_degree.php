@@ -19,8 +19,35 @@
 		require "connect.php";
 		require "admin_nav.php";
 
+		$error = 2;
+		$error1="";
+		$error2="";
+		$name="";
+		$description="";
+
 		if ($_POST['add_degree']) {
-			echo "add";
+			$query = "SELECT * FROM degree WHERE degree_name = '{$_POST['name']}'";
+			$result = mysqli_query($dbconn, $query);
+			$name = $_POST['name'];
+			$description = $_POST['description'];
+			if ($name == null) {
+				$error1 = "Please enter a Degree name.";
+				$error = 1;
+			} else if(mysqli_num_rows($result) > 0) {
+				$error1 = "Degree name already taken.";
+				$error = 1;
+			} else{
+				$error = 0;
+			}
+			if (strlen($description)<=20){
+				$error2 = "Description too short... Must contain at least 20 characters...";
+				$error = 1;
+			}
+
+			if ($error == 0) {
+				$query = "INSERT INTO degree (degree_name,description) VALUES ('$name','$description');";
+				$result = mysqli_query($dbconn, $query);
+			}
 		}
 	?>
 	<div id="container">
@@ -34,11 +61,19 @@
 		</header>
 		<h2>Add Degree</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>
-		<form class="addform">
-			<input type="text" name="name" placeholder="Degree Name...">
-			<span class="error">Name format is wrong.</span>
-			<textarea name="description" placeholder="Description..."></textarea>
-			<span class="error">Description too short... Must contain at least 20 characters...</span>
+		
+		<form action="admin_add_degree.php" class="addform" method="POST">
+			<?php if ($error == 0): ?>
+				<span class="success" style="display: block;">Added degree program to database.</span>
+			<?php endif ?> 
+			<input type="text" name="name" placeholder="Degree Name..." value="<?= $name ?>">
+			<span class="error" <?php if ($error1 != null): ?>
+				style="display: block"
+			<?php endif ?> ><?=$error1?></span>
+			<textarea name="description" placeholder="Description..." value="<?= $description ?>"></textarea>
+			<span class="error" <?php if ($error2 != null): ?>
+				style="display: block"
+			<?php endif ?> ><?=$error2?></span>
 			<input id="add_button" type="submit" name="add_degree" value="Add +">
 		</form>
 	</div>

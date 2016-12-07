@@ -63,9 +63,25 @@
 		      		<span class="close">×</span>
 		    	</div>
 			    <div class="modal-body">
-			      	<form method="post" action="upload.php">
+			      	<form method="post" action="">
 				      	<input type="email" name="email" placeholder="sample.example@sample.com">
 				      	<input type="submit" name="change_email" value="CHANGE">
+			      	</form>
+			    </div>
+		  	</div>
+		</div>
+		<div id="EditPass" class="modal edit_profile">
+		  	<div class="modal-content">
+		    	<div class="modal-header">
+					<h2>Change Your Password</h2>
+		      		<span class="close">×</span>
+		    	</div>
+			    <div class="modal-body">
+			      	<form method="post" action="">
+				      	<input type="password" name="oldpass" placeholder="Old password...">
+				      	<input type="password" name="newpass" placeholder="New password...">
+				      	<input type="password" name="retpass" placeholder="Retype password...">
+				      	<input type="submit" name="change_password" value="CHANGE">
 			      	</form>
 			    </div>
 		  	</div>
@@ -88,16 +104,20 @@
 			</li>
 			<li><p class="email">Email: <?php echo $row['email'] ?></p></li>
 			<li><button id="EditEmailBtn">Change Email</button></li>
+			<li><button id="EditPassBtn">Change Password</button></li>
 		</ul>
 	</div>
 
 	<script>
 		var Editpic = document.getElementById("EditProfilePicture");
 		var Editemail = document.getElementById("EditEmail");
+		var Editpass = document.getElementById("EditPass");
 		var btnpic = document.getElementById("EditPicBtn");
 		var btnemail = document.getElementById("EditEmailBtn");
+		var btnpass = document.getElementById("EditPassBtn");
 		var closepic = document.getElementsByClassName("close")[0];
 		var closeemail = document.getElementsByClassName("close")[1];
+		var closepass = document.getElementsByClassName("close")[2];
 
 		btnpic.onclick = function() {
 			Editpic.style.display = "flex";
@@ -105,6 +125,10 @@
 
 		btnemail.onclick = function() {
 			Editemail.style.display = "flex";
+		}
+
+		btnpass.onclick = function() {
+			Editpass.style.display = "flex";
 		}
 
 		closepic.onclick = function() {
@@ -115,11 +139,17 @@
 			Editemail.style.display = "none";
 		}
 
+		closepass.onclick = function() {
+			Editpass.style.display = "none";
+		}
+
 		window.onclick = function(event) {
 			if (event.target == Editpic){
 				Editpic.style.display = "none";
 			} else if (event.target == Editemail){
 				Editemail.style.display = "none";
+			} else if (event.target == Editpass){
+				Editpass.style.display = "none";
 			}
 		}
 	</script>
