@@ -98,7 +98,31 @@
 					<td><button class="button table edit" id="edit<?=$number?>" onclick="showeditmodal(<?=$number?>)">Edit</button></td>
 					<td><button class="button table delete" id="delete<?=$number?>" onclick="showdeletemodal(<?=$number?>)">Delete</button></td>
 				</tr>
-				<div id="edit-panel<?=$number?>" class="modal">
+				
+				<div id="delete-panel<?=$number?>" class="modal delete-panel">
+					<div class="modal-content">
+						<div class="modal-header">
+						    <span id="cancel-delete" class="close">×</span>
+						    <h2>Delete <?=$value['firstname']?>?</h2>
+						</div>
+						<div class="modal-body">
+							<p class="instruction">Choose one of the two.</p>
+							<form class="deleteform">
+								<button id="cancel-delete-button">Cancel</button>
+								<input id="delete_button" type="submit" name="delete_student" value="Delete">
+							</form>
+						</div>
+					</div>
+				</div>
+				<?php 
+					$number++;
+					endforeach;
+				?>
+
+
+		</table>
+
+		<div id="edit-panel<?=$number?>" class="modal">
 					<div class="modal-content">
 						<div class="modal-header">
 						    <span id="cancel-edit<?=$number?>" class="close">×</span>
@@ -126,26 +150,6 @@
 						</div>
 					</div>
 				</div>
-				<div id="delete-panel<?=$number?>" class="modal delete-panel">
-					<div class="modal-content">
-						<div class="modal-header">
-						    <span id="cancel-delete" class="close">×</span>
-						    <h2>Delete <?=$value['firstname']?>?</h2>
-						</div>
-						<div class="modal-body">
-							<p class="instruction">Choose one of the two.</p>
-							<form class="deleteform">
-								<button id="cancel-delete-button">Cancel</button>
-								<input id="delete_button" type="submit" name="delete_student" value="Delete">
-							</form>
-						</div>
-					</div>
-				</div>
-				<?php 
-					$number++;
-					endforeach 
-				?>
-		</table>
 	</div>
 	<script>
 		function showeditmodal(student_no){

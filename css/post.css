@@ -180,3 +180,40 @@ a.user:hover:after{
 	object-position: center;
 }
 
+
+
+/*MAYNARD CHANGES AFTER
+*/
+
+#image_preview{
+	width: 100%;
+	max-height: 300px;
+	object-fit: cover;
+	object-position: center;
+	display: none;
+	border: 0;
+}
+
+#cancel_upload{
+	display: none;
+}
+
+
+input[type=file]{
+	display: none;
+}
+
+label{
+	color: #03A9F4;
+	display: block;
+	font-size: 15px;
+	font-weight: bold;
+	border-style: none;
+	letter-spacing: 2px;
+	border: 1px solid #EEE; 
+	background-color: white;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	padding: 10px 15px 10px 15px;
+}
+
