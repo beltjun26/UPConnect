@@ -35,14 +35,7 @@
 		}
 ?>
 
-	<nav id="nav">
-		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="#" class="actpage">Your Profile</a>
-		<a href="home.php" class="floattran">Home</a>
-		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran">Classes</a>		
-		<a href="logout.php" class="floattran">Logout</a>
-	</nav>
+	<?php require "nav.php"; ?>
 	<div class="container" id="profilecontainer">
 		
 		<img src="images/profile_images/<?=$row['student_id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'" class="profilepic">

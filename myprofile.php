@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['page'] = 2;
 ?>
 
 <!DOCTYPE html>
@@ -21,22 +22,21 @@
 		}
 		require "connect.php";
 		
-		$query = "select * from student natural join degree where student_id = '{$_SESSION['userid']}'";
-		$result = mysqli_query($dbconn, $query);
+		if ($_SESSION['type']=='student') {
+			$query = "select * from student natural join degree where student_id = '{$_SESSION['userid']}'";
+			$result = mysqli_query($dbconn, $query);
+		}
 
+		if ($_SESSION['type']=='teacher') {
+			$query = "select * from teacher where teacher_id = '{$_SESSION['userid']}'";
+			$result = mysqli_query($dbconn, $query);
+		}
 		if(mysqli_affected_rows($dbconn)){
 			$row = mysqli_fetch_assoc($result);	
 		}
 ?>
 
-	<nav id="nav">
-		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="#" class="actpage">Your Profile</a>
-		<a href="home.php" class="floattran">Home</a>
-		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran">Classes</a>		
-		<a href="logout.php" class="floattran">Logout</a>
-	</nav>
+	<?php require "nav.php"; ?>
 	<div class="container" id="profilecontainer">
 		<button class="change" id="EditPicBtn">Change</button>
 		<img src="images/profile_images/<?=$_SESSION['userid']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'" class="profilepic">
@@ -88,6 +88,7 @@
 		</div>
 		<ul class="description">
 			<li><h1 class="name"> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'];	 ?></h1></li>
+			<?php if ($_SESSION['type']=='student') { ?>
 			<li>
 				<p class="user"><?php 
 					echo $row['degree_name'];
@@ -102,6 +103,7 @@
 					}?>
 				</p>
 			</li>
+			<?php } ?>
 			<li><p class="email">Email: <?php echo $row['email'] ?></p></li>
 			<li><button id="EditEmailBtn">Change Email</button></li>
 			<li><button id="EditPassBtn">Change Password</button></li>

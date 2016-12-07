@@ -1,5 +1,6 @@
 <?php 
 	session_start();
+	$_SESSION['page'] = 4;
  ?>
 <!DOCTYPE html>
 <html>
@@ -41,14 +42,7 @@
 		$post_row = mysqli_query($dbconn, $query);
 		
 	 ?>
-	<nav id="nav">
-		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="myprofile.php" class="floattran">Your Profile</a>
-		<a href="home.php" class="floattran">Home</a>
-		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran">Classes</a>	
-		<a href="logout.php" class="floattran">Logout</a>
-	</nav>
+	<?php require "nav.php"; ?>
 	<div class="container" id="classContainer">
 		<header class="class">
 			<h1 class="classtitle"><?php echo $row['course_name'] ?></h1>

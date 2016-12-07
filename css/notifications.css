@@ -1,0 +1,113 @@
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+@font-face{
+	font-family: GothamMedium;
+	src: url('fonts/GOTHAM-MEDIUM.TTF');
+}
+
+#notif-container{
+	width: 80%;
+	display: inline-block;
+	padding-top: 50px;
+}
+
+.notif-container{
+	background-color: white;
+	box-shadow: 0 0 5px rgba(0,0,0,0.5);
+	width: 50%;
+	margin: 20px auto 0 auto;
+	padding: 5px;
+	font-family: GothamLight;
+	color: #666;
+	overflow: hidden;
+	position: relative;
+	display: flex;
+}
+
+.notif-container .content{
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.user-photo{
+	height: 80px;
+	margin-right: 5px;
+	object-position: center;
+	object-fit: cover;
+}
+
+.username{
+	font-family: GothamLight;
+	font-weight: bold;
+	color: #555;
+	font-size: 1.3em;
+	text-align: left;
+	margin-bottom: 5px;
+}
+
+.time-stamp{
+	color: #CCC;
+	font-size: 0.8em;
+	font-family: Arial;
+	text-align: left;
+	margin-bottom: 5px;
+}
+
+.content p{
+	font-family: Arial;
+	font-size: 0.9em;
+	color: #888;
+	text-align: left;
+}
+
+.close{
+	margin: 0 5px 0 5px;
+	transition: 0.2s;
+	top: 0;
+	right: 0;
+	position: absolute;
+	background-color: transparent;
+	border: none;
+	font-size: 1.5em;
+	color: #DDD;
+}
+
+.close:hover{
+	color: #888;
+	cursor: pointer;
+}
+
+.close:focus,
+.close:active{
+	color: #888;
+	outline: none;
+}
+
+.view{
+	border: 1px solid #DDD;
+	color: #00B8D4;
+	text-transform: uppercase;
+	font-family: GothamLight;
+	font-weight: bold;
+	letter-spacing: 0.1em;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	transition: 0.2s;
+	padding: 5px 15px;
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+}
+
+.view:hover{
+	opacity: 1;
+	text-decoration: none;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+	border-color: #00B8D4;
+	transform: translate(0,-2px);
+}

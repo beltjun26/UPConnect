@@ -26,14 +26,7 @@
 		}
 	?>
 
-	<nav id="nav">
-		<a href="#" class="floattran">UP Connect</a>
-		<a href="myprofile.php" class="floattran">Your Profile</a>
-		<a href="home.php" class="actpage">Home</a>
-		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran">Classes</a>	
-		<a href="logout.php" class="floattran">Logout</a>
-	</nav>
+	<?php require "nav.php"; ?>
 	<div class="container">
 		<h1 class="greetings">Welcome to<br><span class="webname">UP Connect!</span></h1>
 		<p class="instructions">Click on one of your classes below to view class activities.</p>
