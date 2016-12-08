@@ -20,12 +20,27 @@
 		require "connect.php";
 		
 		$query = "select * from teacher natural join course natural join class natural join semester where class_id = {$_GET['classid']}";
+		
+
+
+
 		$result = mysqli_query($dbconn, $query);
 		if(mysqli_affected_rows($dbconn)){
 			$row = mysqli_fetch_assoc($result);
 		}
 		$student=[];
-		$query = "select * from enroll_class natural join student natural join degree where class_id = {$_GET['classid']}";
+
+
+		if(isset($_GET['keyword'])){
+			$keyword = $_GET['keyword'];
+
+			$query = "select * from enroll_class natural join student natural join degree where class_id = {$_GET['classid']} and (firstname like '%".$keyword."%' or lastname like '%".$keyword."%')";
+		}else{
+			$query = "select * from enroll_class natural join student natural join degree where class_id = {$_GET['classid']}";
+		}
+
+
+
 		$result = mysqli_query($dbconn, $query);
 		if(mysqli_affected_rows($dbconn)){
 			while($data = mysqli_fetch_assoc($result)){
@@ -62,25 +77,22 @@
 		<h2><?=$row['course_name']?></h2>
 		<p class="instructions" style="margin: 10px 20px;">Click on one of the people to view their profile.</p>
 		<form class="searchthroughlist">
-			<input type="text" name="keyword" placeholder="Search...">
-			<input type="submit" name="submit" value="SEARCH">
+			<input type="text" name="keyword" placeholder="Search..." id = "myInput" onkeyup="myFunction()">
+			<input type="text" name="classid" value="<?=$_GET['classid']?>" style="display: none;">
+			<input type="submit" name="submit" value="search">
 		</form>
-		<ul class="studentlist">
+		<ul class="studentlist" id = "myUL">
 		<?php foreach ($student as $value):?>
-			<li><a href="
-				<?php 
-					if($value['student_id']==$_SESSION['userid']){
-						echo "myprofile.php";
-					}else{
-						echo "profile.php?student_id=".$value['student_id'];
-					}
-				?>">
-				<img src="images/profile_images/<?=$value['student_id']?>.jpg">
-				<ul class="description">
-					<li class="descriptionName"><?php echo $value['firstname']." ".$value['lastname']?></li>
-					<li class="descriptionCourseYear">BS in Computer Science III</li>
-				</ul>
-			</a></li>
+			<li class = "list-item">
+				<a href="<?php echo "profile.php?student_id=".$value['student_id'];?>">
+					<img src="images/profile_images/<?=$value['student_id']?>.jpg">
+					<ul class="description">
+						<li class="descriptionName">
+							<span><?php echo $value['firstname']." ".$value['lastname']?></span></li>
+						<li class="descriptionCourseYear">BS in Computer Science III</li>
+					</ul>
+				</a>
+			</li>
 		<?php endforeach?>
 			
 		</ul>
@@ -95,6 +107,27 @@
 		x = x - h;
 		console.log(x);
 		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;");
+	</script>
+	<script>
+		function myFunction() {
+		    // Declare variables
+		    var input, filter, ul, li, a, i;
+		    input = document.getElementById('myInput');
+		    filter = input.value.toUpperCase();
+		    ul = document.getElementById("myUL");
+		    li = ul.getElementsByClassName('list-item');
+
+		    // Loop through all list items, and hide those who don't match the search query
+		    // alert(li.length);
+		    for (i = 0; i < li.length; i++) {
+		        a = li[i].getElementsByTagName("a")[0].getElementsByTagName("ul")[0].getElementsByTagName("li")[0].getElementsByTagName('span')[0];
+		        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		            li[i].style.display = "";
+		        } else {
+		            li[i].style.display = "none";
+		        }
+		    }
+		}
 	</script>
 </body>
 </html>

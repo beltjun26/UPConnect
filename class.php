@@ -134,56 +134,31 @@
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
-				<ul class="comments" style="display: none">
+				<?php 
+					$query = "SELECT * from (SELECT concat(firstname, \" \", lastname) as fullname, teacher_id as id, content from comment join teacher on teacher.teacher_id=user_id where post_id = {$value['post_id']}) as ttable UNION (SELECT concat(firstname, \" \", lastname) as fullname, student_id as id, content from comment join student on student.student_id=user_id where post_id = {$value['post_id']})";
+					$result = mysqli_query($dbconn, $query);
+				 ?>
+				<ul class="comments" >
+				<?php if(mysqli_affected_rows($dbconn)): ?>
+					<?php while($data = mysqli_fetch_assoc($result)): ?>
 					<li class="comment commented">
 						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<div class="content">
 							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
+							<a class="usercom"><?=$data['fullname']?></a>
 							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+							<p class="comment-content"><?=$data['content']?></p>
 						</div>
 					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
+					<?php endwhile ?>
+				<?php endif ?>
+					
 					<li class="comment commenting">
 						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<form>
-							<textarea class="description" placeholder="Comment here..."></textarea>		
+						<form method="post" action="commit_comment.php">
+							<textarea class="description" name="content" placeholder="Comment here..."></textarea>
+							<input type="text" name="id" value="<?=$value['post_id']?>" style="display: none">
+							<input type="text" name="class" value="<?=$_GET['classid']?>" style="display: none">	
 							<button><span class="glyphicon glyphicon-comment"></span></button>
 						</form>
 					</li>

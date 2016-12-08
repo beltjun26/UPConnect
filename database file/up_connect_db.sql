@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 07, 2016 at 06:52 PM
+-- Generation Time: Dec 08, 2016 at 04:04 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -64,6 +64,27 @@ INSERT INTO `class` (`class_id`, `teacher_id`, `section`, `course_id`, `sem_id`)
 (2, '12345', 1, 2, 1),
 (3, '12345', 1, 3, 1),
 (4, '54321', 1, 5, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comment`
+--
+
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL,
+  `content` text NOT NULL,
+  `user_id` varchar(11) NOT NULL,
+  `post_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`comment_id`, `content`, `user_id`, `post_id`) VALUES
+(1, 'Hello :)\r\n', '201437759', 39),
+(2, 'Ang gwapo mo maynard\r\n', '12345', 39);
 
 -- --------------------------------------------------------
 
@@ -135,6 +156,31 @@ INSERT INTO `enroll_class` (`student_id`, `class_id`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `notif_id` int(11) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `user_id_posted` int(11) NOT NULL,
+  `notif_type` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notified`
+--
+
+CREATE TABLE `notified` (
+  `notif_id` int(11) NOT NULL,
+  `user_id_notified` int(11) NOT NULL,
+  `if_read` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `post`
 --
 
@@ -152,10 +198,11 @@ CREATE TABLE `post` (
 --
 
 INSERT INTO `post` (`post_id`, `class_id`, `user_id`, `time_stamp`, `text`, `file_id`) VALUES
-(32, 1, '201437759', '2016-12-07 12:28:20', 'asdasd', 2),
-(33, 1, '201437759', '2016-12-07 12:31:25', 'asdas', 1),
-(34, 1, '201437759', '2016-12-07 14:48:39', 'fxghjk', 1),
-(35, 1, '201437759', '2016-12-07 16:01:01', 'Rarrrrrr', 2);
+(36, 1, '201437759', '2016-12-08 02:36:29', 'First post. :D', 0),
+(37, 1, '201437759', '2016-12-08 02:36:35', 'Second Post :D', 0),
+(38, 1, '201437759', '2016-12-08 02:40:10', 'YEEEY :D', 1),
+(39, 1, '201437759', '2016-12-08 02:41:26', 'Text-file.', 2),
+(40, 2, '201437759', '2016-12-08 02:47:14', 'Yeeeey. :D\r\n', 0);
 
 -- --------------------------------------------------------
 
@@ -245,6 +292,12 @@ ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
 
 --
+-- Indexes for table `comment`
+--
+ALTER TABLE `comment`
+  ADD PRIMARY KEY (`comment_id`);
+
+--
 -- Indexes for table `course`
 --
 ALTER TABLE `course`
@@ -263,6 +316,12 @@ ALTER TABLE `enroll_class`
   ADD PRIMARY KEY (`student_id`,`class_id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`notif_id`);
+
+--
 -- Indexes for table `post`
 --
 ALTER TABLE `post`
@@ -278,13 +337,15 @@ ALTER TABLE `semester`
 -- Indexes for table `student`
 --
 ALTER TABLE `student`
-  ADD PRIMARY KEY (`student_id`);
+  ADD PRIMARY KEY (`student_id`),
+  ADD KEY `firstname` (`firstname`,`lastname`);
 
 --
 -- Indexes for table `teacher`
 --
 ALTER TABLE `teacher`
-  ADD PRIMARY KEY (`teacher_id`);
+  ADD PRIMARY KEY (`teacher_id`),
+  ADD KEY `firstname` (`firstname`,`lastname`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -296,6 +357,11 @@ ALTER TABLE `teacher`
 ALTER TABLE `class`
   MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
@@ -306,10 +372,15 @@ ALTER TABLE `course`
 ALTER TABLE `degree`
   MODIFY `degree_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 --
 -- AUTO_INCREMENT for table `semester`
 --
