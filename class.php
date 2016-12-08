@@ -65,6 +65,9 @@
 			<li><a href="members.php?classid=<?=$_GET['classid']?>" class="floattran">Members</a></li>
 			<li><a href="files.php?classid=<?=$_GET['classid']?>" class="floattran">Files</a></li>
 			<li><a href="images.php?classid=<?=$_GET['classid']?>" class="floattran">Images</a></li>
+			<?php if ($_SESSION['type']=="teacher") { ?>
+				<li><a href="enroll_student.php">Enroll Student</a></li>
+			<?php } ?>
 		</ul>
 		
 		<div class="to post">
