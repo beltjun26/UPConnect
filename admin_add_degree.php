@@ -18,11 +18,42 @@
 	<?php 
 		require "connect.php";
 		require "admin_nav.php";
+
+		$error = 2;
+		$error1="";
+		$error2="";
+		$name="";
+		$description="";
+
+		if ($_POST['add_degree']) {
+			$query = "SELECT * FROM degree WHERE degree_name = '{$_POST['name']}'";
+			$result = mysqli_query($dbconn, $query);
+			$name = $_POST['name'];
+			$description = $_POST['description'];
+			if ($name == null) {
+				$error1 = "Please enter a Degree name.";
+				$error = 1;
+			} else if(mysqli_num_rows($result) > 0) {
+				$error1 = "Degree name already taken.";
+				$error = 1;
+			} else{
+				$error = 0;
+			}
+			if (strlen($description)<=20){
+				$error2 = "Description too short... Must contain at least 20 characters...";
+				$error = 1;
+			}
+
+			if ($error == 0) {
+				$query = "INSERT INTO degree (degree_name,description) VALUES ('$name','$description');";
+				$result = mysqli_query($dbconn, $query);
+			}
+		}
 	?>
 	<div id="container">
 		<header class="table-header">
 			<a href="admin_degrees.php" class="current"><h1>Degree</h1></a>
-			<form action="admin_add_degree.php" class="search" method="POST">
+			<form action="admin_degrees.php" class="search" method="POST">
 				<input type="text" name="keyword" placeholder="Search">
 				<input type="submit" name="search" value="Go">
 			</form>
@@ -30,33 +61,20 @@
 		</header>
 		<h2>Add Degree</h2>
 		<p class="instruction">Fill out this form correctly to add.</p>
-		<form class="addform">
-			<input type="text" name="id" placeholder="Student ID... Must be 9 digits. example: 123456789">
-			<span class="error">Teacher ID should contain numbers only and 9 digits long.</span>
-			<div class="name-inputs">
-				<input type="text" name="firstname" placeholder="First Name...">
-				<input type="text" name="middname" placeholder="Middle Name...">
-				<input type="text" name="lastname" placeholder="Last Name...">
-			</div>
-			<span class="error">This name has a record already.</span>
-			<input type="email" name="email" placeholder="Email...">
-			<span class="error">Email format is wrong.</span>
-			<input type="text" list="degrees" name="degree" placeholder="Degree... example: Computer Science">
-				<datalist id="degrees">
-					<option value="Computer Science">
-					<option value="Fisheries">
-					<option value="Applied Mathematics">
-					<option value="Statistics">
-					<option value="Chemistry">
-				</datalist>
-			<span class="error">Degree is not offered.</span>
-			<input type="text" name="yearlvl" placeholder="Year Level... example: 1">
-			<span class="error">Must be from 1-4 only.</span>
-			<input type="password" name="pass" placeholder="Password...">
-			<span class="error">Password needs to have at least 8 characters and has at least 1 number.</span>
-			<input type="password" name="passret" placeholder="Retype Password...">
-			<span class="error">Retyped password did not match.</span>
-			<input id="add_button" type="submit" name="add_student" value="Add +">
+		
+		<form action="admin_add_degree.php" class="addform" method="POST">
+			<?php if ($error == 0): ?>
+				<span class="success" style="display: block;">Added degree program to database.</span>
+			<?php endif ?> 
+			<input type="text" name="name" placeholder="Degree Name..." value="<?= $name ?>">
+			<span class="error" <?php if ($error1 != null): ?>
+				style="display: block"
+			<?php endif ?> ><?=$error1?></span>
+			<textarea name="description" placeholder="Description..." value="<?= $description ?>"></textarea>
+			<span class="error" <?php if ($error2 != null): ?>
+				style="display: block"
+			<?php endif ?> ><?=$error2?></span>
+			<input id="add_button" type="submit" name="add_degree" value="Add +">
 		</form>
 	</div>
 </body>

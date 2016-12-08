@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	$_SESSION['page'] = 1;
 ?>
 
 <!DOCTYPE html>
@@ -10,13 +11,9 @@
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 </head>
 	<?php 
-		if($_SESSION['type'] == "student"){
-			require "studenthome.php";
-		}
-		else if ($_SESSION['type'] == "teacher"){
-			require "teacherhome.php";
-		}
-		else if ($_SESSION['type'] == "admin"){
+		if($_SESSION['type'] != "admin"){
+			require "userhome.php";
+		} else {
 			require "adminhome.php";
 		}
 	 ?>

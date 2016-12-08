@@ -1,4 +1,5 @@
 <?php session_start();
+ 	$_SESSION['page'] = 4;
  ?>
 <!DOCTYPE html>
 <html>
@@ -23,14 +24,7 @@
 			$row = mysqli_fetch_assoc($result);
 		}
 	 ?>
-	<nav id="nav">
-		<a href="home.php" class="floattran">UP Connect</a>
-		<a href="myprofile.php" class="floattran">Your Profile</a>
-		<a href="home.php" class="floattran">Home</a>
-		<a href="#" class="floattran">Notifications</a>	
-		<a href="#" class="floattran active">Classes</a>	
-		<a href="logout.php" class="floattran">Logout</a>
-	</nav>
+	<?php require "nav.php"; ?>
 	<div id="classContainer">
 	<header class="class">
 		<h1 class="classtitle"><?php echo $row['course_name'] ?></h1>
@@ -56,7 +50,7 @@
 	</ul>
 	<div class="container">
 		<h1>IMAGES</h1>
-		<h2><?php echo $row['course_name'] ?></h2>
+		<h2>CMSC 128</h2>
 		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to download.</p>
 		<!-- <form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">

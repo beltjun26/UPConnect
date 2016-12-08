@@ -109,14 +109,25 @@ h2{
     margin: 10px 5px 0 5px;
 }
 
-.error{
-    background-color: #E91E63;
+.error, 
+.success{
+    display: none;
     color: white;
     font-family: Arial;
     font-size: 0.85em;
     border: 1px solid #DDD;
     border-width: 0 1px 1px 1px;
     padding: 5px 15px 3px 15px;
+}
+
+.error{
+    background-color: #E91E63;
+}
+
+.success{
+    text-align: center;
+    margin-top: 10px;
+    background-color: #64DD17;
 }
 
 .group-inputs{

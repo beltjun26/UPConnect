@@ -9,7 +9,14 @@
 		$db = 'up_connect_db';
 		$dbconn = mysqli_connect($host,$username,$password,$db) or die("Could not connect to database!");
 
-		$query = "select * from enroll_class as S, class as C, course as E where S.student_id like '{$_SESSION['userid']}' and S.class_id = C.class_id and E.course_id = C.course_id";
+		if ($_SESSION['type']=='student') {
+			$query = "SELECT * from enroll_class as S, class as C, course as E where S.student_id like '{$_SESSION['userid']}' and S.class_id = C.class_id and E.course_id = C.course_id";
+		}
+
+		if ($_SESSION['type']=='teacher') {
+			$query = "SELECT * FROM class NATURAL JOIN course WHERE teacher_id='{$_SESSION['userid']}'";
+		}
+
 		$result = mysqli_query($dbconn, $query);
 		$data = [];
 		if(mysqli_affected_rows($dbconn)){
