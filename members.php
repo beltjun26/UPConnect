@@ -85,7 +85,7 @@
 		<?php foreach ($student as $value):?>
 			<li class = "list-item">
 				<a href="<?php echo "profile.php?student_id=".$value['student_id'];?>">
-					<img src="images/profile_images/<?=$value['student_id']?>.jpg">
+					<img src="images/profile_images/<?=$value['student_id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'"">
 					<ul class="description">
 						<li class="descriptionName">
 							<span><?php echo $value['firstname']." ".$value['lastname']?></span></li>

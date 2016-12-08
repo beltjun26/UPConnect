@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 08, 2016 at 04:04 AM
+-- Generation Time: Dec 08, 2016 at 07:16 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.6.23
 
@@ -146,12 +146,27 @@ CREATE TABLE `enroll_class` (
 --
 
 INSERT INTO `enroll_class` (`student_id`, `class_id`) VALUES
+('201345219', 1),
+('201345219', 2),
+('201412212', 1),
+('201412212', 2),
 ('201416976', 1),
 ('201416976', 2),
 ('201416976', 3),
 ('201437759', 1),
 ('201437759', 2),
-('201437759', 3);
+('201437759', 3),
+('201439111', 1),
+('201439111', 2),
+('201439111', 3),
+('201454987', 1),
+('201454987', 2),
+('201465234', 1),
+('201465234', 2),
+('201476584', 1),
+('201476584', 2),
+('201478213', 1),
+('201478213', 3);
 
 -- --------------------------------------------------------
 
@@ -163,8 +178,16 @@ CREATE TABLE `notifications` (
   `notif_id` int(11) NOT NULL,
   `post_id` int(11) NOT NULL,
   `user_id_posted` int(11) NOT NULL,
-  `notif_type` int(2) NOT NULL
+  `notif_type` int(2) NOT NULL,
+  `time_stamp_notif` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`notif_id`, `post_id`, `user_id_posted`, `notif_type`, `time_stamp_notif`) VALUES
+(1, 48, 201416976, 1, '2016-12-08 06:15:59');
 
 -- --------------------------------------------------------
 
@@ -177,6 +200,48 @@ CREATE TABLE `notified` (
   `user_id_notified` int(11) NOT NULL,
   `if_read` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `notified`
+--
+
+INSERT INTO `notified` (`notif_id`, `user_id_notified`, `if_read`) VALUES
+(45, 12345, 0),
+(45, 201345219, 0),
+(45, 201412212, 0),
+(45, 201437759, 0),
+(45, 201439111, 0),
+(45, 201454987, 0),
+(45, 201465234, 0),
+(45, 201476584, 0),
+(45, 201478213, 0),
+(46, 12345, 0),
+(46, 201345219, 0),
+(46, 201412212, 0),
+(46, 201437759, 0),
+(46, 201439111, 0),
+(46, 201454987, 0),
+(46, 201465234, 0),
+(46, 201476584, 0),
+(46, 201478213, 0),
+(47, 12345, 0),
+(47, 201345219, 0),
+(47, 201412212, 0),
+(47, 201437759, 0),
+(47, 201439111, 0),
+(47, 201454987, 0),
+(47, 201465234, 0),
+(47, 201476584, 0),
+(47, 201478213, 0),
+(1, 12345, 0),
+(1, 201345219, 0),
+(1, 201412212, 0),
+(1, 201437759, 0),
+(1, 201439111, 0),
+(1, 201454987, 0),
+(1, 201465234, 0),
+(1, 201476584, 0),
+(1, 201478213, 0);
 
 -- --------------------------------------------------------
 
@@ -202,7 +267,15 @@ INSERT INTO `post` (`post_id`, `class_id`, `user_id`, `time_stamp`, `text`, `fil
 (37, 1, '201437759', '2016-12-08 02:36:35', 'Second Post :D', 0),
 (38, 1, '201437759', '2016-12-08 02:40:10', 'YEEEY :D', 1),
 (39, 1, '201437759', '2016-12-08 02:41:26', 'Text-file.', 2),
-(40, 2, '201437759', '2016-12-08 02:47:14', 'Yeeeey. :D\r\n', 0);
+(40, 2, '201437759', '2016-12-08 02:47:14', 'Yeeeey. :D\r\n', 0),
+(41, 1, '12345', '2016-12-08 06:04:39', 'Hello guys. \r\n', 0),
+(42, 1, '12345', '2016-12-08 06:04:47', 'Yehey guys. ', 0),
+(43, 1, '201437759', '2016-12-08 06:05:59', 'Woooh\r\n', 0),
+(44, 1, '201437759', '2016-12-08 06:06:04', 'Yeeeh. ', 0),
+(45, 1, '201416976', '2016-12-08 06:11:48', 'Hello guys. ', 0),
+(46, 1, '201416976', '2016-12-08 06:13:07', 'Hi', 0),
+(47, 1, '201416976', '2016-12-08 06:13:51', 'asd', 0),
+(48, 1, '201416976', '2016-12-08 06:15:58', 'Hello', 0);
 
 -- --------------------------------------------------------
 
@@ -248,9 +321,16 @@ CREATE TABLE `student` (
 --
 
 INSERT INTO `student` (`student_id`, `firstname`, `middlename`, `lastname`, `email`, `year_lvl`, `degree_id`, `password`) VALUES
+('201345219', 'Kenny Rose', 'Pabello', 'De Luna', 'delunakennyrose@gmail.com', 4, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
 ('201412212', 'Clyde', 'Ambot', 'Delgado', 'clyde@yahoo.com', 3, 1, '41e2dd5f17c3524cb1f5abe851fa6c0d'),
 ('201416976', 'Rosiebelt Jun', 'Ayupan', 'Abisado', 'abisado@yahoo.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
-('201437759', 'Maynard', 'Fuentes', 'Vargas', 'vargas@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c');
+('201437759', 'Maynard', 'Fuentes', 'Vargas', 'vargas@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201439111', 'Rosjel Jolly', 'Pamposa', 'Lambungan', 'lambunganrosjeljolly@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201454987', 'Uno', 'Wong', 'Montgomery', 'montgomeryuno@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201465234', 'Barbie', 'Go', 'Bautista', 'gobarbie@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201476584', 'Tyron', 'Hernandez', 'Buenavista', 'buenavistatyron@gmail.com', 3, 2, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201478213', 'Hope Esther', 'Regalado', 'Cargazon', 'cargazonhope@gmail.com', 3, 1, '9460370bb0ca1c98a779b1bcc6861c2c'),
+('201521786', 'Azi', 'Lacana', 'Montefalco', 'azimontefalco@gmail.com', 3, 2, '9460370bb0ca1c98a779b1bcc6861c2c');
 
 -- --------------------------------------------------------
 
@@ -375,12 +455,12 @@ ALTER TABLE `degree`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `notif_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `post_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 --
 -- AUTO_INCREMENT for table `semester`
 --

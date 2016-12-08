@@ -145,7 +145,7 @@
 				<?php if(mysqli_affected_rows($dbconn)): ?>
 					<?php while($data = mysqli_fetch_assoc($result)): ?>
 					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<img src="images/profile_images/<?=$data['id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<div class="content">
 							<span class="delete">x</span>
 							<a class="usercom"><?=$data['fullname']?></a>
@@ -157,7 +157,7 @@
 				<?php endif ?>
 					
 					<li class="comment commenting">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<img src="images/profile_images/<?=$_SESSION['userid']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<form method="post" action="commit_comment.php">
 							<textarea class="description" name="content" placeholder="Comment here..."></textarea>
 							<input type="text" name="id" value="<?=$value['post_id']?>" style="display: none">
