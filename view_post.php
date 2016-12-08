@@ -13,14 +13,21 @@
 	<link rel="stylesheet" type="text/css" href="css/navigationbar.css">
 </head>
 <body>
-	<?php require "nav.php"; ?>
+	<?php require "nav.php"; 
+	require "connect.php";
+		$query = "SELECT * FROM post natural join class join student on user_id = student_id where post_id = {$_GET['post_id']}";
+		$result = mysqli_query($dbconn, $query);
+		$data = mysqli_fetch_assoc($result);
+		$query = "SELECT * from (SELECT concat(firstname, \" \", lastname) as fullname, teacher_id as id, content from comment join teacher on teacher.teacher_id=user_id where post_id = {$_GET['post_id']}) as ttable UNION (SELECT concat(firstname, \" \", lastname) as fullname, student_id as id, content from comment join student on student.student_id=user_id where post_id = {$_GET['post_id']})";
+		$result = mysqli_query($dbconn, $query);
+	?>
 	<div class="container" id="classContainer">
 			<div class="post" style="margin-top: 30px!important;">	
 				<header>
-					<img class="userphoto" src="images/profile_images/1.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-					<a class="user" href="profile.php">Clyde Joshua Delgado</a>
+					<img class="userphoto" src="images/profile_images/<?=$data['user_id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+					<a class="user" href="profile.php"><?php echo $data['firstname']." ".$data['lastname']?></a>
 				</header>
-				<p class="caption">Something</p>
+				<p class="caption"><?=$data['text']?></p>
 				<img src="<?php echo $dir."/".$file_array[2]; ?>" class="uploadedphoto">
 
 				<div class="filecontainer">
@@ -35,59 +42,30 @@
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
-				<ul class="comments" style="display: none">
+				<ul class="comments" >
+					<?php if(mysqli_affected_rows($dbconn)): ?>
+					<?php while($data = mysqli_fetch_assoc($result)): ?>
 					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<img src="images/profile_images/<?=$data['id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<div class="content">
 							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
+							<a class="usercom"><?=$data['fullname']?></a>
 							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
+							<p class="comment-content"><?=$data['content']?></p>
 						</div>
 					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commented">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<div class="content">
-							<span class="delete">x</span>
-							<a class="usercom">Clyde Joshua Delgado</a>
-							<span class="timestamp">December 7, 2016 8:42pm</span>
-							<p class="comment-content">Hello po, ask lang ko tani kng okay na ni ang comment? :D XD</p>
-						</div>
-					</li>
-					<li class="comment commenting">
-						<img src="aa" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-						<form>
-							<textarea class="description" placeholder="Comment here..."></textarea>		
+					<?php endwhile ?>
+				<?php endif ?>
+				<li class="comment commenting">
+						<img src="images/profile_images/<?=$_SESSION['userid']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
+						<form method="post" action="commit_comment1.php">
+							<textarea class="description" name="content" placeholder="Comment here..."></textarea>
+							<input type="text" name="id" value="<?=$_GET['post_id']?>" style="display: none">
+							<input type="text" name="post_id" value="<?=$_GET['post_id']?>" style="display: none">	
 							<button><span class="glyphicon glyphicon-comment"></span></button>
 						</form>
 					</li>
+					
 				</ul>
 			</div>
 	</div>
