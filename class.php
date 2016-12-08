@@ -71,6 +71,7 @@
 			<header>
 				<img class="userphoto" src="images/profile_images/<?=$_SESSION['userid'] ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 				<p class="user"><?=$_SESSION['firstname']." ".$_SESSION['lastname']?></p>
+
 			</header>
 			<form method="post" action="post.php" enctype="multipart/form-data">
 				<textarea name="caption" class="text" placeholder="Want to Post?"><?=$caption_post?></textarea>
@@ -106,6 +107,7 @@
 					<a class="user" href="
 					<?php echo "profile.php?student_id=".$value['user_id'];?>
 					"><?=$value['firstname']." ".$value['lastname'];?></a>
+					<span class="time-stamp" style="font-family: Arial;font-size: 0.85em; padding-top: 0.60em; margin-left: 10px; color:#DDD; "><?php echo date("F j, y, g:i a", strtotime($value['time_stamp']));  ?></span>
 				</header>
 				<p class="caption"><?= $value['text'] ?></p>
 				<?php if($value['file_id'] == 1): 
@@ -132,7 +134,6 @@
 						</li> 
 					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>
-					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>
 				<?php 
 					$query = "SELECT * from (SELECT concat(firstname, \" \", lastname) as fullname, teacher_id as id, content from comment join teacher on teacher.teacher_id=user_id where post_id = {$value['post_id']}) as ttable UNION (SELECT concat(firstname, \" \", lastname) as fullname, student_id as id, content from comment join student on student.student_id=user_id where post_id = {$value['post_id']})";
@@ -144,6 +145,7 @@
 					<li class="comment commented">
 						<img src="images/profile_images/<?=$data['id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
 						<div class="content">
+
 							<span class="delete">x</span>
 							<a class="usercom"><?=$data['fullname']?></a>
 							<span class="timestamp">December 7, 2016 8:42pm</span>

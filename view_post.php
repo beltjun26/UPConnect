@@ -25,20 +25,39 @@
 			<div class="post" style="margin-top: 30px!important;">	
 				<header>
 					<img class="userphoto" src="images/profile_images/<?=$data['user_id']?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-					<a class="user" href="profile.php"><?php echo $data['firstname']." ".$data['lastname']?></a>
+					<a class="user" href="profile.php?student_id=<?php echo $data['student_id'] ?>"><?php echo $data['firstname']." ".$data['lastname']?></a>
 				</header>
 				<p class="caption"><?=$data['text']?></p>
-				<img src="<?php echo $dir."/".$file_array[2]; ?>" class="uploadedphoto">
+				
+				<?php if ($data['file_id'] == 1): 
+						$dir = "saved_images/".$data['post_id'];
+						$file_array = scandir($dir);
+				?>
 
-				<div class="filecontainer">
-					<img src="images/file.png" class="file">
-					<p><?=$file_array[2];?></p>
-				</div>
-
+					<img src="<?php echo $dir."/".$file_array[2]; ?>" class="uploadedphoto">
+				<?php endif ?>
+	
+				<?php if ($data['file_id'] == 2): ?>
+					<div class="filecontainer">
+						<?php 
+						$dir = "saved_files/".$data['post_id'];
+						$file_array = scandir($dir);
+						 ?>
+						<img src="images/file.png" class="file">
+						<p><?=$file_array[2];?></p>
+					</div>
+				<?php endif; ?>
 				<ul class="button options"> 
-					<li>
-						<a href="download.php?post=1&file=1" target="_blank" class = "hoveranim download-btn">Download</a>
-					</li>
+					<?php if($data['file_id'] == 1): ?>
+						<li>
+							<a href="download.php?post=<?php echo $_GET['post_id']; ?>&file=1" target="_blank" class = "hoveranim download-btn">Download</a>
+						</li>
+					<?php endif; ?>
+					<?php if($data['file_id'] == 2): ?>
+						<li>
+							<a href="download.php?post=<?php echo $_GET['post_id']; ?>&file=2" target="_blank" class = "hoveranim download-btn">Download</a>
+						</li>
+					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>
 					<li><input type="button" value="Follow" class="hoveranim"></li>
 				</ul>

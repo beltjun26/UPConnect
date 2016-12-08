@@ -21,7 +21,8 @@
 
 			$query = "SELECT * FROM `notifications` 
 					  NATURAL JOIN notified
-					  WHERE user_id_notified = '$user_id';";
+					  WHERE user_id_notified = '$user_id' 
+					  ORDER BY time_stamp_notif DESC;";
 		 	
 		 	$result = mysqli_query($dbconn, $query);
 		 ?>
@@ -44,17 +45,17 @@
 		 			$row = mysqli_fetch_row($other_result);
 
 				 ?>
-
 				<img class="user-photo" src="images/profile_images/<?php 
 					if(strlen($poster_id) == 9){
-						echo $row['student_id'];
+						echo $row[0];
+
 					}elseif(strlen($poster_id) == 5){
-						echo $row['teacher_id'];
+						echo $row[0];
 					} ?>.jpg" onerror="this.src='images/profile_images/profile_picture_default.jpg'">
-				<a href="delete_notif.php" class="close">&times;</a>
+				<a href="delete_notif.php?notif_id=<?php echo $value['notif_id'] ?>" class="close">&times;</a>
 				<div class="content">
 					<span class="username"><?php echo $row[1]." ".$row[3] ?></span>
-					<span class="time-stamp"><?php echo $value['time_stamp_notif'] ?></span>
+					<span class="time-stamp"><?php echo date("F j, y, g:i a", strtotime($value['time_stamp_notif']));  ?></span>
 
 				<?php 
 					$post_id = $value['post_id'];

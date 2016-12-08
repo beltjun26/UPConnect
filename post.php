@@ -61,11 +61,7 @@
 
  		$query = "INSERT INTO `notifications` (`notif_id`, `post_id`, `user_id_posted`, `notif_type`, `time_stamp_notif`) VALUES (NULL, '$post_id', '$user_id', '1', CURRENT_TIMESTAMP);";
 
-
-
 		mysqli_query($dbconn, $query);
-
-
 
 		$notif_id = mysqli_insert_id($dbconn);
 		
