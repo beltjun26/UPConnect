@@ -58,20 +58,23 @@
 	</ul>
 	<div class="container">
 		<h1>FILES</h1>
-		<h2>CMSC 128</h2>
+		<h2><?php echo $row['course_name'] ?></h2>
 		<p class="instructions" style="margin: 0 20px;">Click on one of the files to download.</p>
 		<form class="searchthroughlist">
-			<input type="text" name="keyword" placeholder="Search...">
+			<input type="text" name="keyword" placeholder="Search..." id = "myInput" onkeyup="myFunction()">
+			<input type="text" name="classid" value="<?=$_GET['classid']?>" style="display: none;">
+
 			<input type="submit" name="submit" value="SEARCH">
 		</form>
-		<ul class="fileslist">
-	
-
-		
+		<ul class="fileslist" id = "myUL">
 		<?php 
 		//Query for the post
 		$class_id = $_GET['classid'];
-		$query = "select * from post where class_id = '$class_id' and file_id = 2 order by time_stamp desc;";
+		if(isset($_GET['keyword'])){
+			$query = "select * from post where class_id = '$class_id' and file_id = 2 order by time_stamp desc;";
+		}else{
+			$query = "select * from post where class_id = '$class_id' and file_id = 2 order by time_stamp desc;";
+		}
 
 		$post_row = mysqli_query($dbconn, $query);
 
@@ -100,6 +103,26 @@
 		x = x - h;
 		console.log(x);
 		document.getElementById('classContainer').setAttribute("style","height: "+x+"px;width:100%;margin-top:"+h+"px;");
+	</script>
+	<script>
+		function myFunction() {
+		    // Declare variables
+		    var input, filter, ul, li, a, i;
+		    input = document.getElementById('myInput');
+		    filter = input.value.toUpperCase();
+		    ul = document.getElementById("myUL");
+		    li = ul.getElementsByTagName('li');
+
+		    // Loop through all list items, and hide those who don't match the search query
+		    for (i = 0; i < li.length; i++) {
+		        a = li[i].getElementsByTagName("span")[0];
+		        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+		            li[i].style.display = "";
+		        } else {
+		            li[i].style.display = "none";
+		        }
+		    }
+		}
 	</script>
 </body>
 </html>

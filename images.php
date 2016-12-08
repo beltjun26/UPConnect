@@ -56,7 +56,7 @@
 	</ul>
 	<div class="container">
 		<h1>IMAGES</h1>
-		<h2>CMSC 128</h2>
+		<h2><?php echo $row['course_name'] ?></h2>
 		<p class="instructions" style="margin: 10px 20px;">Click on one of the images to download.</p>
 		<!-- <form class="searchthroughlist">
 			<input type="text" name="keyword" placeholder="Search...">
