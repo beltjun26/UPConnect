@@ -67,6 +67,7 @@
 			<li><a href="images.php?classid=<?=$_GET['classid']?>" class="floattran">Images</a></li>
 			<?php if ($_SESSION['type']=="teacher") { ?>
 				<li><a href="enroll_student.php">Enroll Student</a></li>
+				<li><a href="drop_student.php">Drop Student</a></li>
 			<?php } ?>
 		</ul>
 		
@@ -135,7 +136,7 @@
 						</li> 
 					<?php endif; ?>
 					<li><input type="button" value="Comment" class="hoveranim"></li>
-					<li><input type="button" value="Follow" class="hoveranim"></li>
+					<!-- <li><input type="button" value="Follow" class="hoveranim"></li> -->
 				</ul>
 				<?php 
 					$query = "SELECT * from (SELECT concat(firstname, \" \", lastname) as fullname, teacher_id as id, content from comment join teacher on teacher.teacher_id=user_id where post_id = {$value['post_id']}) as ttable UNION (SELECT concat(firstname, \" \", lastname) as fullname, student_id as id, content from comment join student on student.student_id=user_id where post_id = {$value['post_id']})";

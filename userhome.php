@@ -29,11 +29,14 @@
 	<?php require "nav.php"; ?>
 	<div class="container">
 		<h1 class="greetings">Welcome to<br><span class="webname">UP Connect!</span></h1>
-		<p class="instructions">Click on one of your classes below to view class activities.</p>
+		<?php if (count($data) > 0) { ?>
+			<p class="instructions">Click on one of your classes below to view class activities.</p>
+		<?php } else { ?>
+			<p class="instructions">You are not in any classes. Please ask you teacher to add you in their class.</p>
+		<?php } ?>
 		<?php foreach ($data as $value): ?>
 			<a href="class.php?classid=<?php echo $value['class_id'] ?>" class="classbtn"><?php echo $value['course_name'] ?></a>	
 		<?php endforeach ?>
-	
 	</div>
 	<script>
 		h = $('#navBar').outerHeight(true);

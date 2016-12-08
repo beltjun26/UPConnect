@@ -34,12 +34,12 @@
 				$query = "SELECT * FROM enroll_class WHERE student_id = '{$_POST['student']}' AND class_id = '{$_SESSION['class_id']}'";
 				$result = mysqli_query($dbconn, $query);
 				if(mysqli_affected_rows($dbconn)){
-					$error1 = $name." is already in the ".$class.".";
-					$error = 1;
-				} else {
-					$query = "INSERT INTO `enroll_class` (`student_id`, `class_id`) VALUES ('{$_POST['student']}', '{$_SESSION['class_id']}')";
+					$query = "DELETE FROM enroll_class WHERE student_id = '{$_POST['student']}';";
 					$result = mysqli_query($dbconn, $query);
 					$error = 0;
+				} else {
+					$error1 = $name." is not in the ".$class.".";
+					$error = 1;
 				}
 			} else{
 				$error1 = "Student with ID ".$_POST['student']." doesn't exist.";
@@ -48,8 +48,8 @@
 		}
 	?>
 	<div class="container" id="classContainer">
-		<form class="enroll" method="POST" action="enroll_student.php">
-			<h1 class="header">ENROLL TO <?=$class?></h1>
+		<form class="enroll" method="POST" action="drop_student.php">
+			<h1 class="header">DROP FROM <?=$class?></h1>
 			<div class="enroll">
 				<input type="text" list="students" name="student" placeholder="Enter a student number..." autocomplete autofocus>
 					<datalist id="students">
@@ -67,10 +67,10 @@
 							<option value="<?=$value['student_id']?>">
 						<?php endforeach ?>			
 					</datalist>
-				<input type="submit" name="enroll" value="ENROLL" class="button enroll-btn">
+				<input type="submit" name="enroll" value="DROP" class="button drop-btn">
 			</div>
 			<?php if ($error == 0) { ?>
-				<span class="success">You have successfully enrolled <?=$name?> to <?=$class?>.</span>
+				<span class="success">You have successfully dropped <?=$name?> from <?=$class?>.</span>
 			<?php } else if ($error == 1) { ?>
 				<span class="error"><?=$error1?></span>
 			<?php } ?>
