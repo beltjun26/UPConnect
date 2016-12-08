@@ -1,0 +1,110 @@
+@font-face{
+	font-family: GothamLight;
+	src: url('fonts/GOTHAM-LIGHT.TTF');
+}
+
+@font-face{
+	font-family: GothamMedium;
+	src: url('fonts/GOTHAM-MEDIUM.TTF');
+}
+
+#classcontainer{
+	width: 40%;
+}
+
+form.enroll{
+	background-color: white;
+	padding: 10px 20px;
+	border: 1px solid #EEE;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+	border: 1px solid #EEE;
+}
+
+div.enroll{
+	padding: 0;
+	width: 100%;
+	display: flex;
+}
+
+div.enroll input{
+	padding: 10px 20px;
+	border: 1px solid #DDD;
+	background-color: white;
+	transition: 0.2s;
+}
+
+div.enroll input[type=submit]{
+	font-family: GothamLight;
+	font-size: 1em;
+	font-weight: bold;
+	width: 30%;
+}
+
+div.enroll input[type=text]{
+	width: 70%;
+	font-size: 1em;
+	font-family: Arial;
+	border-right-width: 0;
+}
+
+
+div.enroll input[type=text]:hover,
+div.enroll input[type=text]:focus,
+div.enroll input[type=text]:active{
+	border-color: #0091EA;
+	outline: none;
+	box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.error, 
+.success{
+    display: block;
+    color: white;
+    font-family: Arial;
+    font-size: 0.85em;
+    border: 1px solid #DDD;
+    border-width: 0 1px 1px 1px;
+    padding: 5px 15px 3px 15px;
+    margin-bottom: 10px;
+}
+
+.error{
+    background-color: #E91E63;
+}
+
+.success{
+    text-align: center;
+    margin-top: 10px;
+    background-color: #64DD17;
+}
+
+.button{
+	border: 1px solid #EEE;
+	font-family: Arial;
+	font-size: 0.9em;
+	color: #0091EA;
+	transition: 0.2s;
+}
+
+.button:hover{
+	transform: translate(0,-2px);
+	border-color: #0091EA;
+	box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.return{
+	text-decoration: none;
+	padding: 10px 20px;
+	width: 30%;
+	margin: 20px auto 10px auto;
+}
+
+.header{
+	font-family: GothamLight;
+	font-size: 1.5em;
+	letter-spacing: 0.1em;
+	margin: 10px 0 20px 0;
+}
